@@ -66,7 +66,7 @@ Protected Class CaseInfoClass
 		  
 		  // convert all angles from radians to degrees
 		  Var radiansFromDegrees As Double = π/180.0
-		  β = radiansFromDegrees*β
+		  β= radiansFromDegrees*β
 		  ψ = radiansFromDegrees*ψ
 		  λ0 = radiansFromDegrees*λ0
 		  ρ0 = radiansFromDegrees*ρ0
@@ -320,14 +320,6 @@ Protected Class CaseInfoClass
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Z"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="β"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

@@ -39,7 +39,7 @@ Protected Class SpinEvolverClass
 		    C10 = 0.75*(1.0 - δ) + 0.5*η
 		    C20 = 0.75*(1.0 + δ) + 0.5*η
 		    C12 = 9/16 + 5/4*η - η2/24 + δ*(-9/16 + 5/8*η)
-		    C22 = 9/16 + 5/4*η - η2/24 - δ*(-9/16 + 5/8*η)
+		    c22 = 9/16 + 5/4*η - η2/24 - δ*(-9/16 + 5/8*η)
 		    C14 = 27/32 + 3/16*η - 105/32*η2 - η3/48 + δ*(-27/32 + 39/8*η -5/32*η2)
 		    C24 = 27/32 + 3/16*η - 105/32*η2 - η3/48 - δ*(-27/32 + 39/8*η -5/32*η2)
 		    
@@ -111,7 +111,7 @@ Protected Class SpinEvolverClass
 		    Var χ1xDotP As Double = Ω1*(ℓyP*χ1zP - ℓzP*χ1yP)
 		    Var χ1yDotP As Double = Ω1*(ℓzP*χ1xP - ℓxP*χ1zP)
 		    Var χ1zDotP As Double = Ω1*(ℓxP*χ1yP - ℓyP*χ1xP)
-		    Var Ω2 As Double = v5*(C20 + C22*v2 + C24*v4)/L0
+		    Var Ω2 As Double = v5*(C20 + c22*v2 + C24*v4)/L0
 		    Var χ2xDotP As Double = Ω2*(ℓyP*χ2zP - ℓzP*χ2yP)
 		    Var χ2yDotP As Double = Ω2*(ℓzP*χ2xP - ℓxP*χ2zP)
 		    Var χ2zDotP As Double = Ω2*(ℓxP*χ2yP - ℓyP*χ2xP)
@@ -160,7 +160,7 @@ Protected Class SpinEvolverClass
 		    Var χ1xDotN As Double = Ω1*(ℓyN*χ1zN - ℓzN*χ1yN)
 		    Var χ1yDotN As Double = Ω1*(ℓzN*χ1xN - ℓxN*χ1zN)
 		    Var χ1zDotN As Double = Ω1*(ℓxN*χ1yN - ℓyN*χ1xN)
-		    Ω2 = v5*(C20 + C22*v2 + C24*v4)/L0
+		    Ω2 = v5*(C20 + c22*v2 + C24*v4)/L0
 		    Var χ2xDotN As Double = Ω2*(ℓyN*χ2zN - ℓzN*χ2yN)
 		    Var χ2yDotN As Double = Ω2*(ℓzN*χ2xN - ℓxN*χ2zN)
 		    Var χ2zDotN As Double = Ω2*(ℓxN*χ2yN - ℓyN*χ2xN)
@@ -226,7 +226,7 @@ Protected Class SpinEvolverClass
 		  Var χ1xDotN As Double = Ω1*(ℓyN*χ1zN - ℓzN*χ1yN)
 		  Var χ1yDotN As Double = Ω1*(ℓzN*χ1xN - ℓxN*χ1zN)
 		  Var χ1zDotN As Double = Ω1*(ℓxN*χ1yN - ℓyP*χ1xN)
-		  Var Ω2 As Double = v5*(C20 + C22*v2 + C24*v4)/LN
+		  Var Ω2 As Double = v5*(C20 + c22*v2 + C24*v4)/LN
 		  Var χ2xDotN As Double = Ω2*(ℓyN*χ2zN - ℓzN*χ2yN)
 		  Var χ2yDotN As Double = Ω2*(ℓzN*χ2xN - ℓxN*χ2zN)
 		  Var χ2zDotN As Double = Ω2*(ℓxN*χ2yN - ℓyN*χ2xN)
@@ -381,7 +381,7 @@ Protected Class SpinEvolverClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private C22 As Double
+		Private c22 As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

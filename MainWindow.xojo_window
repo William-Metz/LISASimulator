@@ -89,7 +89,7 @@ Begin DesktopWindow MainWindow
          Height          =   595
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nR (ly)\nβ (°)	\nψ (°)\nλ0\nΘ (°)\nΦ (°)	\nΩ (/sky)\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
+         InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nR (ly)\nβ(°)	\nψ (°)\nλ0\nΘ (°)\nΦ (°)	\nΩ (/sky)\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
          Italic          =   False
          Left            =   31
          LockBottom      =   False
@@ -359,7 +359,7 @@ Begin DesktopWindow MainWindow
          TabIndex        =   8
          TabPanelIndex   =   1
          TabStop         =   True
-         Text            =   "Typing 'x' in the cells for β through φ2 will toggle whether that parameter's uncertainty is calculate or not (a displayed 'x' indicates 'not')."
+         Text            =   "Typing 'x' in the cells for βthrough φ2 will toggle whether that parameter's uncertainty is calculate or not (a displayed 'x' indicates 'not')."
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
@@ -1612,6 +1612,7 @@ Begin DesktopWindow MainWindow
    End
    Begin MainThreadClass MainThread
       DebugIdentifier =   ""
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -2688,7 +2689,7 @@ End
 		Name="PlotStartIndex"
 		Visible=false
 		Group="Behavior"
-		InitialValue=""
+		InitialValue="-1"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
@@ -2696,7 +2697,15 @@ End
 		Name="PlotEndIndex"
 		Visible=false
 		Group="Behavior"
-		InitialValue=""
+		InitialValue="-1"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LastStoreVariableIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="16"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty

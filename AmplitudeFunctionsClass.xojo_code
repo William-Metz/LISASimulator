@@ -2,18 +2,18 @@
 Protected Class AmplitudeFunctionsClass
 	#tag Method, Flags = &h0
 		Sub Constructor(β As Double)
-		  // Define β trig functions
+		  // Define βtrig functions
 		  
-		  cβ   = Cos(β)
-		  sβ   = Sin(β)
-		  c2β   = cβ*cβ - sβ*sβ
-		  s2β   = 2*sβ*cβ
-		  c3β   = c2β*cβ - s2β*sβ
-		  s3β   = s2β*cβ + c2β*sβ
-		  c4β   = c3β*cβ - s3β*sβ
-		  s4β   = s3β*cβ + c3β*sβ
-		  c5β   = c4β*cβ - s4β*sβ
-		  s5β   = s4β*cβ + c4β*sβ
+		  cβ = Cos(β)
+		  sβ = Sin(β)
+		  c2β = cβ*cβ- sβ*sβ
+		  s2β = 2*sβ*cβ
+		  c3β = c2β*cβ- s2β*sβ
+		  s3β = s2β*cβ+ c2β*sβ
+		  c4β = c3β*cβ- s3β*sβ
+		  s4β = s3β*cβ+ c3β*sβ
+		  c5β = c4β*cβ- s4β*sβ
+		  s5β = s4β*cβ+ c4β*sβ
 		  cβ2   = cβ*cβ
 		  cβ3   = c2β*cβ
 		  sβ2   = sβ*sβ
@@ -711,22 +711,6 @@ Protected Class AmplitudeFunctionsClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="cβ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="c2β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="cβ2"
 			Visible=false
 			Group="Behavior"
@@ -743,14 +727,6 @@ Protected Class AmplitudeFunctionsClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="sβ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="sβ2"
 			Visible=false
 			Group="Behavior"
@@ -760,62 +736,6 @@ Protected Class AmplitudeFunctionsClass
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="sβ3"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="c3β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="c4β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="c5β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="s2β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="s3β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="s4β"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="s5β"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
