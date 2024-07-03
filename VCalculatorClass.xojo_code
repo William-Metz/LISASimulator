@@ -6,7 +6,7 @@ Protected Class VCalculatorClass
 		  η = (1-δ*δ)*0.25
 		  π = 3.14159265358979324
 		  γE = 0.577215664901533
-
+		  // loading coefficients
 		  Var onepδ As Double = 1.0 + δ
 		  Var onemδ As Double = 1.0 - δ
 		  χ1ℓ = χ_1ℓ
@@ -42,6 +42,69 @@ Protected Class VCalculatorClass
 		  P5 = 5*A5-10*A3*A2
 		  P6 = 5*A6-15*B6-10*A4*A2-5*A3*A3-5*A2*A2*A2
 		  P7 = 5/2*A7 - 5*A5*A2 - 5*A4*A3 + 15/2*A3*A2*A2
+		  
+		  // loading derivatives  δ
+		  dβ3dδ = χ1ℓ*(19*δ/12 + 113/24) + χ2ℓ*(19*δ/12 - 113/24)
+		  dβ5dδ = χ1ℓ*(281*δ*η/8 + 1159*δ*onepδ * onepδ/192 - 809*δ/168 + (2*δ + 2)*(1159*δ*δ/384 + 38299/8064)) + χ2ℓ*(281*δ*η/8 + 1159*δ*onemδ*onemδ/192 - 809*δ/168 + (2*δ - 2)*(1159*δ*δ/384 + 38299/8064))
+		  dβ6dδ = π*χ1ℓ*(37*δ/6 + 75/4) + π*χ2ℓ*(37*δ/6 - 75/4)
+		  dβ7dδ = χ1ℓ*(-8709*δ*η*η/64 + 257023*δ*η/1008 - 1195759*δ/36288 + onepδ * onepδ*(-100019*δ*η/3456 + 796069*δ/16128) + (2*δ + 2)*(796069*δ*δ/32256 + 100019*η*η/3456 + 254599/13824)) + χ2ℓ*(-8709*δ*η*η/64 + 257023*δ*η/1008 - 1195759*δ/36288 + onemδ*onemδ*(-100019*δ*η/3456 + 796069*δ/16128) + (2*δ - 2)*(796069*δ*δ/32256 + 100019*η*η/3456 + 254599/13824))
+		  dA0dδ = -48*δ/5
+		  dA2dδ = 11*δ/8
+		  dA3dδ = - dβ3dδ
+		  dA4dδ = -59*δ*η/18 - 13661*δ/4032
+		  dA5dδ = 189*δ*π/16 - dβ5dδ
+		  dA6dδ = -451*δ*π^2*η/48 + 56669509*δ*η*η/145152 - 541*δ*η/896 - π*χ1ℓ*(37*δ/6 + 75/4) - π*χ2ℓ*(37*δ/6 - 75/4)
+		  dA7dδ = 91495*δ*π*η/1512 + 358675*δ*π/12096 - dβ7dδ 
+		  dB6dδ = 0
+		  dC2dδ = - dA2dδ/6
+		  dC3dδ = - dA3dδ/5
+		  dC4dδ = -dA4dδ/4 + 5/12*A2*dA2dδ
+		  dC5dδ =- dA5dδ/3 + 3/5*dA2dδ*A3 + 3/5*dA3dδ*A2
+		  dC6dδ = -dA6dδ/2 - 3/4*dB6dδ + 23/24*dA4dδ*A2 + 23/24*dA2dδ*A4 + 24/25*A3*dA3dδ - 67/48*A2*A2*dA2dδ
+		  dC7dδ =  -dA7dδ + 2*dA5dδ*A2 + 2*dA4dδ*A3 - 3*dA3dδ*A2*A2 + 2*dA2dδ*A5 + 2*dA3dδ*A4 - 6*dA2dδ*A3*A2
+		  
+		  // loading derivatives χ1ℓ
+		  dβ3dχ1ℓ = 25*η/4 + 113*onepδ*onepδ/48
+		  dβ5dχ1ℓ = -281*η^2/8 + 809*η/84 + (31319/4032 - 1159*η/96)*onepδ*onepδ
+		  dβ6dχ1ℓ = π*(151*η/6 + 75*onepδ*onepδ/8)
+		  dβ7dχ1ℓ = 2903*η^3/32 - 257023*η^2/1008 + 1195759*η/18144 + onepδ*onepδ*(100019*η^2/3456 - 796069*η/8064 + 130325/3024)
+		  dA0dχ1ℓ = 0
+		  dA2dχ1ℓ = 0
+		  dA3dχ1ℓ = - dβ3dχ1ℓ
+		  dA4dχ1ℓ = 0
+		  dA5dχ1ℓ = - dβ5dχ1ℓ
+		  dA6dχ1ℓ = - dβ6dχ1ℓ
+		  dA7dχ1ℓ = -dβ7dχ1ℓ
+		  dB6dχ1ℓ = 0
+		  dC2dχ2ℓ = - dA2dχ2ℓ/6
+		  dC3dχ2ℓ = - dA3dχ2ℓ/5
+		  dC4dχ2ℓ = -dA4dχ2ℓ/4 + 5/12*A2*dA2dχ2ℓ
+		  dC5dχ2ℓ =- dA5dχ2ℓ/3 + 3/5*dA2dχ2ℓ*A3 + 3/5*dA3dχ2ℓ*A2
+		  dC6dχ2ℓ = -dA6dχ2ℓ/2 - 3/4*dB6dχ2ℓ + 23/24*dA4dχ2ℓ*A2 + 23/24*dA2dχ2ℓ*A4 + 24/25*A3*dA3dχ2ℓ - 67/48*A2*A2*dA2dχ2ℓ
+		  dC7dχ2ℓ =  -dA7dχ2ℓ + 2*dA5dχ2ℓ*A2 + 2*dA4dχ2ℓ*A3 - 3*dA3dχ2ℓ*A2*A2 + 2*dA2dχ2ℓ*A5 + 2*dA3dχ2ℓ*A4 - 6*dA2dχ2ℓ*A3*A2
+		  
+		  // loading derivatives  χ2ℓ
+		  dβ3dχ2ℓ = 25*η/4 + 113*onemδ*onemδ/48
+		  dβ5dχ2ℓ = -281*η^2/8 + 809*η/84 + onemδ*onemδ*(31319/4032 - 1159*η/96)
+		  dβ6dχ2ℓ = π*(151*η/6 + 75*onemδ*onemδ/8)
+		  dβ7dχ2ℓ = 2903*η^3/32 - 257023*η^2/1008 + 1195759*η/18144 + onemδ*onemδ*(100019*η^2/3456 - 796069*η/8064 + 130325/3024)
+		  dA0dχ2ℓ = 0
+		  dA2dχ2ℓ = 0
+		  dA3dχ2ℓ = - dβ3dχ2ℓ
+		  dA4dχ2ℓ = 0
+		  dA5dχ2ℓ = - dβ5dχ2ℓ
+		  dA6dχ2ℓ = - dβ6dχ2ℓ
+		  dA7dχ2ℓ = -dβ7dχ2ℓ
+		  dB6dχ2ℓ = 0
+		  dC2dχ2ℓ = - dA2dχ2ℓ/6
+		  dC3dχ2ℓ = - dA3dχ2ℓ/5
+		  dC4dχ2ℓ = -dA4dχ2ℓ/4 + 5/12*A2*dA2dχ2ℓ
+		  dC5dχ2ℓ =- dA5dχ2ℓ/3 + 3/5*dA2dχ2ℓ*A3 + 3/5*dA3dχ2ℓ*A2
+		  dC6dχ2ℓ = -dA6dχ2ℓ/2 - 3/4*dB6dχ2ℓ + 23/24*dA4dχ2ℓ*A2 + 23/24*dA2dχ2ℓ*A4 + 24/25*A3*dA3dχ2ℓ - 67/48*A2*A2*dA2dχ2ℓ
+		  dC7dχ2ℓ =  -dA7dχ2ℓ + 2*dA5dχ2ℓ*A2 + 2*dA4dχ2ℓ*A3 - 3*dA3dχ2ℓ*A2*A2 + 2*dA2dχ2ℓ*A5 + 2*dA3dχ2ℓ*A4 - 6*dA2dχ2ℓ*A3*A2
+		  
+		  
+		  // loading zeta
 		  ζ0 = (5/(256*η*τc))^(0.125)
 		  Var ζ2 As Double = ζ0*ζ0
 		  Var ζ3 As Double = ζ2*ζ0
@@ -63,53 +126,29 @@ Protected Class VCalculatorClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdδAtTime(τ As Double)
-		  dvdδ = ((5/256)^0.125)*(((5/256)^0.875)*(-91495*δ*π*(1/4 - δ^2/4)/1512 - 358675*δ*π/ 12096 - 11*δ*(11*δ^2/16 + 32/21)*(12*π - 3*χ1ℓ*(-25*(δ^2)/16 + 113*(δ + 1)^2/48 + 25/16) - 3*χ2ℓ*(-25*δ^2/16 + 113*(1 - δ)^2/48 + 25/16))/4 + 11*δ*(-189*π*(1/4 - δ^2/4)/4 - 4159*π/336 - 2*χ1ℓ*(-809*δ^2/336 - 281*(1/4 - δ^2/4)^2/8 + (δ + 1)^2*(1159*δ^2/384 + 38299/8064) + 809/336) - 2*χ2ℓ*(-809*δ^2/336 - 281*(1/4 - δ^2/4)^2/8 + (1 - δ)^2*(1159*δ^2/384 + 38299/8064) + 809/336))/8 - χ1ℓ*(-8709*δ*(1/4 - δ^2/4)^2/64 + 257023*δ*(1/4 - δ^2/4)/1008 - 1195759*δ/36288 + (δ + 1)^2*(-100019*δ*(1/4 - δ^2/4)/3456 + 796069*δ/16128) + (2*δ + 2)*(796069*δ^2/32256 + 100019*(1/4 - δ^2/4)^2/3456 + 254599/13824)) - χ2ℓ*(-8709*δ*(1/4 - δ^2/4)^2/64 + 257023*δ*(1/4 - δ^2/4)/1008 - 1195759*δ/36288 + (1 - δ)^2*(-100019*δ*(1/4 - δ^2/4)/3456 + 796069*δ/16128) + (2*δ - 2)*(796069*δ^2/32256 + 100019*(1/4 - δ^2/4)^2/3456 + 254599/13824)) - (11*δ^2/16 + 32/21)^2*(-3*χ1ℓ*(19*δ/12 + 113/24) - 3*χ2ℓ*(19*δ/12 - 113/24)) + (11*δ^2/16 + 32/21)*(189*δ*π/8 - 2*χ1ℓ*(281*δ*(1/4 - δ^2/4)/8 + 1159*δ*(δ + 1)^2/192 - 809*δ/168 + (2*δ + 2)*(1159*δ^2/384 + 38299/8064)) - 2*χ2ℓ*(281*δ*(1/4 - δ^2/4)/8 + 1159*δ*(1 - δ)^2/192 - 809*δ/168 + (2*δ - 2)*(1159*δ^2/384 + 38299/8064))) + (-χ1ℓ*(19*δ/12 + 113/24) - χ2ℓ*(19*δ/12 - 113/24))*(-13661*δ^2/4032 - 247*χ1*χ2/24 + 721*χ1ℓ*χ2ℓ/24 + 59*(1/4 - δ^2/4)^2/9 + 2*(1 - δ)^2*(233*χ2^2/384 - 719*χ2ℓ^2/384) - 2*(δ + 1)^2*(233*χ1^2/384 - 719*χ1ℓ^2/348) + 259361/36288) + (4*π - χ1ℓ*(-25*δ^2/16 + 113*(δ + 1)^2/48 + 25/16) - χ2ℓ*(-25*δ^2/16 + 113*(1 - δ)^2/48 + 25/16))*(-59*δ*(1/4 - δ^2/4)/9 - 13661*δ/2016 + 2*(2*δ - 2)*(233*χ2^2/384 - 719*χ2ℓ^2/384) - 2*(2*δ + 2)*(233*χ1^2/384 - 719*χ1ℓ^2/348)))*(1/(-τ + τc))^0.875 + ((5/256)^0.75)*(451*δ*π^2*(1/4 - δ^2/4)/96 - 56669509*δ*(1/4 - δ^2/4)^2/290304 + 541*δ*(1/4 - δ^2/4)/1792 - 737*δ*(11*δ^2/16 + 32/21)^2/384 + 11*δ*(-314203*δ^2/193536 - 5681*χ1*χ2/1152 + 16583*χ1ℓ*χ2ℓ/1152 + 1357*(1/4 - δ^2/4)^2/432 + 23*(1 - δ)^2*(233*χ2^2/384 - 719*χ2ℓ^2/384)/24 - 23*(δ + 1)^2*(233*χ1^2/384 - 719*χ1ℓ^2/348)/24 + 5965303/1741824)/8 + π*χ1ℓ*(37*δ/6 + 75/4)/2 + π*χ2ℓ*(37*δ/6 - 75/4)/2 + (11*δ^2/16 + 32/21)*(-1357*δ*(1/4 - δ^2/4)/432 - 314203*δ/96768 + 23*(2*δ - 2)*(233*χ2^2/384 - 719*χ2ℓ^2/384)/24 - 23*(2*δ + 2)*(233*χ1^2/384 - 719*χ1ℓ^2/348)/24) + 12*(-2*χ1ℓ*(19*δ/12 + 113/24) - 2*χ2ℓ*(19*δ/12 - 113/24))*(4*π - χ1ℓ*(-25*δ^2/16 + 113*(δ + 1)^2/48 + 25/16) - χ2ℓ*(-25*δ^2/16 + 113*(1 - δ)^2/48 + 25/16))/25)*(1/(-τ + τc))^0.75 + ((5/256)^0.625)*(-63*δ*π/16 + 11*δ*(12*π/5 - 3*χ1ℓ*(-25*δ^2/16 + 113*(δ + 1)^2/48 + 25/16)/5 - 3*χ2ℓ*(-25*δ^2/16 + 113*(1 - δ)^2/48 + 25/16)/5)/8 + χ1ℓ*(281*δ*(1/4 - δ^2/4)/8 + 1159*δ*(δ + 1)^2/192 - 809*δ/168 + (2*δ + 2)*(1159*δ^2/384 + 38299/8064))/3 + χ2ℓ*(281*δ*(1/4 - δ^2/4)/8 + 1159*δ*(1 - δ)^2/192 - 809*δ/168 + (2*δ - 2)*(1159*δ^2/384 + 38299/8064))/3 + (11*δ^2/16 + 32/21)*(-3*χ1ℓ*(19*δ/12 + 113/24)/5 - 3*χ2ℓ*(19*δ/12 - 113/24)/5))*(1/(-τ + τc))^0.625 + ((5/256)^0.5)*(59*δ*(1/4 - δ^2/4)/72 + 55*δ*(11*δ^2/16 + 32/21)/96 + 13661*δ/16128 - (2*δ - 2)*(233*χ2^2/384 - 719*χ2ℓ^2/384)/4 + (2*δ + 2)*(233*χ1^2/384 - 719*χ1ℓ^2/348)/4)*(1/(-τ + τc))^0.5 + ((5/256)^0.375)*(χ1ℓ*(19*δ/12 + 113/24)/5 + χ2ℓ*(19*δ/12 - 113/24)/5)*(1/(-τ + τc))^0.375 + 11*((5/256)^0.25)*δ*(1/(-τ + τc))^0.25/48)*(1/(-τ + τc))^0.125
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub dvdτcAtTime(τ As Double)
-
-		  
-		  dvdτc = ((5 / 256) ^ 0.125) * (-0.875 * ((5 / 256) ^ 0.875) * (91495 * η ^ 2 * π / 1512 + 358675 * η * π / 6048 + 4415 * π / 4032 _
-		  - χ1ℓ * (2903 * η ^ 3 / 32 - 257023 * η ^ 2 / 1008 + 1195759 * η / 18144 + (δ + 1) ^ 2 * (100019 * η ^ 2 / 3456 - 796069 * η / 8064 + 130325 / 3024)) _
-		  - χ2ℓ * (2903 * η ^ 3 / 32 - 257023 * η ^ 2 / 1008 + 1195759 * η / 18144 + (1 - δ) ^ 2 * (100019 * η ^ 2 / 3456 - 796069 * η / 8064 + 130325 / 3024)) _
-		  - (743 / 336 - 11 * η / 4) ^ 2 * (12 * π - 3 * χ1ℓ * (25 * η / 4 + 113 * (δ + 1) ^ 2 / 48) - 3 * χ2ℓ * (25 * η / 4 + 113 * (1 - δ) ^ 2 / 48)) _
-		  + (743 / 336 - 11 * η / 4) * (-189 * η * π / 4 - 4159 * π / 336 - 2 * χ1ℓ * (-281 * η ^ 2 / 8 + 809 * η / 84 + (31319 / 4032 - 1159 * η / 96) * (δ + 1) ^ 2) _
-		  - 2 * χ2ℓ * (-281 * η ^ 2 / 8 + 809 * η / 84 + (1 - δ) ^ 2 * (31319 / 4032 - 1159 * η / 96))) _
-		  + (4 * π - χ1ℓ * (25 * η / 4 + 113 * (δ + 1) ^ 2 / 48) - χ2ℓ * (25 * η / 4 + 113 * (1 - δ) ^ 2 / 48)) * (59 * η ^ 2 / 9 + 13661 * η / 1008 _
-		  - 247 * χ1 * χ2 / 24 + 721 * χ1ℓ * χ2ℓ / 24 + 2 * (1 - δ) ^ 2 * (233 * χ2 ^ 2 / 384 - 719 * χ2ℓ ^ 2 / 384) _
-		  - 2 * (δ + 1) ^ 2 * (233 * χ1 ^ 2 / 384 - 719 * χ1ℓ ^ 2 / 348) + 34103 / 9072)) * (1 / (-τ + τc)) ^ 0.875 / (-τ + τc) _
-		  - 0.75 * ((5 / 256) ^ 0.75) * (856 * γE / 105 + 56669509 * η ^ 3 / 435456 - 451 * η ^ 2 * π ^ 2 / 96 - 541 * η ^ 2 / 1792 - 8 * π ^ 2 / 3 _
-		  + π * χ1ℓ * (151 * η / 6 + 75 * (δ + 1) ^ 2 / 8) / 2 + π * χ2ℓ * (151 * η / 6 + 75 * (1 - δ) ^ 2 / 8) / 2 - 67 * (743 / 336 - 11 * η / 4) ^ 3 / 144 _
-		  + (743 / 336 - 11 * η / 4) * (1357 * η ^ 2 / 432 + 314203 * η / 48384 - 5681 * χ1 * χ2 / 1152 + 16583 * χ1ℓ * χ2ℓ / 1152 _
-		  + 23 * (1 - δ) ^ 2 * (233 * χ2 ^ 2 / 384 - 719 * χ2ℓ ^ 2 / 384) / 24 - 23 * (δ + 1) ^ 2 * (233 * χ1 ^ 2 / 384 - 719 * χ1ℓ ^ 2 / 348) / 24 + 784369 / 435456) _
-		  + 12 * (4 * π - χ1ℓ * (25 * η / 4 + 113 * (δ + 1) ^ 2 / 48) - χ2ℓ * (25 * η / 4 + 113 * (1 - δ) ^ 2 / 48)) ^ 2 / 25 - 15308362903 / 279417600 + 428 * log(16) / 105) _
-		  * (1 / (-τ + τc)) ^ 0.75 / (-τ + τc) - 6.11428571428571 * ((5 / 256) ^ 0.75) * (1 / (-τ + τc)) ^ 0.75 * log(((5 / 256) ^ 0.125) * (1 / (-τ + τc)) ^ 0.125) / (-τ + τc) _
-		  - 1.01904761904762 * ((5 / 256) ^ 0.75) * (1 / (-τ + τc)) ^ 0.75 / (-τ + τc) - 0.625 * ((5 / 256) ^ 0.625) * (63 * η * π / 8 + 4159 * π / 2016 _
-		  + χ1ℓ * (-281 * η ^ 2 / 8 + 809 * η / 84 + (31319 / 4032 - 1159 * η / 96) * (δ + 1) ^ 2) / 3 + χ2ℓ * (-281 * η ^ 2 / 8 + 809 * η / 84 + (1 - δ) ^ 2 * (31319 / 4032 - 1159 * η / 96)) / 3 _
-		  + (743 / 336 - 11 * η / 4) * (12 * π / 5 - 3 * χ1ℓ * (25 * η / 4 + 113 * (δ + 1) ^ 2 / 48) / 5 - 3 * χ2ℓ * (25 * η / 4 + 113 * (1 - δ) ^ 2 / 48) / 5)) _
-		  * (1 / (-τ + τc)) ^ 0.625 / (-τ + τc) - 0.5 * ((5 / 256) ^ 0.5) * (-59 * η ^ 2 / 72 - 13661 * η / 8064 + 247 * χ1 * χ2 / 192 - 721 * χ1ℓ * χ2ℓ / 192 _
-		  - (1 - δ) ^ 2 * (233 * χ2 ^ 2 / 384 - 719 * χ2ℓ ^ 2 / 384) / 4 + 5 * (743 / 336 - 11 * η / 4) ^ 2 / 24 + (δ + 1) ^ 2 * (233 * χ1 ^ 2 / 384 - 719 * χ1ℓ ^ 2 / 348) / 4 - 34103 / 72576) _
-		  * (1 / (-τ + τc)) ^ 0.5 / (-τ + τc) - 0.375 * ((5 / 256) ^ 0.375) * (-4 * π / 5 + χ1ℓ * (25 * η / 4 + 113 * (δ + 1) ^ 2 / 48) / 5 + χ2ℓ * (25 * η / 4 + 113 * (1 - δ) ^ 2 / 48) / 5) _
-		  * (1 / (-τ + τc)) ^ 0.375 / (-τ + τc) - 0.25 * ((5 / 256) ^ 0.25) * (743 / 2016 - 11 * η / 24) * (1 / (-τ + τc)) ^ 0.25 / (-τ + τc)) * (1 / (-τ + τc)) ^ 0.125 _
-		  - 0.125 * ((5 / 256) ^ 0.125) * (5 / 256)
+		Sub dvdδAtTime()
+		  dvdδ = ζ*( dC2dδ*ζ2+ dC3dδ*ζ3 + dC4dδ*ζ4 + dC5dδ*ζ5 + dC6dδ*ζ6 + dC7dδ*ζ7)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdχ1ℓAtTime(τ As Double)
-		  dvdχ1ℓ = ((5/256)^0.125)*(((5/256)^0.875)*(-2903*η^3/32 + 257023*η^2/1008 - 1195759*η/18144 - (743/336 - 11*η/4)^2*(-75*η/4 - 113*(δ + 1)^2/16) + (743/336 - 11*η/4)*(281*η^2/4 - 809*η/42 - 2*(31319/4032 - 1159*η/96)*(δ + 1)^2) - (δ + 1)^2*(100019*η^2/3456 - 796069*η/8064 + 130325/3024) + (-25*η/4 - 113*(δ + 1)^2/48)*(59*η^2/9 + 13661*η/1008 - 247*χ1*χ2/24 + 721*χ1ℓ*χ2ℓ/24 + 2*(1 - δ)^2*(233*χ2^2/384 - 719*χ2ℓ^2/384) - 2*(δ + 1)^2*(233*χ1^2/384 - 719*χ1ℓ^2/348) + 34103/9072) + (719*χ1ℓ*(δ + 1)^2/87 + 721*χ2ℓ/24)*(4*π - χ1ℓ*(25*η/4 + 113*(δ + 1)^2/48) - χ2ℓ*(25*η/4 + 113*(1 - δ)^2/48)))*(1/(-τ + τc))^0.875 + ((5/256)^0.75)*(π*(151*η/6 + 75*(δ + 1)^2/8)/2 + (743/336 - 11*η/4)*(16537*χ1ℓ*(δ + 1)^2/4176 + 16583*χ2ℓ/1152) + 12*(-25*η/2 - 113*(δ + 1)^2/24)*(4*π - χ1ℓ*(25*η/4 + 113*(δ + 1)^2/48) - χ2ℓ*(25*η/4 + 113*(1 - δ)^2/48))/25)*(1/(-τ + τc))^0.75 + ((5/256)^0.625) *(-281*η^2/24 + 809*η/252 + (743/336 - 11*η/4)*(-15*η/4 - 113*(δ + 1)^2/80) + (31319/4032 - 1159*η/96)*(δ + 1)^2/3)*(1/(-τ + τc))^0.625 + ((5/256)^0.5)*(-719*χ1ℓ*(δ + 1)^2/696 - 721*χ2ℓ/192)*(1/(-τ + τc))^0.5 + ((5/256)^0.375)*(5*η/4 + 113*(δ + 1)^2/240)*(1/(-τ + τc))^0.375)*(1/(-τ + τc))^0.125
+		Sub dvdτcAtTime()
+		  dvdτc = dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ))*ζ6 + C7*ζ7) _
+		  + ζ*( 2*C2*ζ*dζdτc+ 3*C3*ζ2*dζdτc + 4*C4*ζ3*dζdτc + 5*C5*ζ4*dζdτc -1.5*B6*dζdτc/ζ)*ζ6 _
+		  -9.0*B6*Log(ζ))*ζ5*dζdτc+ 7*C7*ζ6*dζdτc)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdχ2ℓAtTime(τ As Double)
-		  dvdχ2ℓ = ((5/256)^0.125)*(((5/256)^0.875)*(-2903*η^3/32 + 257023*η^2/1008 - 1195759*η/18144 - (1 - δ)^2*(100019*η^2/3456 - 796069*η/8064 + 130325/3024) - (743/336 - 11*η/4)^2*(-75*η/4 - 113*(1 - δ)^2/16) + (743/336 - 11*η/4)*(281*η^2/4 - 809*η/42 - 2*(1 - δ)^2*(31319/4032 - 1159*η/96)) + (-25*η/4 - 113*(1 - δ)^2/48)*(59*η^2/9 + 13661*η/1008 - 247*χ1*χ2/24 + 721*χ1ℓ*χ2ℓ/24 + 2*(1 - δ)^2*(233*χ2^2/384 - 719*χ2ℓ^2/384) - 2*(δ + 1)^2*(233*χ1^2/384 - 719*χ1ℓ^2/348) + 34103/9072) + (721*χ1ℓ/24 - 719*χ2ℓ*(1 - δ)^2/96)*(4*π - χ1ℓ*(25*η/4 + 113*(δ + 1)^2/48) - χ2ℓ*(25*η/4 + 113*(1 - δ)^2/48)))*(1/(-τ + τc))^0.875 + ((5/256)^0.75)*(π*(151*η/6 + 75*(1 - δ)^2/8)/2 + (743/336 - 11*η/4)*(16583*χ1ℓ/1152 - 16537*χ2ℓ*(1 - δ)^2/4608) + 12*(-25*η/2 - 113*(1 - δ)^2/24)*(4*π - χ1ℓ*(25*η/4 + 113*(δ + 1)^2/48) - χ2ℓ*(25*η/4 + 113*(1 - δ)^2/48))/25)*(1/(-τ + τc))^0.75 + ((5/256)^0.625)*(-281*η^2/24 + 809*η/252 + (1 - δ)^2*(31319/4032 - 1159*η/96)/3 + (743/336 - 11*η/4)*(-15*η/4 - 113*(1 - δ)^2/80))*(1/(-τ + τc))^0.625 + ((5/256)^0.5)*(-721*χ1ℓ/192 + 719*χ2ℓ*(1 - δ)^2/768)*(1/(-τ + τc))^0.5 + ((5/256)^0.375)*(5*η/4 + 113*(1 - δ)^2/240)*(1/(-τ + τc))^0.375)*(1/(-τ + τc))^0.125
+		Sub dvdχ1ℓAtTime()
+		  dvdχ1ℓ = ζ*( dC2dχ1ℓ*ζ2+ dC3dχ1ℓ*ζ3 + dC4dχ1ℓ*ζ4 + dC5dχ1ℓ*ζ5 + dC6dχ1ℓ*ζ6 + dC7dχ1ℓ*ζ7)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub dvdχ2ℓAtTime()
+		  dvdχ2ℓ = ζ*( dC2dχ2ℓ*ζ2+ dC3dχ2ℓ*ζ3 + dC4dχ2ℓ*ζ4 + dC5dχ2ℓ*ζ5 + dC6dχ2ℓ*ζ6 + dC7dχ2ℓ*ζ7)
 		End Sub
 	#tag EndMethod
 
@@ -129,7 +168,7 @@ Protected Class VCalculatorClass
 		  V5 = V4*V
 		  V6 = V5*V
 		  V7 = V6*V
-		  Dζdτc = -0.125/ζ7*5/(256*η*(τc-τ)*(τc-τ))
+		  Dζdτc =-0.0764277840621157*(1/(η*(-τ + τc)))^0.125/(-τ + τc)
 		  Return V
 		End Function
 	#tag EndMethod
@@ -205,6 +244,174 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		dA0dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA0dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA0dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA2dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA2dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA2dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA3dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA3dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA3dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA4dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA4dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA4dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA5dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA5dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA5dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA6dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA6dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA6dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA7dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA7dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dA7dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dB6dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dB6dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dB6dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC2dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC2dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC2dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC3dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC3dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC3dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC4dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC4dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC4dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC5dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC5dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC5dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC6dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC6dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC6dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC7dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC7dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dC7dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		dvdδ As Double
 	#tag EndProperty
 
@@ -221,11 +428,55 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Dζdτc As Double
+		dβ3dδ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		P As CaseInfoClass
+		dβ3dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ3dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ5dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ5dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ5dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ6dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ6dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ6dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ7dδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ7dχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dβ7dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dζdτc As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -320,6 +571,30 @@ Protected Class VCalculatorClass
 		Private ζ0 As Double
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		ζ2 As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ζ3 As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ζ4 As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ζ5 As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ζ6 As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ζ7 As Double
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private η As Double
 	#tag EndProperty
@@ -333,15 +608,7 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		χ1 As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		χ1ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		χ2 As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -443,14 +710,6 @@ Protected Class VCalculatorClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="χ1"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="χ1ℓ"
 			Visible=false
 			Group="Behavior"
@@ -459,7 +718,7 @@ Protected Class VCalculatorClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="χ2"
+			Name="χ2ℓ"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -467,7 +726,495 @@ Protected Class VCalculatorClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="χ2ℓ"
+			Name="dζdτc"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="γE"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ3dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ5dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ6dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ7dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA0dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA2dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA3dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA4dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA5dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA6dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA7dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dB6dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC2dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC3dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC4dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC5dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC6dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC7dδ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC3dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA0dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA2dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA3dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA4dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA5dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA6dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA7dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dB6dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC2dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC4dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC5dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC6dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC7dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC3dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA0dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA2dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA3dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA4dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA5dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA6dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dA7dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dB6dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC2dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC4dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC5dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC6dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dC7dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ6dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ3dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ5dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ7dχ1ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ6dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ3dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ5dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dβ7dχ2ℓ"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ2"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ3"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ4"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ5"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ6"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ζ7"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
