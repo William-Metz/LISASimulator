@@ -134,9 +134,9 @@ Protected Class VCalculatorClass
 
 	#tag Method, Flags = &h0
 		Sub dvdτcAtTime()
-		  dvdτc = dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ))*ζ6 + C7*ζ7) _
+		  dvdτc = dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ)*ζ6 + C7*ζ7) _
 		  + ζ*( 2*C2*ζ*dζdτc+ 3*C3*ζ2*dζdτc + 4*C4*ζ3*dζdτc + 5*C5*ζ4*dζdτc -1.5*B6*dζdτc/ζ)*ζ6 _
-		  -9.0*B6*Log(ζ))*ζ5*dζdτc+ 7*C7*ζ6*dζdτc)
+		  - 9.0*B6*Log(ζ)*ζ5*dζdτc+ 7*C7*ζ6*dζdτc)
 		End Sub
 	#tag EndMethod
 
