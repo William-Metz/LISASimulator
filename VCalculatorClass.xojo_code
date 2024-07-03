@@ -126,41 +126,41 @@ Protected Class VCalculatorClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdδAtTime()
-		  dvdδ = ζ*( dC2dδ*ζ2+ dC3dδ*ζ3 + dC4dδ*ζ4 + dC5dδ*ζ5 + dC6dδ*ζ6 + dC7dδ*ζ7)
+		Function dvdδForLastV() As Double
+		  Return ζ*( dC2dδ*ζ2+ dC3dδ*ζ3 + dC4dδ*ζ4 + dC5dδ*ζ5 + dC6dδ*ζ6 + dC7dδ*ζ7)
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdτcAtTime()
-		  dvdτc = dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ)*ζ6 + C7*ζ7) _
+		Function dvdτcForLastV() As Double
+		  Return dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ)*ζ6 + C7*ζ7) _
 		  + ζ*( 2*C2*ζ*dζdτc+ 3*C3*ζ2*dζdτc + 4*C4*ζ3*dζdτc + 5*C5*ζ4*dζdτc -1.5*B6*dζdτc/ζ)*ζ6 _
 		  - 9.0*B6*Log(ζ)*ζ5*dζdτc+ 7*C7*ζ6*dζdτc)
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdχ1ℓAtTime()
-		  dvdχ1ℓ = ζ*( dC2dχ1ℓ*ζ2+ dC3dχ1ℓ*ζ3 + dC4dχ1ℓ*ζ4 + dC5dχ1ℓ*ζ5 + dC6dχ1ℓ*ζ6 + dC7dχ1ℓ*ζ7)
-		End Sub
+		Function dvdχ1ℓForLastV() As Double
+		  Return ζ*( dC2dχ1ℓ*ζ2+ dC3dχ1ℓ*ζ3 + dC4dχ1ℓ*ζ4 + dC5dχ1ℓ*ζ5 + dC6dχ1ℓ*ζ6 + dC7dχ1ℓ*ζ7)
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub dvdχ2ℓAtTime()
-		  dvdχ2ℓ = ζ*( dC2dχ2ℓ*ζ2+ dC3dχ2ℓ*ζ3 + dC4dχ2ℓ*ζ4 + dC5dχ2ℓ*ζ5 + dC6dχ2ℓ*ζ6 + dC7dχ2ℓ*ζ7)
-		End Sub
+		Function dvdχ2ℓForLastV() As Double
+		  Return ζ*( dC2dχ2ℓ*ζ2+ dC3dχ2ℓ*ζ3 + dC4dχ2ℓ*ζ4 + dC5dχ2ℓ*ζ5 + dC6dχ2ℓ*ζ6 + dC7dχ2ℓ*ζ7)
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function VAtTime(τ As Double) As Double
 		  ζ = (5/(256*η*(τc-τ)))^0.125
-		  Var ζ2 As Double = ζ*ζ
-		  Var ζ3 As Double = ζ2*ζ
-		  Var ζ4 As Double = ζ3*ζ
-		  Var ζ5 As Double = ζ4*ζ
-		  Var ζ6 As Double = ζ5*ζ
-		  Var ζ7 As Double = ζ6*ζ
+		  ζ2 = ζ*ζ
+		  ζ3 = ζ2*ζ
+		  ζ4 = ζ3*ζ
+		  ζ5 = ζ4*ζ
+		  ζ6 = ζ5*ζ
+		  ζ7 = ζ6*ζ
 		  V = ζ*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ))*ζ6 + C7*ζ7)
 		  V2 = V*V
 		  V3 = V2*V
@@ -243,240 +243,224 @@ Protected Class VCalculatorClass
 		Private C7 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA0dδ As Double
+	#tag Property, Flags = &h21
+		Private dA0dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA0dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA0dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA0dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA0dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA2dδ As Double
+	#tag Property, Flags = &h21
+		Private dA2dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA2dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA2dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA2dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA2dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA3dδ As Double
+	#tag Property, Flags = &h21
+		Private dA3dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA3dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA3dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA3dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA3dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA4dδ As Double
+	#tag Property, Flags = &h21
+		Private dA4dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA4dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA4dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA4dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA4dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA5dδ As Double
+	#tag Property, Flags = &h21
+		Private dA5dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA5dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA5dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA5dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA5dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA6dδ As Double
+	#tag Property, Flags = &h21
+		Private dA6dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA6dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA6dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA6dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA6dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA7dδ As Double
+	#tag Property, Flags = &h21
+		Private dA7dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA7dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA7dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dA7dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dA7dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dB6dδ As Double
+	#tag Property, Flags = &h21
+		Private dB6dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dB6dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dB6dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dB6dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dB6dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC2dδ As Double
+	#tag Property, Flags = &h21
+		Private dC2dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC2dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC2dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC2dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC2dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC3dδ As Double
+	#tag Property, Flags = &h21
+		Private dC3dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC3dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC3dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC3dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC3dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC4dδ As Double
+	#tag Property, Flags = &h21
+		Private dC4dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC4dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC4dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC4dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC4dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC5dδ As Double
+	#tag Property, Flags = &h21
+		Private dC5dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC5dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC5dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC5dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC5dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC6dδ As Double
+	#tag Property, Flags = &h21
+		Private dC6dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC6dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC6dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC6dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC6dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC7dδ As Double
+	#tag Property, Flags = &h21
+		Private dC7dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC7dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC7dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dC7dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dC7dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dvdδ As Double
+	#tag Property, Flags = &h21
+		Private dβ3dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dvdτc As Double
+	#tag Property, Flags = &h21
+		Private dβ3dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dvdχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ3dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dvdχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ5dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ3dδ As Double
+	#tag Property, Flags = &h21
+		Private dβ5dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ3dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ5dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ3dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ6dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ5dδ As Double
+	#tag Property, Flags = &h21
+		Private dβ6dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ5dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ6dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ5dχ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ7dδ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ6dδ As Double
+	#tag Property, Flags = &h21
+		Private dβ7dχ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ6dχ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private dβ7dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		dβ6dχ2ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		dβ7dδ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		dβ7dχ1ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		dβ7dχ2ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		dζdτc As Double
+	#tag Property, Flags = &h21
+		Private dζdτc As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -555,12 +539,12 @@ Protected Class VCalculatorClass
 		Private β7 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		γE As Double
+	#tag Property, Flags = &h21
+		Private γE As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		δ As Double
+	#tag Property, Flags = &h21
+		Private δ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -571,48 +555,48 @@ Protected Class VCalculatorClass
 		Private ζ0 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ2 As Double
+	#tag Property, Flags = &h21
+		Private ζ2 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ3 As Double
+	#tag Property, Flags = &h21
+		Private ζ3 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ4 As Double
+	#tag Property, Flags = &h21
+		Private ζ4 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ5 As Double
+	#tag Property, Flags = &h21
+		Private ζ5 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ6 As Double
+	#tag Property, Flags = &h21
+		Private ζ6 As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		ζ7 As Double
+	#tag Property, Flags = &h21
+		Private ζ7 As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private η As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		π As Double
+	#tag Property, Flags = &h21
+		Private π As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private τc As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		χ1ℓ As Double
+	#tag Property, Flags = &h21
+		Private χ1ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		χ2ℓ As Double
+	#tag Property, Flags = &h21
+		Private χ2ℓ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -659,38 +643,6 @@ Protected Class VCalculatorClass
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="dvdδ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="dvdτc"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="dvdχ1ℓ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="dvdχ2ℓ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -767,14 +719,6 @@ Protected Class VCalculatorClass
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="dβ7dδ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="dA0dδ"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
