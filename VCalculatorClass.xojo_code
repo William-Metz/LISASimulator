@@ -144,10 +144,71 @@ Protected Class VCalculatorClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function DVDotdδForLastV() As Double
+		  DVDotdδ = DA0dδ/3*V7*V2 _
+		  + DA0dδ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dδ*V2 _
+		   + DA0dδ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dδ*V3 _
+		  + DA0dδ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dδ*V4 _
+		   +DA0dδ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dδ*V5 _
+		   + DA0dδ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dδ*V6 _
+		  +DA0dδ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dδ*Log(V)*V6 _
+		   +DA0dδ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dδ*V7
+		  
+		  return DVDotdδ 
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function DVDotdτcForLastV() As Double
+		  DVDotdτc = DA0dτc/3*V7*V2 _
+		  + DA0dτc/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dτc*V2 _
+		  + DA0dτc/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dτc*V3 _
+		  + DA0dτc/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dτc*V4 _
+		  +DA0dτc/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dτc*V5 _
+		  + DA0dτc/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dτc*V6 _
+		  +DA0dτc/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dτc*Log(V)*V6 _
+		  +DA0dτc/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dτc*V7
+		  
+		  return DVDotdτc 
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function DVDotdχ1ℓForLastV() As Double
+		  DVDotdχ1ℓ = DA0dχ1ℓ/3*V7*V2 _
+		  + DA0dχ1ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ1ℓ*V2 _
+		  + DA0dχ1ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ1ℓ*V3 _
+		  + DA0dχ1ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ1ℓ*V4 _
+		  +DA0dχ1ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ1ℓ*V5 _
+		  + DA0dχ1ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ1ℓ*V6 _
+		  +DA0dχ1ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ1ℓ*Log(V)*V6 _
+		  +DA0dχ1ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ1ℓ*V7
+		  
+		  return DVDotdχ1ℓ 
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function DVDotdχ2ℓForLastV() As Double
+		  DVDotdχ2ℓ = DA0dχ2ℓ/3*V7*V2 _
+		  + DA0dχ2ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ2ℓ*V2 _
+		  + DA0dχ2ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ2ℓ*V3 _
+		  + DA0dχ2ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ2ℓ*V4 _
+		  +DA0dχ2ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ2ℓ*V5 _
+		  + DA0dχ2ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ2ℓ*V6 _
+		  +DA0dχ2ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ2ℓ*Log(V)*V6 _
+		  +DA0dχ2ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ2ℓ*V7
+		  
+		  return DVDotdχ2ℓ 
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function DvdδForLastV() As Double
-		   Dvdδ = DC2dδ*ζ3+ dC3dδ*ζ4 + DC4dδ*ζ5 + DC5dδ*ζ6 + DC6dδ*ζ7 + DC7dδ*ζ7*ζ  _
+		  Dvdδ = DC2dδ*ζ3+ dC3dδ*ζ4 + DC4dδ*ζ5 + DC5dδ*ζ6 + DC6dδ*ζ7 + DC7dδ*ζ7*ζ  _
 		  + Dζdδ +3*C2*ζ2*Dζdδ+ 4*C3*ζ3*Dζdδ + 5*C4*ζ4Dζdδ + 6*C5*ζ5*Dζdδ + 7*C6*ζ6*Dζdδ-10.5*B6*Log(ζ)*ζ6*Dζdδ _
-		   -1.5*B6*Dζdδ*ζ5+ 8*C7*ζ7*Dζdδ
+		  -1.5*B6*Dζdδ*ζ5+ 8*C7*ζ7*Dζdδ
 		  Return Dvdδ
 		End Function
 	#tag EndMethod
@@ -566,6 +627,22 @@ Protected Class VCalculatorClass
 
 	#tag Property, Flags = &h21
 		Private DP7dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private DVDotDδ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private DVDotDτc As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private DVDotdχ1ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private DVDotdχ2ℓ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
