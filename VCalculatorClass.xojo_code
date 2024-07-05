@@ -145,14 +145,14 @@ Protected Class VCalculatorClass
 
 	#tag Method, Flags = &h0
 		Function DVDotdδForLastV() As Double
-		  DVDotdδ = DA0dδ/3*V7*V2 _
-		  + DA0dδ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dδ*V2 _
-		   + DA0dδ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dδ*V3 _
-		  + DA0dδ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dδ*V4 _
-		   +DA0dδ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dδ*V5 _
-		   + DA0dδ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dδ*V6 _
-		  +DA0dδ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dδ*Log(V)*V6 _
-		   +DA0dδ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dδ*V7
+		  DVDotdδ = DA0dδ/3*V7*V2+ 9*A0/3*V7*V*DVdδ _
+		  + DA0dδ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dδ*V2 +11*A0/3*V7*V2*A2*V*DVdδ _
+		  + DA0dδ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dδ*V3 + 12*A0/3*V7*V2*A3*V2*DVdδ _
+		  + DA0dδ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dδ*V4 + 13*A0/3*V7*V2*A4*V3*DVdδ _
+		  +DA0dδ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dδ*V5 + 14*A0/3*V7*V2*A5*V4*DVdδ _
+		  + DA0dδ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dδ*V6 + 15*A0/3*V7*V2*A6*V5*DVdδ _
+		  +DA0dδ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dδ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdδ + 15*A0/3*V7*V2*B6*V5*DVdδ _
+		  +DA0dδ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dδ*V7 +16*A0/3*V7*V2*A7*V6*DVdδ
 		  
 		  return DVDotdδ 
 		End Function
@@ -160,14 +160,14 @@ Protected Class VCalculatorClass
 
 	#tag Method, Flags = &h0
 		Function DVDotdτcForLastV() As Double
-		  DVDotdτc = DA0dτc/3*V7*V2 _
-		  + DA0dτc/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dτc*V2 _
-		  + DA0dτc/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dτc*V3 _
-		  + DA0dτc/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dτc*V4 _
-		  +DA0dτc/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dτc*V5 _
-		  + DA0dτc/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dτc*V6 _
-		  +DA0dτc/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dτc*Log(V)*V6 _
-		  +DA0dτc/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dτc*V7
+		  DVDotdτc = 9*A0/3*V7*V*DVdτc _
+		  + 11*A0/3*V7*V2*A2*V*DVdτc _
+		  + 12*A0/3*V7*V2*A3*V2*DVdτc _
+		  + 13*A0/3*V7*V2*A4*V3*DVdτc _
+		  +14*A0/3*V7*V2*A5*V4*DVdτc _
+		  + 15*A0/3*V7*V2*A6*V5*DVdτc _
+		  + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdτc + 15*A0/3*V7*V2*B6*V5*DVdτc _
+		  +16*A0/3*V7*V2*A7*V6*DVdτc
 		  
 		  return DVDotdτc 
 		End Function
@@ -175,30 +175,29 @@ Protected Class VCalculatorClass
 
 	#tag Method, Flags = &h0
 		Function DVDotdχ1ℓForLastV() As Double
-		  DVDotdχ1ℓ = DA0dχ1ℓ/3*V7*V2 _
-		  + DA0dχ1ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ1ℓ*V2 _
-		  + DA0dχ1ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ1ℓ*V3 _
-		  + DA0dχ1ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ1ℓ*V4 _
-		  +DA0dχ1ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ1ℓ*V5 _
-		  + DA0dχ1ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ1ℓ*V6 _
-		  +DA0dχ1ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ1ℓ*Log(V)*V6 _
-		  +DA0dχ1ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ1ℓ*V7
+		  DVDotdχ1ℓ = DA0dχ1ℓ/3*V7*V2+ 9*A0/3*V7*V*DVdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ1ℓ*V2 +11*A0/3*V7*V2*A2*V*DVdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ1ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ1ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ1ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ1ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ1ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdχ1ℓ + 15*A0/3*V7*V2*B6*V5*DVdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ1ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVdχ1ℓ
 		  
 		  return DVDotdχ1ℓ 
-		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function DVDotdχ2ℓForLastV() As Double
-		  DVDotdχ2ℓ = DA0dχ2ℓ/3*V7*V2 _
-		  + DA0dχ2ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ2ℓ*V2 _
-		  + DA0dχ2ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ2ℓ*V3 _
-		  + DA0dχ2ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ2ℓ*V4 _
-		  +DA0dχ2ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ2ℓ*V5 _
-		  + DA0dχ2ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ2ℓ*V6 _
-		  +DA0dχ2ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ2ℓ*Log(V)*V6 _
-		  +DA0dχ2ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ2ℓ*V7
+		  DVDotdχ2ℓ = DA0dχ2ℓ/3*V7*V2+ 9*A0/3*V7*V*DVdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ2ℓ*V2 +11*A0/3*V7*V2*A2*V*DVdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ2ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ2ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ2ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ2ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ2ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdχ2ℓ + 15*A0/3*V7*V2*B6*V5*DVdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ2ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVdχ2ℓ
 		  
 		  return DVDotdχ2ℓ 
 		End Function
