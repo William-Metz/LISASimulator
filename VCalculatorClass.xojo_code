@@ -50,7 +50,7 @@ Protected Class VCalculatorClass
 		  Dβ7dδ = χ1ℓ*(-8709*δ*η*η/64 + 257023*δ*η/1008 - 1195759*δ/36288 + onepδ * onepδ*(-100019*δ*η/3456 + 796069*δ/16128) + (2*δ + 2)*(796069*δ*δ/32256 + 100019*η*η/3456 + 254599/13824)) + χ2ℓ*(-8709*δ*η*η/64 + 257023*δ*η/1008 - 1195759*δ/36288 + onemδ*onemδ*(-100019*δ*η/3456 + 796069*δ/16128) + (2*δ - 2)*(796069*δ*δ/32256 + 100019*η*η/3456 + 254599/13824))
 		  DA0dδ = -48*δ/5
 		  DA2dδ = 11*δ/8
-		  DA3dδ = - β3dδ
+		  DA3dδ = - Dβ3dδ
 		  DA4dδ = -59*δ*η/18 - 13661*δ/4032
 		  DA5dδ = 189*δ*π/16 - Dβ5dδ
 		  DA6dδ = -451*δ*π^2*η/48 + 56669509*δ*η*η/145152 - 541*δ*η/896 - π*χ1ℓ*(37*δ/6 + 75/4) - π*χ2ℓ*(37*δ/6 - 75/4)
@@ -87,7 +87,8 @@ Protected Class VCalculatorClass
 		  DC4dχ1ℓ = -DA4dχ1ℓ/4 + 5/12*A2*DA2dχ1ℓ
 		  DC5dχ1ℓ =- DA5dχ1ℓ/3 + 3/5*DA2dχ1ℓ*A3 + 3/5*DA3dχ1ℓ*A2
 		  DC6dχ1ℓ = -DA6dχ1ℓ/2 - 3/4*DB6dχ1ℓ + 23/24*DA4dχ1ℓ*A2 + 23/24*DA2dχ1ℓ*A4 + 24/25*A3*DA3dχ1ℓ - 67/48*A2*A2*DA2dχ1ℓ
-		  DC7dχ1ℓ =  -DA7dχ1ℓ + 2*dD5dχ1ℓ*A2 + 2*DA4dχ1ℓ*A3 - 3*DA3dχ1ℓ*A2*A2 + 2*DA2dχ1ℓ*A5 + 2*DA3dχ1ℓ*A4 - 6*DA2dχ1ℓ*A3*A2
+		  DC7dχ1ℓ =  - DA7dχ1ℓ + 2*DA5dχ1ℓ*A2 + 2*DA4dχ1ℓ*A3 - 3*DA3dχ1ℓ*A2*A2 + 2*DA2dχ1ℓ*A5 + 2*DA3dχ1ℓ*A4 - 6*DA2dχ1ℓ*A3*A2
+		  
 		  DP0dχ1ℓ =  DA0dχ1ℓ*3/(5*A0*A0)
 		  DP2dχ1ℓ = -5/3* DA2dχ1ℓ
 		  DP3dχ1ℓ = -5/2* DA3dχ1ℓ
@@ -206,7 +207,7 @@ Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
 		Function DvdδForLastV() As Double
 		  Dvdδ = DC2dδ*ζ3+ dC3dδ*ζ4 + DC4dδ*ζ5 + DC5dδ*ζ6 + DC6dδ*ζ7 + DC7dδ*ζ7*ζ  _
-		  + Dζdδ +3*C2*ζ2*Dζdδ+ 4*C3*ζ3*Dζdδ + 5*C4*ζ4Dζdδ + 6*C5*ζ5*Dζdδ + 7*C6*ζ6*Dζdδ-10.5*B6*Log(ζ)*ζ6*Dζdδ _
+		  + Dζdδ +3*C2*ζ2*Dζdδ+ 4*C3*ζ3*Dζdδ + 5*C4*ζ4*Dζdδ + 6*C5*ζ5*Dζdδ + 7*C6*ζ6*Dζdδ-10.5*B6*Log(ζ)*ζ6*Dζdδ _
 		  -1.5*B6*Dζdδ*ζ5+ 8*C7*ζ7*Dζdδ
 		  Return Dvdδ
 		End Function
@@ -238,7 +239,11 @@ Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
 		Function DΨOrbdδForLastV() As Double
 		  Var LogVIV0 As Double = Log(V/V0)
-		  DΨOrbdδ = DP0dδ/V5 + DP0dδ*P2/V3 + P0*DP2dδ/V3 + DP0dδ*P3/V2 + P0*DP3dδ/V2 _
+		  Var DΨcdδ As Double 
+		  DΨcdδ = -DP0dδ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		  +  -P0/V5*(1 + DP2dδ*V2 + DP3dδ*V3 + DP4dδ*V4 + DP6dδ*V6 + DP7dδ*V7) 
+		  
+		  DΨOrbdδ = DΨcdδ + DP0dδ/V5 + DP0dδ*P2/V3 + P0*DP2dδ/V3 + DP0dδ*P3/V2 + P0*DP3dδ/V2 _
 		  + DP0dδ*P4/V + P0*DP4dδ/V + DP0dδ*P5*LogVIV0 + P0*DP5dδ*LogVIV0 _
 		  + DP0dδ*P6*V + P0*DP6dδ*V + 15*DP0dδ*B6*LogVIV0*V + 15*P0*DB6dδ*LogVIV0*V + DP0dδ*P7*V2 +P0*DP7dδ*V2 _
 		  -5*P0*Dvdδ/V6 -3* P0*P2*Dvdδ/V4 -2* P0*P3*Dvdδ/V3 - P0*P4*Dvdδ/V2 + P0*P5*V0*Dvdδ/V + P0*P6*Dvdδ _
@@ -251,7 +256,7 @@ Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
 		Function DΨOrbdτcForLastV() As Double
 		  Var LogVIV0 As Double = Log(V/V0)
-		  ΨOrb = -5* P0*Dvdτc/V6 -3* P0*P2*Dvdτc/V4 + -2*P0*P3*Dvdτc/V3 - P0*P4*Dvdτc/V2 + P0*P5*V0*Dvdτc/V + P0*P6* Dvdτc
+		  ΨOrb = -5* P0*Dvdτc/V6 -3* P0*P2*Dvdτc/V4 + -2*P0*P3*Dvdτc/V3 - P0*P4*Dvdτc/V2 + P0*P5*V0*Dvdτc/V + P0*P6* Dvdτc _
 		  +15*P0*B6*V0*Dvdτc +15*P0*B6*LogVIV0*Dvdτc + 2* P0*P7*V*Dvdτc
 		  Return DΨOrbdτc 
 		End Function
@@ -260,7 +265,11 @@ Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
 		Function DΨOrbdχ1ℓForLastV() As Double
 		  Var LogVIV0 As Double = Log(V/V0)
-		  DΨOrbdχ1ℓ = DP0dχ1ℓ/V5 + DP0dχ1ℓ*P2/V3 + P0*DP2dχ1ℓ/V3 + DP0dχ1ℓ*P3/V2 + P0*DP3dχ1ℓ/V2 _
+		  Var DΨcdχ1ℓ As Double 
+		  DΨcdχ1ℓ = -DP0dχ1ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		  +  -P0/V5*(1 + DP2dχ1ℓ*V2 + DP3dχ1ℓ*V3 + DP4dχ1ℓ*V4 + DP6dχ1ℓ*V6 + DP7dχ1ℓ*V7) 
+		  
+		  DΨOrbdχ1ℓ = DΨcdχ1ℓ + DP0dχ1ℓ/V5 + DP0dχ1ℓ*P2/V3 + P0*DP2dχ1ℓ/V3 + DP0dχ1ℓ*P3/V2 + P0*DP3dχ1ℓ/V2 _
 		  + DP0dχ1ℓ*P4/V + P0*DP4dχ1ℓ/V + DP0dχ1ℓ*P5*LogVIV0 + P0*DP5dχ1ℓ*LogVIV0 _
 		  + DP0dχ1ℓ*P6*V + P0*DP6dχ1ℓ*V + 15*DP0dχ1ℓ*B6*LogVIV0*V + 15*P0*DB6dχ1ℓ*LogVIV0*V + DP0dχ1ℓ*P7*V2 +P0*DP7dχ1ℓ*V2 _
 		  -5*P0*Dvdχ1ℓ/V6 -3* P0*P2*Dvdχ1ℓ/V4 -2* P0*P3*Dvdχ1ℓ/V3 - P0*P4*Dvdχ1ℓ/V2 + P0*P5*V0*Dvdχ1ℓ/V + P0*P6*Dvdχ1ℓ _
@@ -272,7 +281,11 @@ Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
 		Function DΨOrbdχ2ℓForLastV() As Double
 		  Var LogVIV0 As Double = Log(V/V0)
-		  DΨOrbdχ2ℓ = DP0dχ2ℓ/V5 + DP0dχ2ℓ*P2/V3 + P0*DP2dχ2ℓ/V3 + DP0dχ2ℓ*P3/V2 + P0*DP3dχ2ℓ/V2 _
+		  Var DΨcdχ2ℓ As Double 
+		  DΨcdχ2ℓ = -DP0dχ2ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		  +  -P0/V5*(1 + DP2dχ2ℓ*V2 + DP3dχ2ℓ*V3 + DP4dχ2ℓ*V4 + DP6dχ2ℓ*V6 + DP7dχ2ℓ*V7) 
+		  
+		  DΨOrbdχ2ℓ = DΨcdχ2ℓ + DP0dχ2ℓ/V5 + DP0dχ2ℓ*P2/V3 + P0*DP2dχ2ℓ/V3 + DP0dχ2ℓ*P3/V2 + P0*DP3dχ2ℓ/V2 _
 		  + DP0dχ2ℓ*P4/V + P0*DP4dχ2ℓ/V + DP0dχ2ℓ*P5*LogVIV0 + P0*DP5dχ2ℓ*LogVIV0 _
 		  + DP0dχ2ℓ*P6*V + P0*DP6dχ2ℓ*V + 15*DP0dχ2ℓ*B6*LogVIV0*V + 15*P0*DB6dχ2ℓ*LogVIV0*V + DP0dχ2ℓ*P7*V2 +P0*DP7dχ2ℓ*V2 _
 		  -5*P0*Dvdχ2ℓ/V6 -3* P0*P2*Dvdχ2ℓ/V4 -2* P0*P3*Dvdχ2ℓ/V3 - P0*P4*Dvdχ2ℓ/V2 + P0*P5*V0*Dvdχ2ℓ/V + P0*P6*Dvdχ2ℓ _
@@ -706,6 +719,10 @@ Protected Class VCalculatorClass
 
 	#tag Property, Flags = &h21
 		Private Dβ7dχ2ℓ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Dζdδ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
