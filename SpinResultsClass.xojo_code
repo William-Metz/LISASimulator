@@ -1,5 +1,45 @@
 #tag Class
-Protected Class SpinDataClass
+Protected Class SpinResultsClass
+	#tag Property, Flags = &h0
+		DVI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DιI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DαI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχaxI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχayI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχazI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχsxI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχsyI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DχszI(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DΨprI(7) As Double
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		V As Double
 	#tag EndProperty
@@ -37,7 +77,7 @@ Protected Class SpinDataClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Ψ As Double
+		Ψpr As Double
 	#tag EndProperty
 
 
@@ -99,7 +139,7 @@ Protected Class SpinDataClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Ψ"
+			Name="Ψpr"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -148,6 +188,14 @@ Protected Class SpinDataClass
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="χsz"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="V"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

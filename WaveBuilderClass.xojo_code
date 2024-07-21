@@ -3532,7 +3532,7 @@ Protected Class WaveBuilderClass
 		  - 28/3*δ*sβ*s1*c1p3*χaxDN _
 		  + 20/3*δ*sβ*s2*c1p4*χaxDN
 		  dAdι(247) = 50*δ*cβ*s1p2*c1p4*χaxDN _
-
+		  
 		End Sub
 	#tag EndMethod
 
@@ -7153,7 +7153,7 @@ Protected Class WaveBuilderClass
 		  End If
 		  
 		  // Otherwise, check if we can get data from the spin evolver
-		  Var spinData As SpinDataClass = SpinEvolver.GetSpinDataAtTime(StepNumber*Δτ)
+		  Var spinData As SpinResultsClass = SpinEvolver.GetSpinDataAtTime(StepNumber*Δτ)
 		  If spinData = Nil Then Return False  // If the method returns nothing, coalescence must have happened
 		  
 		  // We have data, so
