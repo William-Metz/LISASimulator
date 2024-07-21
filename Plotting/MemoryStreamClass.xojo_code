@@ -1,35 +1,40 @@
 #tag Class
-Protected Class UniverseClass
+Protected Class MemoryStreamClass
 	#tag Method, Flags = &h0
-		Sub Constructor(R As Double)
-		  Z = HubbleConstant*R
-		  DZDR = HubbleConstant
+		Sub Constructor(TheName As String, TheSize As Integer)
+		  Name = TheName
+		  Values.ResizeTo(TheSize)
+		  Index = 0
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetDZDR() As Double
-		  return DZDR
+		Function GetData() As Double()
+		  // The last double we wrote was at Index - 1, so resize the array to be just that length
+		  Values.ResizeTo(Index-1)
+		  Return Values // return the array
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetZ() As Double
-		  return Z
-		End Function
+		Sub Write(TheValue As Double)
+		  Values(Index) = TheValue
+		  Index = Index + 1
+		End Sub
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h0
-		DZDR As Double
+	#tag Property, Flags = &h21
+		Private Index As Integer
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		HubbleConstant As Double = 2.2798e-18
+	#tag Property, Flags = &h21
+		Private Name As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		Z As Double
+	#tag Property, Flags = &h21
+		Private Values() As Double
 	#tag EndProperty
 
 
@@ -46,7 +51,7 @@ Protected Class UniverseClass
 			Name="Index"
 			Visible=true
 			Group="ID"
-			InitialValue="-2147483648"
+			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
@@ -72,30 +77,6 @@ Protected Class UniverseClass
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HubbleConstant"
-			Visible=false
-			Group="Behavior"
-			InitialValue="2.2798e-18"
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="DZDR"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Z"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

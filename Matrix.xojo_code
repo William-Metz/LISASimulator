@@ -61,7 +61,7 @@ Protected Class Matrix
 		        a(i, j) = a(i, j)/diag   // normalize row
 		      Next
 		    Else
-		      diagfactors.Add(1)  // store a placeholder factor
+		      diagfactors.Add(diag)  // store a placeholder factor
 		    End If
 		  Next
 		  
@@ -344,7 +344,6 @@ Protected Class Matrix
 		    end if
 		  next
 		  pData = a   // return the data
-		   
 		  return 0   
 		End Function
 	#tag EndMethod

@@ -60,7 +60,7 @@ Begin DesktopWindow MainWindow
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   2
+      Value           =   0
       Visible         =   True
       Width           =   1000
       Begin DesktopListBox ParamNameListBox
@@ -86,10 +86,10 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   572
+         Height          =   595
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Parameter\nM (sols)\nδ\nT0 (s)\nR (ly)\nβ (°)	\nψ (°)\nλ0\nΘ (°)\nΦ(°)	\nΩ\nχ10x	\nχ10y	\nχ10z	\nχ20x\nχ20y\nx20z\nρ0\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
+         InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nR (ly)\nβ(°)	\nψ (°)\nλ0\nΘ (°)\nΦ (°)	\nΩ (/sky)\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
          Italic          =   False
          Left            =   31
          LockBottom      =   False
@@ -135,7 +135,7 @@ Begin DesktopWindow MainWindow
          TabIndex        =   0
          TabPanelIndex   =   3
          TabStop         =   True
-         Text            =   "Graph of:"
+         Text            =   "Graph This Variable:"
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
@@ -143,7 +143,7 @@ Begin DesktopWindow MainWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   64
+         Width           =   129
       End
       Begin DesktopPopupMenu GraphChoicePopupMenu
          AllowAutoDeactivate=   True
@@ -155,9 +155,9 @@ Begin DesktopWindow MainWindow
          Height          =   26
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "H\nHP\nHX\nV\nι\nα\ndhDM\ndhDψ\ndhDλ0\ndhDΘ\ndhDΦ\ndhDβ\ndhDR\ndhDV0\ndhDδ\ndhDχ10x\ndhDχ10y\ndhDχ10z\ndhDχ20x\ndhDχ20y\ndhDχ20z\nαDotN"
+         InitialValue    =   ""
          Italic          =   False
-         Left            =   96
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -169,163 +169,13 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   42
+         Top             =   75
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   151
+         Width           =   155
       End
-      Begin DesktopLabel CaptionForStartTimeLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   287
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   9
-         TabPanelIndex   =   3
-         TabStop         =   True
-         Text            =   "Starting Time (y):"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   47
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   104
-      End
-      Begin DesktopTextField StartTimeTextField
-         AllowAutoDeactivate=   True
-         AllowFocusRing  =   True
-         AllowSpellChecking=   False
-         AllowTabs       =   False
-         BackgroundColor =   &cFFFFFF
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Format          =   ""
-         HasBorder       =   True
-         Height          =   26
-         Hint            =   ""
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   397
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         MaximumCharactersAllowed=   0
-         Password        =   False
-         ReadOnly        =   False
-         Scope           =   0
-         TabIndex        =   10
-         TabPanelIndex   =   3
-         TabStop         =   True
-         Text            =   "0"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   46
-         Transparent     =   False
-         Underline       =   False
-         ValidationMask  =   ""
-         Visible         =   True
-         Width           =   110
-      End
-      Begin DesktopLabel CaptionForEndTimeLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   287
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   11
-         TabPanelIndex   =   3
-         TabStop         =   True
-         Text            =   "Ending Time (y):"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   79
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   104
-      End
-      Begin DesktopTextField EndTimeTextField
-         AllowAutoDeactivate=   True
-         AllowFocusRing  =   True
-         AllowSpellChecking=   False
-         AllowTabs       =   False
-         BackgroundColor =   &cFFFFFF
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Format          =   ""
-         HasBorder       =   True
-         Height          =   26
-         Hint            =   ""
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   398
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         MaximumCharactersAllowed=   0
-         Password        =   False
-         ReadOnly        =   False
-         Scope           =   0
-         TabIndex        =   12
-         TabPanelIndex   =   3
-         TabStop         =   True
-         Text            =   "Max"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   79
-         Transparent     =   False
-         Underline       =   False
-         ValidationMask  =   ""
-         Visible         =   True
-         Width           =   110
-      End
-      Begin DesktopListBox CasesListBox
+      Begin DesktopListBox CaseListBox
          AllowAutoDeactivate=   True
          AllowAutoHideScrollbars=   True
          AllowExpandableRows=   False
@@ -348,12 +198,12 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   572
+         Height          =   595
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Case 1\n10000\n0.1\n500\n1.0e7\n39\n24\n0\n5\n268.5\n---\nx 0\nx 0\nx 0\nx 0\nx 0\nx 0\n0\n0\n2\n50\n1.0"
+         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\nx 0\nx 0\nx 0\nx 0\nx 0\nx 0\n0\n0\n2\n50\n1.0"
          Italic          =   False
-         Left            =   115
+         Left            =   109
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -370,7 +220,7 @@ Begin DesktopWindow MainWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   82
+         Width           =   83
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
@@ -486,7 +336,40 @@ Begin DesktopWindow MainWindow
          Visible         =   True
          Width           =   207
       End
-      Begin DesktopLabel CaptionForMatrixLabel
+      Begin DesktopLabel XExplanationLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   58
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   31
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   True
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   8
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Text            =   "Typing 'x' in the cells for βthrough φ2 will toggle whether that parameter's uncertainty is calculate or not (a displayed 'x' indicates 'not')."
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   645
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   306
+      End
+      Begin DesktopLabel CaptionForMatrixToDisplayLabel
          AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
@@ -517,40 +400,7 @@ Begin DesktopWindow MainWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   136
-      End
-      Begin DesktopLabel XExplanationLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   39
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   31
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   True
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   8
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "Typing 'x' in a cell toggles whether that variable's uncertainty is calculated ('x' = 'not calculated')."
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   622
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   327
+         Width           =   112
       End
       Begin DesktopButton CopyMatrixButton
          AllowAutoDeactivate=   True
@@ -743,7 +593,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   134
+         Top             =   132
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -809,7 +659,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   164
+         Top             =   166
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -881,72 +731,6 @@ Begin DesktopWindow MainWindow
          Visible         =   True
          Width           =   114
       End
-      Begin DesktopLabel CaptionForTcLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   401
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   18
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "Time to Coalescence (y):"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   232
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   156
-      End
-      Begin DesktopLabel ValueOfTcLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   569
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   19
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   232
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   114
-      End
       Begin DesktopLabel CaptionForVLabel
          AllowAutoDeactivate=   True
          Bold            =   False
@@ -974,7 +758,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   262
+         Top             =   225
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1007,7 +791,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   262
+         Top             =   226
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1036,15 +820,15 @@ Begin DesktopWindow MainWindow
          TabIndex        =   22
          TabPanelIndex   =   1
          TabStop         =   True
-         Text            =   "Current Step Ratio:"
+         Text            =   "Source/Display Step Ratio:"
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   292
+         Top             =   254
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   156
+         Width           =   169
       End
       Begin DesktopLabel ValueOfStepRatioLabel
          AllowAutoDeactivate=   True
@@ -1057,7 +841,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   569
+         Left            =   573
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1073,73 +857,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   292
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   114
-      End
-      Begin DesktopLabel CaptionForSNRLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   401
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   24
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "Current Signal-to-Noise:"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   322
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   156
-      End
-      Begin DesktopLabel ValueOfSNRLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   569
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   25
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   322
+         Top             =   254
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1205,7 +923,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   482
+         Top             =   509
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1291,10 +1009,10 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   441
+         Height          =   466
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Uncertainty\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?"
+         InitialValue    =   "Uncertainty\n?\n?\n\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?"
          Italic          =   False
          Left            =   202
          LockBottom      =   False
@@ -1344,7 +1062,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   505
+         Top             =   532
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1472,39 +1190,6 @@ Begin DesktopWindow MainWindow
          Visible         =   False
          Width           =   259
       End
-      Begin DesktopLabel CaptionForActualTimeLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   204
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   36
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "Actual Duration (y):"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   557
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   156
-      End
       Begin DesktopLabel ValueOfActualTimeLabel
          AllowAutoDeactivate=   True
          Bold            =   False
@@ -1532,7 +1217,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   582
+         Top             =   609
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1545,14 +1230,14 @@ Begin DesktopWindow MainWindow
          Height          =   30
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   589
+         Left            =   354
          LineStep        =   1
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
-         MaximumValue    =   100
+         MaximumValue    =   500
          MinimumValue    =   0
          PageStep        =   20
          Scope           =   0
@@ -1561,40 +1246,11 @@ Begin DesktopWindow MainWindow
          TabStop         =   True
          TickMarkStyle   =   0
          Tooltip         =   ""
-         Top             =   47
+         Top             =   45
          Transparent     =   False
          Value           =   0
          Visible         =   True
-         Width           =   391
-      End
-      Begin DesktopSlider DurationSlider
-         AllowAutoDeactivate=   True
-         AllowLiveScrolling=   True
-         Enabled         =   True
-         Height          =   30
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Left            =   589
-         LineStep        =   1
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         MaximumValue    =   100
-         MinimumValue    =   0
-         PageStep        =   20
-         Scope           =   0
-         TabIndex        =   14
-         TabPanelIndex   =   3
-         TabStop         =   True
-         TickMarkStyle   =   0
-         Tooltip         =   ""
-         Top             =   79
-         Transparent     =   False
-         Value           =   100
-         Visible         =   True
-         Width           =   391
+         Width           =   500
       End
       Begin DesktopLabel CaptionForStartSliderLabel
          AllowAutoDeactivate=   True
@@ -1607,7 +1263,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   527
+         Left            =   202
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1619,7 +1275,7 @@ Begin DesktopWindow MainWindow
          TabIndex        =   15
          TabPanelIndex   =   3
          TabStop         =   True
-         Text            =   "Start:"
+         Text            =   "Start (y):"
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
@@ -1627,9 +1283,9 @@ Begin DesktopWindow MainWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   50
+         Width           =   60
       End
-      Begin DesktopLabel CaptionForLengthSliderLabel
+      Begin DesktopLabel CaptionForActualTimeLabel
          AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
@@ -1640,7 +1296,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   527
+         Left            =   204
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1649,24 +1305,155 @@ Begin DesktopWindow MainWindow
          Multiline       =   False
          Scope           =   0
          Selectable      =   False
+         TabIndex        =   36
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Text            =   "Actual Duration (y):"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   582
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   156
+      End
+      Begin PlotCanvas MyPlotCanvas
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   True
+         AllowTabs       =   False
+         Backdrop        =   0
+         DrawGrid        =   True
+         Enabled         =   True
+         Height          =   667
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         MarginBottom    =   20.0
+         MarginLeft      =   20.0
+         MarginRight     =   40.0
+         MarginTop       =   20.0
+         Scope           =   0
          TabIndex        =   16
          TabPanelIndex   =   3
          TabStop         =   True
-         Text            =   "Length:"
+         TheTitle        =   ""
+         TitleFont       =   "System"
+         TitleFontSize   =   18.0
+         TitleOffset     =   15.0
+         Tooltip         =   ""
+         Top             =   113
+         Transparent     =   True
+         Visible         =   True
+         Width           =   960
+      End
+      Begin DesktopLabel ValueOfGraphStartLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   263
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   17
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   "0.00000000"
          TextAlignment   =   0
          TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   47
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   82
+      End
+      Begin DesktopLabel CaptionForGraphWidthLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   612
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   18
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   "Graph Width / All Data:"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   77
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   141
+      End
+      Begin DesktopPopupMenu ScaleMenu
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         InitialValue    =   "1.0\n0.5\n0.2\n0.1\n0.05\n0.02\n0.01\n0.005\n0.002\n0.001\n0.0005\n0.0002\n0.0001\n0.00005\n0.00001\n"
+         Italic          =   False
+         Left            =   765
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         SelectedRowIndex=   0
+         TabIndex        =   9
+         TabPanelIndex   =   3
+         TabStop         =   True
          Tooltip         =   ""
          Top             =   79
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   50
+         Width           =   91
       End
-      Begin DesktopButton GraphButton
+      Begin DesktopButton BumpUpButton
          AllowAutoDeactivate=   True
          Bold            =   False
          Cancel          =   False
-         Caption         =   "Graph"
+         Caption         =   "Up"
          Default         =   False
          Enabled         =   True
          FontName        =   "System"
@@ -1676,7 +1463,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   167
+         Left            =   283
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1684,7 +1471,7 @@ Begin DesktopWindow MainWindow
          LockTop         =   True
          MacButtonStyle  =   0
          Scope           =   0
-         TabIndex        =   17
+         TabIndex        =   19
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
@@ -1692,44 +1479,140 @@ Begin DesktopWindow MainWindow
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   80
+         Width           =   51
       End
-      Begin Graph GraphingCanvas
+      Begin DesktopLabel CaptionForBumpLabel
          AllowAutoDeactivate=   True
-         AllowFocus      =   False
-         AllowFocusRing  =   True
-         AllowTabs       =   False
-         Backdrop        =   0
-         CBlack          =   &c00000000
-         CGrid           =   &c00000000
-         CWhite          =   &c00000000
-         DoubleBuffer    =   False
+         Bold            =   False
          Enabled         =   True
-         GXP             =   0
-         Height          =   668
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   20
-         LockBottom      =   True
+         Italic          =   False
+         Left            =   202
+         LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
-         LockRight       =   True
+         LockRight       =   False
          LockTop         =   True
+         Multiline       =   False
          Scope           =   0
-         TabIndex        =   18
+         Selectable      =   False
+         TabIndex        =   20
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   "Bump Start"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   79
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   77
+      End
+      Begin DesktopButton BumpDownButton
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Down"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   346
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   21
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   111
-         Transparent     =   True
+         Top             =   79
+         Transparent     =   False
+         Underline       =   False
          Visible         =   True
-         Width           =   960
-         XColor          =   &c00000000
-         YColor          =   &c00000000
+         Width           =   51
+      End
+      Begin DesktopLabel CaptionForBumpTypeLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   409
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   22
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   "by"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   79
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   24
+      End
+      Begin DesktopPopupMenu BumpTypePopupMenu
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         InitialValue    =   "Single Step\nWindow Width\n10 Steps\n100 Steps\n1000 Steps\n0.00001 Of Span\n0.0001 Of Span\n0.001 Of Span\n0.01 Of Span\n0.1 Of Span"
+         Italic          =   False
+         Left            =   437
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         SelectedRowIndex=   0
+         TabIndex        =   23
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   81
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   128
       End
    End
    Begin MainThreadClass MainThread
       DebugIdentifier =   ""
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -1745,27 +1628,20 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  'SetUpMainLB()
+		  UpdateTc
+		  
+		  // Initialize the GraphChoicePopupMenu items
+		  'Var tempCase As New CaseInfoClass
+		  'Setting = True
+		  'GraphChoicePopupMenu.RemoveAllRows
+		  'Var theNames() As String = tempCase.GetPlotNames
+		  'For i As Integer = 0 To theNames.LastIndex
+		  'GraphChoicePopupMenu.AddRow(theNames(i))
+		  'Next
+		  'Setting = False
 		End Sub
 	#tag EndEvent
 
-
-	#tag Method, Flags = &h0
-		Sub AddToCasesList(inputString() As String)
-		  Var rows,cols as integer
-		  
-		  rows = CasesList.LastIndex
-		  cols = 19 
-		  
-		  Redim CasesList(rows+1, cols) //Adds a row to CasesList 
-		  
-		  Var j as integer 
-		  
-		  for j = 0 to cols 
-		    CasesList(rows+1,j) = inputString(j) //Populates the new row with data from InputSting
-		  next 
-		End Sub
-	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ConvertToDegrees(Value As Double) As Double
@@ -1795,144 +1671,88 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub DisplayUncertainties(Params As CaseParametersClass, UV As UncertaintyValuesClass)
-		  UncertaintyListBox.CellTextAt(0) = GetUncertaintyString(UV.OfM)
-		  UncertaintyListBox.CellTextAt(1) = GetUncertaintyString(UV.Ofδ)
-		  UncertaintyListBox.CellTextAt(2) = GetUncertaintyString(UV.OfT0)
-		  UncertaintyListBox.CellTextAt(3) = GetUncertaintyString(UV.OfR)
-		  UncertaintyListBox.CellTextAt(4) = GetUncertaintyString(UV.Ofβ)
-		  UncertaintyListBox.CellTextAt(5) = GetUncertaintyString(UV.Ofψ)
-		  UncertaintyListBox.CellTextAt(6) = GetUncertaintyString(UV.Ofλ0)
-		  UncertaintyListBox.CellTextAt(7) = GetUncertaintyString(UV.OfΘ)
-		  UncertaintyListBox.CellTextAt(8) = GetUncertaintyString(UV.OfΦ)
-		  UncertaintyListBox.CellTextAt(9) = GetUncertaintyString(UV.OfΩ)
-		  UncertaintyListBox.CellTextAt(10) = GetUncertaintyString(UV.Ofχ10x)
-		  UncertaintyListBox.CellTextAt(11) = GetUncertaintyString(UV.Ofχ10y)
-		  UncertaintyListBox.CellTextAt(12) = GetUncertaintyString(UV.Ofχ10z)
-		  UncertaintyListBox.CellTextAt(13) = GetUncertaintyString(UV.Ofχ20x)
-		  UncertaintyListBox.CellTextAt(14) = GetUncertaintyString(UV.Ofχ20y)
-		  UncertaintyListBox.CellTextAt(15) = GetUncertaintyString(UV.Ofχ20z)
+		Sub DisplayUncertainties(CaseInfo As CaseInfoClass)
+		  'UncertaintyListBox.CellTextAt(0) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.M)))
+		  'UncertaintyListBox.CellTextAt(1) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.δ)))
+		  'UncertaintyListBox.CellTextAt(2) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.V0)))
+		  'UncertaintyListBox.CellTextAt(3) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.R)))
+		  'UncertaintyListBox.CellTextAt(4) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.β)))
+		  'UncertaintyListBox.CellTextAt(5) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.ψ)))
+		  'UncertaintyListBox.CellTextAt(6) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.λ0)))
+		  'Var uTheta As Double = CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.Θ))
+		  'Var uPhi As Double = CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.Φ))
+		  'UncertaintyListBox.CellTextAt(7) = GetUncertaintyString(uTheta)
+		  'UncertaintyListBox.CellTextAt(8) = GetUncertaintyString(uPhi)
+		  'Var d2r As Double = CaseInfo.π/180.0
+		  'Var omega As Double = Sin(CaseInfo.Θ)*uTheta*uPhi/(4*CaseInfo.π)*d2r*d2r
+		  'UncertaintyListBox.CellTextAt(9) = GetUncertaintyString(omega)
+		  'UncertaintyListBox.CellTextAt(10) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10x)))
+		  'UncertaintyListBox.CellTextAt(11) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10y)))
+		  'UncertaintyListBox.CellTextAt(12) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10z)))
+		  'UncertaintyListBox.CellTextAt(13) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20x)))
+		  'UncertaintyListBox.CellTextAt(14) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20y)))
+		  'UncertaintyListBox.CellTextAt(15) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20z)))
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DoBump(Down as Boolean)
+		  Var trialStep As Integer
+		  Select Case BumpTypePopupMenu.SelectedRowText
+		  Case "Single Step"
+		    trialStep = 1
+		  Case "Window Width"
+		    Var selectedScale As Double = ScaleMenu.SelectedRowText.ToDouble
+		    trialStep = Round(selectedScale * PlotTimes.LastIndex)
+		  Case "10 Steps"
+		    trialStep = 10
+		  Case "100 Steps"
+		    trialStep = 100
+		  Case "1000 Steps"
+		    trialStep = 1000
+		  Case "0.00001 Of Span"
+		    trialStep = Round(0.00001*PlotTimes.LastIndex)
+		  Case "0.0001 Of Span"
+		    trialStep = Round(0.0001*PlotTimes.LastIndex)
+		  Case "0.001 Of Span"
+		    trialStep = Round(0.001*PlotTimes.LastIndex)
+		  Case "0.01 Of Span"
+		    trialStep = Round(0.01*PlotTimes.LastIndex)
+		  Case "0.1 of Span"
+		    trialStep = Round(0.01*PlotTimes.LastIndex)
+		  End Select
+		  If Down Then
+		    PlotStartIndex = PlotStartIndex - trialStep
+		    If PlotStartIndex < 0 Then PlotStartIndex = 0
+		  Else
+		    PlotStartIndex = PlotStartIndex + trialStep
+		    If PlotStartIndex > PlotTimes.LastIndex - 5 Then PlotStartIndex = PlotTimes.LastIndex - 5
+		  End If
+		  Setting = True
+		  StartSlider.Value = Round(PlotStartIndex/PlotTimes.LastIndex*StartSlider.MaximumValue)
+		  Setting = False
+		  UpdatePlot
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub DoStart()
 		  // Start running a case or cases
-		  Var TheCases() As CaseParametersClass
-		  Var Flag As Boolean
-		  if RunFileCheckBox.Value then
-		    
-		    AllCasesDone = False 
-		    
-		    Var TxtType As New FileType
-		    TxtType.Name = "Text  file"
-		    TxtType.Extensions = ".txt"
-		    OutputFile = FolderItem.ShowSaveFileDialog(TxtType, "Create Example.txt")
-		    
-		    // Case information is loaded into CasesList when box is checked 
-		    Var N As Double = CasesList.LastIndex 
-		    Var ThisCase As New CaseParametersClass
-		    Var i as integer
-		    
-		    for i = 0 to N 
-		      Var AddCase As New CaseParametersClass // Create new parameter list
-		      AddCase.M = CasesList(i,0).ToDouble
-		      AddCase.δ = CasesList(i,1).ToDouble
-		      AddCase.T0 = CasesList(i,2).ToDouble
-		      AddCase.R = CasesList(i,3).ToDouble
-		      
-		      AddCase.β = GetValueAndSolveFlag(Flag, CasesList(i,4))
-		      AddCase.SolveForβ = Flag
-		      AddCase.ψ = GetValueAndSolveFlag(Flag, CasesList(i,5))
-		      AddCase.SolveForψ = Flag
-		      AddCase.λ0 = GetValueAndSolveFlag(Flag, CasesList(i,6))
-		      AddCase.SolveForλ0 = Flag
-		      AddCase.Θ = GetValueAndSolveFlag(Flag, CasesList(i,7))
-		      AddCase.SolveForΘ = Flag
-		      AddCase.Φ = GetValueAndSolveFlag(Flag, CasesList(i,8))
-		      AddCase.SolveForΦ = Flag
-		      AddCase.χ10x = GetValueAndSolveFlag(Flag, CasesList(i,9))
-		      AddCase.SolveForχ10x = Flag
-		      AddCase.χ10y = GetValueAndSolveFlag(Flag, CasesList(i,10))
-		      AddCase.SolveForχ10y = Flag
-		      AddCase.χ10z = GetValueAndSolveFlag(Flag, CasesList(i,11))
-		      AddCase.SolveForχ10z = Flag
-		      AddCase.χ20x = GetValueAndSolveFlag(Flag, CasesList(i,12))
-		      AddCase.SolveForχ20x = Flag
-		      AddCase.χ20y = GetValueAndSolveFlag(Flag, CasesList(i,13))
-		      AddCase.SolveForχ20y = Flag
-		      AddCase.χ20z = GetValueAndSolveFlag(Flag, CasesList(i,14))
-		      AddCase.SolveForχ20z = Flag
-		      
-		      AddCase.ρ0 = CasesList(i,15).ToDouble
-		      AddCase.PNOrder = CasesList(i,16).ToDouble
-		      AddCase.Detectors = CasesList(i,17).ToDouble
-		      AddCase.ΔT = CasesList(i,18).ToDouble
-		      AddCase.RunDuration = CasesList(i,19).ToDouble
-		      
-		      AddCase.FinishConstruction
-		      TheCases.Add(AddCase)
-		      
-		    next
-		    
-		    
-		    
-		    ValueOfStatusLabel.Text = "Running"
-		    ValueOfStopReasonLabel.Text = ""
-		    ValueOfTcLabel.Text = ""
-		    MainThread.LoadCases(TheCases)
-		    MainThread.Priority = Thread.HighPriority
-		    MainThread.Start
-		    InterfaceUpdateTimer.RunMode = Timer.RunModes.Multiple
-		    
+		  TheCases.ResizeTo(-1)  // Clear out any pre-existing cases
+		  if RunFileCheckBox.Value then // if we are running cases from a file
+		    GetCasesFromFile // get the cases from the file
+		    OutputFile = FolderItem.ShowSaveFileDialog(FileTypeGroup1.Text, "Untitled.txt") // define an output file
+		    If OutputFile = Nil Then Return // bail out if the user has cancelled
 		  Else
-		    Var ThisCase As New CaseParametersClass // Create new parameter list
-		    // Set the first four parameters
-		    ThisCase.M = CasesListBox.CellTextAt(0).ToDouble
-		    ThisCase.δ = CasesListBox.CellTextAt(1).ToDouble
-		    ThisCase.T0 = CasesListBox.CellTextAt(2).ToDouble
-		    ThisCase.R = CasesListBox.CellTextAt(3).ToDouble
-		    // Specially handle cases we might not solve for
-		    ThisCase.β = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(4))
-		    ThisCase.SolveForβ = Flag
-		    ThisCase.ψ = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(5))
-		    ThisCase.SolveForψ = Flag
-		    ThisCase.λ0 = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(6))
-		    ThisCase.SolveForλ0 = Flag
-		    ThisCase.Θ = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(7))
-		    ThisCase.SolveForΘ = Flag
-		    ThisCase.Φ = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(8))
-		    ThisCase.SolveForΦ = Flag
-		    ThisCase.χ10x = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(10))
-		    ThisCase.SolveForχ10x = Flag
-		    ThisCase.χ10y = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(11))
-		    ThisCase.SolveForχ10y = Flag
-		    ThisCase.χ10z = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(12))
-		    ThisCase.SolveForχ10z = Flag
-		    ThisCase.χ20x = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(13))
-		    ThisCase.SolveForχ20x = Flag
-		    ThisCase.χ20y = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(14))
-		    ThisCase.SolveForχ20y = Flag
-		    ThisCase.χ20z = GetValueAndSolveFlag(Flag, CasesListBox.CellTextAt(15))
-		    ThisCase.SolveForχ20z = Flag
-		    // Handle the remaining case items
-		    ThisCase.ρ0 = CasesListBox.CellTextAt(16).ToDouble
-		    ThisCase.PNOrder = CasesListBox.CellTextAt(17).ToDouble
-		    ThisCase.Detectors = CasesListBox.CellTextAt(18).ToDouble
-		    ThisCase.ΔT = CasesListBox.CellTextAt(19).ToDouble
-		    ThisCase.RunDuration = CasesListBox.CellTextAt(20).ToDouble
-		    // Finish setting up the case
-		    ThisCase.FinishConstruction
-		    // Add the case to the list
-		    TheCases.Add(ThisCase)
-		    ValueOfStatusLabel.Text = "Running"
-		    ValueOfStopReasonLabel.Text = ""
-		    ValueOfTcLabel.Text = ""
-		    MainThread.LoadCases(TheCases)
-		    MainThread.Priority = Thread.HighPriority
-		    MainThread.Start
-		    InterfaceUpdateTimer.RunMode = Timer.RunModes.Multiple
+		    TheCases.Add(GetDisplayCase)
 		  End if
+		  AllCasesDone = False 
+		  ValueOfStatusLabel.Text = "Running"
+		  ValueOfStopReasonLabel.Text = ""
+		  MainThread.LoadCases(TheCases)
+		  MainThread.Priority = Thread.HighPriority
+		  MainThread.Start
+		  InterfaceUpdateTimer.RunMode = Timer.RunModes.Multiple
 		  
 		  
 		  
@@ -1951,68 +1771,88 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetHighestValue(row as integer) As Double
-		  
-		  
-		  Var n as integer = TotSteps - 1
-		  
-		  Var StartValue As Integer = (StartSlider.Value*n) \100
-		  Var EndValue As Integer = StartValue + (DurationSlider.Value *n) \ 100
-		  
-		  If EndValue > n then 
-		    EndValue = n 
-		  end if 
-		  
-		  Var HighestValue as double = ChartArray(row,StartValue)
-		  
-		  for i as integer =  StartValue to EndValue
-		    If ChartArray(row,i) > HighestValue then 
-		      HighestValue = ChartArray(row,i)
-		    end if 
-		  next 
-		  
-		  return HighestValue
+		Function GetCaseFromValues(Values() As String) As CaseInfoClass
+		  Var thisCase As New CaseInfoClass
+		  Var Flag As Boolean
+		  thisCase.SolveFor.ResizeTo(Integer(CaseInfoClass.Param.NItems) - 1)
+		  thisCase.M = GetValueAndSolveFlag(Flag, Values(0))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.M)) = Flag
+		  thisCase.δ = GetValueAndSolveFlag(Flag, Values(1))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.δ)) = Flag
+		  thisCase.T0 = GetValueAndSolveFlag(Flag, Values(2))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.τc)) = Flag
+		  thisCase.R = GetValueAndSolveFlag(Flag, Values(3))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.R)) = Flag
+		  thisCase.β = GetValueAndSolveFlag(Flag, Values(4))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.β)) = Flag
+		  thisCase.ψ = GetValueAndSolveFlag(Flag, Values(5))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.ψ)) = Flag
+		  thisCase.λ0 = GetValueAndSolveFlag(Flag, Values(6))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.λ0)) = Flag
+		  thisCase.Θ = GetValueAndSolveFlag(Flag, Values(7))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.Θ)) = Flag
+		  thisCase.Φ = GetValueAndSolveFlag(Flag, Values(8))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.Φ)) = Flag
+		  thisCase.χ1 = GetValueAndSolveFlag(Flag, Values(9))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.χ1)) = Flag
+		  thisCase.θ1 = GetValueAndSolveFlag(Flag, Values(10))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.θ1)) = Flag
+		  thisCase.φ1 = GetValueAndSolveFlag(Flag, Values(11))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.φ1)) = Flag
+		  thisCase.χ2 = GetValueAndSolveFlag(Flag, Values(12))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.χ2)) = Flag
+		  thisCase.θ2 = GetValueAndSolveFlag(Flag, Values(13))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.θ2)) = Flag
+		  thisCase.φ2 = GetValueAndSolveFlag(Flag, Values(14))
+		  thisCase.SolveFor(Integer(CaseInfoClass.Param.φ2)) = Flag
+		  thisCase.ρ0 = values(15).ToDouble
+		  thisCase.PNOrder = values(16).ToInteger
+		  thisCase.Detectors = values(17).ToInteger
+		  thisCase.ΔT = values(18).ToDouble
+		  thisCase.RunDuration = values(19).ToDouble
+		  thisCase.FinishConstruction
+		  Return thisCase
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetLowestValue(row as integer) As Double
-		  Var n as integer = TotSteps - 1
+		Sub GetCasesFromFile()
+		  // To make a txt file that can be read by this code:
+		  //    Rows should be parameters, in the order shown in the CaseListBox (ignoring Ω), separated by tabs.
+		  //    All parameters need values, parameters not to be solved for should have x in front of them.
+		  //    Do not write data in text file with commas.
 		  
-		  Var StartValue As Integer = (StartSlider.Value*n) \ 100
-		  Var EndValue As Integer = StartValue + (DurationSlider.Value *n) \ 100
+		  Var f As FolderItem
+		  Var textInput As TextInputStream
+		  Var rowFromFile As String
 		  
-		  If EndValue > n then 
-		    EndValue = n 
-		  end if 
+		  f = FolderItem.ShowOpenFileDialog(FileTypeGroup1.Text)
 		  
-		  Var LowestValue as double = ChartArray(row,StartValue)
+		  If f <> Nil Then
+		    textInput = TextInputStream.Open(f)
+		    textInput.Encoding = Encodings.UTF8
+		    Do
+		      rowFromFile = textInput.ReadLine
+		      Var values() As String = rowFromFile.ToArray(String.Chr(9))
+		      Var thisCase As CaseInfoClass = GetCaseFromValues(values)
+		      thisCase.FromFile = True
+		      TheCases.Add(thisCase)
+		    Loop Until textInput.EndOfFile
+		    textInput.Close
+		  End If
 		  
-		  for i as integer = StartValue to EndValue
-		    If ChartArray(row,i) < LowestValue then 
-		      LowestValue = ChartArray(row,i)
-		    end if 
-		  next 
-		  
-		  return LowestValue
-		End Function
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetTimeToCoalescence(TheSuper As CaseSupervisorClass) As Double
-		  Var parameters As CaseParametersClass = TheSuper.CaseParameters
-		  Var δ As Double = parameters.δ
-		  Var η As Double = 0.25*(1.0 - δ*δ)
-		  Var χa𝓁 As Double = TheSuper.WaveBuilder.SourceEvolverBase.χaL
-		  Var χs𝓁 As Double = TheSuper.WaveBuilder.SourceEvolverBase.χsL
-		  Var v0 As Double = parameters.V0
-		  Var Threepi As Double = 3.0*parameters.π
-		  Var c As Double = 743.0/2688.0 + (11.0/32.0)*η 
-		  Var Term2 As Double = (32.0/3.0)*c
-		  Var Term3 As Double = (64.0/3.0)*((47.0/40.0)*χs𝓁 + (15.0/32.0)*δ*χa𝓁 - Threepi/10.0)
-		  Var Term4 As Double = 64.0*c*c/9.0 + (128.0/3.0)*(1855099.0/14450688.0 + (56975.0/258048.0)*η + (371.0/2048.0)*η*η)
-		  Var A As Double = 5.0*Parameters.GM/(256.0*η*parameters.Year*v0^8)
-		  Return A*(1 + Term2*v0*v0 + Term3*v0*v0*v0 + Term4*v0*v0*v0*v0)
+		Function GetDisplayCase() As CaseInfoClass
+		  Var theValues() As String
+		  Var theValue As String
+		  For i As Integer = 0 to CaseListBox.LastRowIndex // for all entries in the list box
+		    theValue = CaseListBox.CellTextAt(i) // get the text entered in the list box
+		    if i <> 3 And i <> 10 Then theValues.Add(theValue) // skip over an entry corresponding to Ω or Tc
+		  Next
+		  Return GetCaseFromValues(theValues)
 		  
 		End Function
 	#tag EndMethod
@@ -2044,225 +1884,236 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Graph()
-		  GraphingCanvas.ClearFrame
-		  GraphingCanvas.SetTitle("Graph of "+GraphChoicePopupMenu.SelectedRowText+" vs time")
-		  GraphingCanvas.SetXLabel("t (time in s)")
-		  GraphingCanvas.SetYLabel(GraphChoicePopupMenu.SelectedRowText)
+		Sub PlotSelectedItem(TheItem As String)
+		  If MyPlotData = Nil Then  // if this is the first call, then we must load the start/stop settings
+		    // Set the start of the plot
+		    PlotStartIndex = Round(StartSlider.Value/StartSlider.MaximumValue*PlotTimes.LastIndex)
+		    If PlotStartIndex > PlotTimes.LastIndex -5 Then PlotStartIndex = PlotTimes.LastIndex - 5
+		    
+		    // Get the plot scale
+		    Var selectedScale As Double = ScaleMenu.SelectedRowText.ToDouble
+		    
+		    // Calculate the new EndTimeIndex
+		    PlotEndIndex = Round(selectedScale * PlotTimes.LastIndex) + PlotStartIndex
+		    
+		    // Ensure EndTimeIndex does not exceed the maximum index
+		    If PlotEndIndex > PlotTimes.LastIndex Then
+		      PlotEndIndex = PlotTimes.LastIndex
+		    End If
+		  End If
 		  
-		  
-		  if GraphChoicePopupMenu.SelectedRowText = "αDotN" then
-		    
-		    Var m as integer = AlphaList.LastIndex
-		    
-		    GraphingCanvas.SetGrid(true)
-		    GraphingCanvas.DefineGraph(0,m,-.001,.001)
-		    GraphingCanvas.GetContent
-		    
-		    
-		  else 
-		    
-		    Var n as integer = TotSteps - 1
-		    
-		    Var StartValue As Integer = (StartSlider.Value*n) \100
-		    Var EndValue As Integer = StartValue + (DurationSlider.Value *n) \ 100
-		    
-		    If EndValue > n then 
-		      EndValue = n 
-		    end if 
-		    
-		    Var j as integer = GraphChoicePopupMenu.SelectedRowIndex + 1
-		    
-		    GraphingCanvas.SetGrid(true)
-		    GraphingCanvas.DefineGraph(ChartArray(0,StartValue),ChartArray(0,EndValue), GetLowestValue(j), GetHighestValue(j))
-		    GraphingCanvas.GetContent
-		    
-		  end if 
+		  MyPlotData = New PlotData
+		  Var values() As Double = TheCases(0).DataRecorder.GetDataFor(TheItem)
+		  MyPlotData.SetPlotArrays(PlotTimes, values)
+		  MyPlotData.SetPlotIndexRange(PlotStartIndex, PlotEndIndex)
+		  MyPlotCanvas.TheTitle = "Plot of " + TheItem + " as a Function of Time"
+		  MyPlotCanvas.SetXAxisLabel("$t$ in years")
+		  MyPlotCanvas.SetYAxisLabel(TheItem)
+		  MyPlotCanvas.ClearPlotData
+		  MyPlotCanvas.AddDataToPlot(MyPlotData)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub oldCreateArrays()
-		  '//This method does the majority of the work in the main window. It feeds the necessary parameters
-		  '//to a new instance of the EvolverClass class in order to perform the DoStep method enough times to make
-		  '//sufficiently long arrays of v and each derivative of v, as well as the spin variables.
-		  '
-		  'τ.ResizeTo(-1)  // reset the time axis
-		  '
-		  'myMain = New Main(M, δ, f0, R, β, ψangle, λ0, Θ, Φ, χ1Initial, χ2Initial, PNOrder, Detectors, dτ0, K)  // instantiate the Main class
-		  '
-		  '// these lines are remnants from the spin-only program. The program now runs whether there's spin evolution or not
-		  ''GraphAllowed = myMainWaveBuilder.ReadyToGo
-		  ''if GraphAllowed then      // Checks to see if we are ready to go (i.e. if ι0 and its derivatives are nonzero)
-		  '
-		  'GraphArray = New ArrayClass  // set up a new array to help with graphing
-		  '
-		  'Var NewValues(30) As Double  // create the array to load into GraphArray
-		  '
-		  '//Stores the initial value of v. These values are set up in the EvolverClass constructor
-		  'v = myMain.v0
-		  '
-		  '//Add the initial values of τ to the τ array so that the y- and x-axes match
-		  'Var τnew As Double = 0
-		  'τ.Add(τnew)
-		  '
-		  '// Perform the adaptive stepping technique to determine the time step
-		  '
-		  'While v < .2 And (τnew*M) < 31536000
-		  'myMain.DoMainStep
-		  '
-		  'v = myMain.vF       //This updates the "current" value of v 
-		  'τnew = τnew + dτ0          //This performs a step in τ . . .
-		  'τ.Add(τnew)               //. . . and this adds it to the τ array
-		  '
-		  '// Add the new values to the graphing array
-		  'For i As Integer = 0 To 14
-		  'NewValues(i) = myMain.dzd(i)
-		  'Next
-		  '
-		  'NewValues(15) = myMain.h
-		  'NewValues(16) = myMain.hp
-		  'NewValues(17) = myMain.hc
-		  'NewValues(18) = myMainWaveBuilder.αAcc
-		  'NewValues(19) = myMain.ιF
-		  'NewValues(20) = myMain.ζ
-		  'NewValues(21) = myMainWaveBuilder.LNhatF.x
-		  'NewValues(22) = myMainWaveBuilder.LNhatF.y
-		  'NewValues(23) = myMainWaveBuilder.LNhatF.z
-		  'NewValues(24) = myMainWaveBuilder.χ1hatF.x
-		  'NewValues(25) = myMainWaveBuilder.χ1hatF.y
-		  'NewValues(26) = myMainWaveBuilder.χ1hatF.z
-		  'NewValues(27) = myMainWaveBuilder.χ2hatF.x
-		  'NewValues(28) = myMainWaveBuilder.χ2hatF.y
-		  'NewValues(29) = myMainWaveBuilder.χ2hatF.z
-		  'NewValues(30) = myMain.sn2
-		  '
-		  'GraphArray.AddAll(NewValues)
-		  'Wend
-		  ''end if 
+		Function SultanUncertainty(value As Double, uncertainty As Double) As String
+		  'Number Formatting:
 		  
+		  'Start the program.
+		  'In the first input field or prompt, enter the value that you want to measure the uncertainty for. This can be done via a pop-up window, a slider, a number picker, or any other user interface element depending on your website design.
+		  'This should be a numerical value. If any non-numeric characters are entered, a message box will appear saying "Invalid value entered!".
+		  'In the second input field or prompt, enter the associated uncertainty of the value you have just entered. This can also be done via a pop-up window, a slider, a number picker, or any other user interface element.
+		  'This should be a positive numerical value. The program considers uncertainty as a positive value. If you enter a negative number or zero for uncertainty, you will get a message box saying "Uncertainty must be greater than zero!".
+		  'After you've entered the value and its uncertainty, submit your data. This can be done by clicking the 'Submit' button, pressing the 'Enter' key, or another action based on your website design.
+		  
+		  'Calculation Process:
+		  
+		  'Once the values are inputted correctly, the program will calculate the base-10 logarithm for both the value and uncertainty. It will then round the value and uncertainty according to the computed exponents.
+		  'The program will display a message box with the computed exponents and rounded uncertainty.
+		  
+		  'Result Output:
+		  
+		  'The program will finally adjust the rounded uncertainty for the final display and determine the number of spaces needed for proper alignment.
+		  'It checks whether the number is negative, and accordingly adds spaces or a minus sign before the number for proper formatting.
+		  'Depending on the exponent of the value, the program will generate the final output in two formats: normal and scientific notation.
+		  'If the exponent of the value is within the range from -3 to 6, both the value and the uncertainty will be displayed in normal notation.
+		  'Otherwise, both will be displayed in scientific notation.
+		  
+		  'Special Case:
+		  
+		  'There is a special case where the exponent of the value is greater than 0 and the exponent of the uncertainty is less than 0. In this case, the program will prepare the value with all decimal places (0 to valueExponent) and uncertainty to 8 decimal places.
+		  'Remember, this program is designed to handle and display uncertainty values correctly, but it is your responsibility to ensure the accuracy and correctness of the input data.
+		  
+		  If uncertainty.IsNotANumber Then
+		    Return value.ToString + EndOfLine + "(Imaginary)"
+		  Elseif uncertainty.IsInfinite Then
+		    Return value.ToString + EndOfLine + "(Not Solved For)"
+		  End If
+		  
+		  ' Ensure the uncertainty is a positive value. If it's not, raise an exception and display a message box
+		  Try
+		    If uncertainty <= 0 Then
+		      Raise New RuntimeException("Uncertainty must be greater than zero!")
+		    End If
+		  Catch e As RuntimeException
+		    MsgBox(e.Message)
+		    Return ""
+		  End Try
+		  
+		  ' Calculate the exponent of the value and uncertainty, which is the integer part of their base-10 logarithm
+		  Var valueExponent As Integer = Floor(Log(Abs(value)) / Log(10))
+		  Var uncertaintyExponent As Integer = Floor(Log(uncertainty) / Log(10))
+		  
+		  ' Compute the rounded value mantissa, which is the absolute value divided by 10 raised to its exponent, then rounded to 3 decimal places
+		  Var valueMantissa As Double = abs(value / (10 ^ valueExponent))
+		  Var roundedValueMantissa As Double = Round(valueMantissa * 1000) / 1000
+		  
+		  ' Compute the rounded uncertainty in a similar way, but round to the nearest integer
+		  Var uncertaintyMantissa As Double = uncertainty / (10 ^ uncertaintyExponent)
+		  Var roundedUncertainty As Double = Round(uncertaintyMantissa * 10)
+		  
+		  
+		  ' Adjust the rounded uncertainty for final display by multiplying by 10^-3 and rounding to 3 decimal places
+		  Var uncertaintyForDisplay As Double = roundedUncertainty * 10 ^ (-3)
+		  
+		  ' Determine whether a space or a minus sign is needed before the value
+		  Var BeforeValue As String = "  "
+		  if value < 0 then BeforeValue = "- "
+		  
+		  ' Determine the number of spaces needed for proper alignment in the final display
+		  Var spacesNeeded As Integer
+		  Var spaceString As String = ""
+		  
+		  ' Set the format string
+		  Dim formattedValue, formattedUncertainty As String 
+		  formattedValue = Format(value, "0.00000000") 
+		  
+		  ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
+		  if uncertaintyExponent < -7 Then
+		    formattedUncertainty = "0.00000000*"
+		  else
+		    formattedUncertainty = Format(uncertainty, "0.00000000")
+		  End If
+		  
+		  ' Determine the number of spaces needed to align the uncertainty under the last digit of the value
+		  spacesNeeded = Len(formattedValue) - Len(formattedUncertainty)
+		  
+		  ' Generate the string of spaces needed for alignment
+		  For i As Integer = 1 To spacesNeeded
+		    spaceString = spaceString + " "
+		  Next
+		  
+		  
+		  
+		  ' Check for the special case where the exponent of the value is greater than 0 and the exponent of the uncertainty is less than 0.
+		  If valueExponent > 0 And uncertaintyExponent < 0 Then
+		    ' Prepare the value with all decimal places (0 to valueExponent) and uncertainty to 8 decimal places
+		    Var formatStr As String = "0."
+		    For i As Integer = 1 To valueExponent
+		      formatStr = formatStr + "0"
+		    Next
+		    
+		    Var valueStr As String = Format(value, formatStr)
+		    Var uncertaintyStr As String
+		    ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
+		    if uncertaintyExponent < -7 Then
+		      uncertaintyStr = "0.00000000*"
+		    else
+		      uncertaintyStr = Format(uncertainty, "0.00000000")
+		    End If
+		    
+		    ' Determine the number of spaces needed to align the uncertainty under the last digit of the value
+		    spacesNeeded = valueStr.Length - uncertaintyStr.Length + 2  ' add two more for the space and "±"
+		    
+		    ' Generate the string of spaces needed for alignment
+		    spaceString = ""
+		    For i As Integer = 1 To spacesNeeded
+		      spaceString = spaceString + " "
+		    Next
+		    
+		    ' Return the final formatted string
+		    Return BeforeValue + valueStr + EndOfLine + "±" + spaceString + uncertaintyStr
+		  End If
+		  
+		  ' Check if the value exponent is within the range -3 to 6. If it is, format the value and uncertainty accordingly
+		  If valueExponent >= -3 And valueExponent <= 6 Then
+		    ' Format value and uncertainty
+		    Var valueStr As String
+		    Var uncertaintyStr As String
+		    
+		    ' Find number of decimal places in uncertainty
+		    Var numDecimalPlacesUncertainty As Integer = Len(Uncertainty.ToString) - InStr(Uncertainty.ToString, ".")
+		    
+		    ' Select correct format based on number of decimal places in uncertainty
+		    If numDecimalPlacesUncertainty = 1 Then
+		      valueStr = Format(value, "0.0")
+		      uncertaintyStr = Format(uncertainty, "0.0")
+		    Else
+		      valueStr = Format(value, "0.00")
+		      If valueExponent > -4 Then
+		        uncertaintyStr = Format(uncertainty, "0.0") ' Round uncertainty to one decimal place
+		      Else
+		        uncertaintyStr = Format(uncertainty, "0.00")
+		      End If
+		    End If
+		    
+		    ' Determine the number of spaces needed to align the uncertainty under the value
+		    spacesNeeded = valueStr.Length - uncertaintyStr.Length
+		    
+		    ' Generate the string of spaces needed for alignment
+		    spaceString = ""
+		    For i As Integer = 1 To spacesNeeded
+		      spaceString = spaceString + " "
+		    Next
+		    
+		    ' Return the final formatted string
+		    Return BeforeValue + valueStr + EndOfLine + spaceString + "± " + uncertaintyStr
+		  Else
+		    ' If the value exponent is outside the range -3 to 6, use scientific notation for the value and uncertainty
+		    Var plusMinusLine As String
+		    ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
+		    if uncertaintyExponent < -7 Then
+		      plusMinusLine = spaceString + "± 0.00000000* e" + Str(valueExponent)
+		    else
+		      plusMinusLine = spaceString + "± " + Str(uncertaintyForDisplay) + "e" + Str(valueExponent)
+		    End If
+		    Return BeforeValue + Str(roundedValueMantissa) + "e" + Str(valueExponent) + EndOfLine + plusMinusLine
+		  End If
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UpdatePlot()
+		  If MyPlotData = Nil Then Return // no data to plot
+		  
+		  // Make sure that the start index is small enough to display at least 5 steps
+		  If PlotStartIndex > PlotTimes.LastIndex - 5 Then PlotStartIndex = PlotTimes.LastIndex - 5
+		  
+		  // Get the plot scale
+		  Var selectedScale As Double = ScaleMenu.SelectedRowText.ToDouble
+		  
+		  // Calculate the new EndTimeIndex
+		  PlotEndIndex = Round(selectedScale * PlotTimes.LastIndex) + PlotStartIndex
+		  
+		  // Ensure EndTimeIndex does not exceed the maximum index
+		  If PlotEndIndex > PlotTimes.LastIndex Then
+		    PlotEndIndex = PlotTimes.LastIndex
+		  End If
+		  
+		  MyPlotData.SetPlotIndexRange(PlotStartIndex, PlotEndIndex)
+		  MyPlotCanvas.AddDataToPlot(Nil)
+		  MyPlotCanvas.Refresh
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function oldGetHighestValue(InputArray() As Double, Min As Integer, Max As Integer) As Double
-		  //Parameters: InputArray() an array of double values
-		  '//Return: CurrentHighest as double
-		  '
-		  '//This method takes an array and finds the largest value within it
-		  '//It does this by comparing each item in the array to the current highest number, and if it is larger setting that number to the new current highest
-		  '
-		  '//Defines the current highest value and sets it equal to the first value in the input array
-		  '
-		  'Var CurrentHighest As Double = InputArray(Min)
-		  '
-		  '//For the rest of the values we check if they are higher than the current highest, if they are they become the current highest.
-		  'Var i As Integer
-		  'For i = Min + 1 to Max
-		  'if CurrentHighest < InputArray(i) then
-		  'CurrentHighest = InputArray(i)
-		  'else 
-		  'continue
-		  'end if 
-		  'next 
-		  '
-		  'return CurrentHighest
-		  '
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function oldGetIndexOfClosest(InputValue As String) As Integer
-		  '// This method helps with graphing (GetLowerBound and GetUpperBound in particular) by returning the index of the value closest to the
-		  '// input value.
-		  '
-		  'If InputValue = "Min" then
-		  'return 0
-		  'elseif InputValue = "Max" then
-		  'return τ.LastIndex - 1
-		  'else
-		  '
-		  'var i As integer 
-		  '
-		  'Var CurrentClosest As integer = 0 
-		  '
-		  'Var TargetValue As Double = InputValue.ToDouble
-		  '
-		  'Var CurrentSmallestDifference As Double = Abs(τ(0) - TargetValue)
-		  '
-		  '
-		  '
-		  '
-		  'For i = 1 to τ.LastIndex 
-		  'Var Difference as Double = Abs(τ(i) - TargetValue)
-		  'if Difference < CurrentSmallestDifference then
-		  'CurrentSmallestDifference = Difference
-		  'CurrentClosest = i
-		  'else
-		  'continue
-		  'end if
-		  'next 
-		  '
-		  '
-		  'return CurrentClosest
-		  '
-		  '
-		  'end if 
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function oldGetLowerBound() As Integer
-		  '// Returns the lower bound based on user input
-		  '
-		  'Var LowerBound As Integer = GetIndexOfClosest(StartTimeTextField.Text)
-		  '
-		  'Return LowerBound
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function oldGetLowestValue(InputArray() As Double, Min As Integer, Max As Integer) As Double
-		  '//Parameters: InputArray() an array of double values
-		  '//Return: CurrentLowest as double
-		  '
-		  '//This method takes an array and finds the lowest value within it
-		  '//It does this by comparing each item in the array to the current lowest number, and if it is lower setting that number to the new current lowest
-		  '
-		  '//Defines the current lowest value and sets it equal to the first value in the input array
-		  'Var CurrentLowest As Double = InputArray(Min)
-		  '
-		  '//For the rest of the values we check if they are lower than the current lowest, if they are they become the current lowest.
-		  '
-		  'Var i As Integer
-		  'For i = Min + 1 to Max
-		  'if CurrentLowest > InputArray(i) then
-		  'CurrentLowest = InputArray(i)
-		  'else 
-		  'continue
-		  'end if 
-		  'next 
-		  '
-		  'return CurrentLowest
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function oldGetUpperBound() As Integer
-		  '// Returns the upper bound based on user input
-		  '
-		  'Var UpperBound As Integer = GetIndexOfClosest(EndTimeTextField.Text)
-		  '
-		  'Return UpperBound
-		End Function
+		Sub UpdateTc()
+		  Var displayCase As CaseInfoClass = GetDisplayCase
+		  Var tc As Double = displayCase.τc*displayCase.GM/displayCase.Year
+		  Var tcString As String = Format(tc, "0.0000e#")
+		  CaseListBox.CellTextAt(3,0) = tcString
+		End Sub
 	#tag EndMethod
 
 
@@ -2271,15 +2122,11 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		AlphaList() As double
+		LastStoreVariableIndex As Integer = 16
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		CasesList(-1,-1) As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		ChartArray(-1,-1) As Double
+		MyPlotData As PlotData
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -2287,11 +2134,23 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		TotSteps As Integer
+		PlotEndIndex As Integer = -1
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		UncertaintyList(-1,-1) As Double
+		PlotStartIndex As Integer = -1
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PlotTimes() As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Setting As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		TheCases() As CaseInfoClass
 	#tag EndProperty
 
 
@@ -2302,69 +2161,103 @@ End
 		Sub Action()
 		  Var TheSuper As CaseSupervisorClass = MainThread.CaseSupervisor  // Get a reference to the supervisor
 		  // Whether the thread is running or not, update these values
-		  ValueOfSimTimeLabel.Text = Format(TheSuper.τr*TheSuper.CaseParameters.GM/TheSuper.CaseParameters.Year, "0.0000000")
+		  ValueOfSimTimeLabel.Text = Format(TheSuper.τr*TheSuper.CaseInfo.GM/TheSuper.CaseInfo.Year, "0.0000000")
 		  ValueOfVLabel.Text = Format(TheSuper.WaveBuilder.VDN,"0.000000")
 		  ValueOfRunTimeLabel.Text = Format((System.Ticks - TheSuper.StartTicks)/60.0, "###0.00")
 		  ValueOfStepNumberLabel.Text = TheSuper.N.ToString
-		  If ValueOfTcLabel.Text = "" Then ValueOfTcLabel.Text = GetTimeToCoalescence(TheSuper).ToString
-		  Var theStepPower As Integer = TheSuper.WaveBuilder.StepPowerP
-		  Var theFactor as Integer
-		  If theStepPower < 0 Then
-		    theFactor = 2^(-theStepPower)
-		    ValueOfStepRatioLabel.Text = "1/" + theFactor.ToString
-		  Else
-		    theFactor = 2^theStepPower
-		    ValueOfStepRatioLabel.Text = theFactor.ToString
-		  End if
-		  // Var SNR As Double = 0.5*TheSuper.HCalculator.H0V2/TheSuper.HCalculator.Sn2
-		  // ValueOfSNRLabel.Text = Format(SNR, "0.000e+00")
 		  If MainThread.State = Thread.Running then  // if the thread is running
-		    CaseProgressBar.Value = Round(TheSuper.N*100/TheSuper.NSteps)  // update the progress bar
+		    CaseProgressBar.Value = Round(TheSuper.N*100/TheSuper.CaseInfo.NSteps)  // update the progress bar
 		  Else // the thread has stopped, meaning that this case is done
 		    CaseProgressBar.Value = 0  // set
-		    StartStopButton.Caption = "Run Cases"
+		    StartStopButton.Caption = "Run"
 		    me.RunMode = Timer.RunModes.Off // and we need no more updates
 		    ValueOfStatusLabel.Text = "Stopped"
 		    ValueOfStopReasonLabel.Text = TheSuper.TerminationMessage
-		    If TheSuper.Uncertainty <> Nil Then
-		      DisplayUncertainties(TheSuper.CaseParameters, TheSuper.Uncertainty)
+		    If TheSuper.CaseInfo.Uncertainties <> Nil Then
+		      DisplayUncertainties(TheSuper.CaseInfo)
 		      MatrixChoicePopupMenu.SelectedRowIndex = 0
 		      DisplayMatrix(TheSuper.ATAMatrix)
 		      ValueOfConditionLabel.Text = Format(TheSuper.UncertaintyCalculator.Condition, "0.000e-0##")
 		    End if
 		    
-		    
-		    
 		    if RunFileCheckBox.Value and AllCasesDone then
 		      Var t As TextOutputStream = TextOutputStream.Create(OutputFile)
-		      t.WriteLine("M"+chr(9)+"δ"+chr(9)+"T0"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
-		      +chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ10x"+chr(9)+"χ10y"+chr(9)+"χ10z"+chr(9)+"χ20x"+chr(9)+"χ20y"+chr(9)+"χ20z")
-		      For i as integer = 0 to UncertaintyList.LastIndex
-		        for j as integer = 0 to 15 
-		          t.Write(UncertaintyList(i,j).ToString+chr(9))
-		        next
-		        t.write(EndOfLine)
-		      next
-		      t.close
+		      t.WriteLine("M"+chr(9)+"δ"+chr(9)+"τc"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
+		      +chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ1"+chr(9)+"θ1"+chr(9)+"φ1"+chr(9)+"χ2"+chr(9)+"θ2"+chr(9)+"φ2")
+		      For Each caseItem As CaseInfoClass In TheCases
+		        Var theUncertainties() As String
+		        For Each unc As Double In caseItem.Uncertainties
+		          theUncertainties.Add(unc.ToString)
+		        Next
+		        Var theString As String = String.FromArray(theUncertainties, chr(9))
+		        t.WriteLine(theString)
+		      Next
+		      t.Close
 		    end if 
 		    
 		  End if		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events GraphChoicePopupMenu
+#tag Events MainTabPanel
 	#tag Event
-		Sub SelectionChanged(item As DesktopMenuItem)
-		  //Add flag 
-		  
-		  Graph
+		Sub PanelChanged()
+		  If Not Setting Then
+		    If StartStopButton.Caption = "Stop" Then
+		      Setting = True
+		      System.Beep
+		      me.SelectedPanelIndex = 0
+		      Setting = False
+		    ElseIf me.SelectedPanelIndex = 2 Then
+		      // If we are running files, we have nothing to graph
+		      If RunFileCheckBox.Value = True Then
+		        System.Beep
+		        // put us back to pane 0
+		        Setting = True
+		        me.SelectedPanelIndex = 0 
+		        Setting = False
+		      Else
+		        GraphChoicePopupMenu.RemoveAllRows
+		        If TheCases.LastIndex < 0 Then Return
+		        Var vNamelist() As String = TheCases(0).DataRecorder.GetVariableNames
+		        If vNamelist.LastIndex > -1 and vNamelist(0) = "t-y" Then
+		          PlotTimes = TheCases(0).DataRecorder.GetDataFor("t-y")
+		          If PlotTimes = Nil Then Return // we have nothing to graph, so bail out
+		          PlotStartIndex = 0
+		          PlotEndIndex = PlotTimes.LastIndex
+		          Setting = True
+		          For i As Integer = 1 to vNamelist.LastIndex
+		            GraphChoicePopupMenu.AddRow(vNamelist(i))
+		          Next
+		          GraphChoicePopupMenu.SelectedRowIndex = -1
+		          Setting = False
+		        End If
+		      End If
+		    End If
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events CasesListBox
+#tag Events ParamNameListBox
+	#tag Event
+		Function HeaderPressed(column as Integer) As Boolean
+		  Return True  // do not allow sorting
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events GraphChoicePopupMenu
+	#tag Event
+		Sub SelectionChanged(item As DesktopMenuItem)
+		  If not Setting Then
+		    PlotSelectedItem(me.SelectedRowText)
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CaseListBox
 	#tag Event
 		Function CellKeyDown(row as Integer, column as Integer, key as String) As Boolean
-		  If key = "x" And row > 3 And row < 15 Then
+		  If key = "x" And row > 4 And row < 16 Then
 		    If me.CellTextAt(row,column).BeginsWith("x ") Then
 		      me.ActiveTextControl.Text = me.ActiveTextControl.Text.Middle(2)
 		      Return True
@@ -2379,7 +2272,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellPressed(row As Integer, column As Integer, x As Integer, y As Integer) As Boolean
-		  me.EditCellAt(row, column)
+		  If row <> 3 And row <> 10 Then
+		    me.EditCellAt(row, column)
+		  End If
+		  Return True
 		  
 		End Function
 	#tag EndEvent
@@ -2387,6 +2283,31 @@ End
 		Sub Opening()
 		  me.ColumnTypeAt(0) = DesktopListBox.CellTypes.TextField
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
+		  If row = 10 Then
+		    g.DrawingColor = Color.RGB(230,230,230)
+		    g.FillRectangle(0,0,g.Width,g.Height)
+		  End If
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub CellAction(row As Integer, column As Integer)
+		  UpdateTc
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function HeaderPressed(column as Integer) As Boolean
+		  Return True // do not allow sorting
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events MatrixListBox
+	#tag Event
+		Function HeaderPressed(column as Integer) As Boolean
+		  Return True  // Do not allow sorting
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events MatrixChoicePopupMenu
@@ -2457,43 +2378,19 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events RunFileCheckBox
+#tag Events UncertaintyListBox
 	#tag Event
-		Sub ValueChanged()
-		  //To make a txt file that can be read by this code:
-		  //Rows should be parameters, in the order shown, separated by tabs,
-		  //All parameters need values, parameters not to be solved for should have x in front of them 
-		  //Each case is on a new row 
-		  
-		  //Do not write data in text file with commas 
-		  
-		  Var TxtType As New FileType
-		  TxtType.Name = "Text  file"
-		  TxtType.Extensions = ".txt"
-		  
-		  Var f As FolderItem
-		  Var textInput As TextInputStream
-		  Var rowFromFile As String
-		  
-		  f = FolderItem.ShowOpenFileDialog(TxtType)
-		  
-		  If f <> Nil Then
-		    textInput = TextInputStream.Open(f)
-		    textInput.Encoding = Encodings.UTF8
-		    
-		    Do
-		      rowFromFile = textInput.ReadLine
-		      Var values() As String = rowFromFile.ToArray(String.Chr(9))
-		      AddToCasesList(values())
-		    Loop Until textInput.EndOfFile
-		    
-		    textInput.Close
+		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
+		  If row = 2 Then
+		    g.DrawingColor = Color.RGB(230,230,230)
+		    g.FillRectangle(0,0, g.Width, g.Height)
 		  End If
-		  
-		  
-		  
-		  
-		End Sub
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function HeaderPressed(column as Integer) As Boolean
+		  Return True  // do not allow sorting
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events FileProgressBar
@@ -2507,62 +2404,32 @@ End
 #tag Events StartSlider
 	#tag Event
 		Sub ValueChanged()
-		  //Add flag
-		  Graph
+		  If Not Setting Then
+		    PlotStartIndex = Round(me.Value/me.MaximumValue*PlotTimes.LastIndex)
+		    ValueOfGraphStartLabel.Text = Format(me.Value/me.MaximumValue*PlotTimes(PlotTimes.LastIndex), "0.00000000")
+		    UpdatePlot
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events DurationSlider
+#tag Events ScaleMenu
 	#tag Event
-		Sub ValueChanged()
-		  //Add flag here 
-		  Graph
+		Sub SelectionChanged(item As DesktopMenuItem)
+		  UpdatePlot
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events GraphButton
+#tag Events BumpUpButton
 	#tag Event
 		Sub Pressed()
-		  Graph
-		  
+		  DoBump(False)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events GraphingCanvas
+#tag Events BumpDownButton
 	#tag Event
-		Sub Open()
-		  GraphingCanvas.SetTitle("Graph of "+GraphChoicePopupMenu.SelectedRowText+" vs time")
-		  GraphingCanvas.SetXLabel("t (time in s)")
-		  GraphingCanvas.SetYLabel(GraphChoicePopupMenu.SelectedRowText)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DrawContent()
-		  If GraphChoicePopupMenu.SelectedRowText = "αDotN" then 
-		    Var m as integer = AlphaList.LastIndex
-		    
-		    GraphingCanvas.CurveStart(0, AlphaList(0))
-		    Var k as integer
-		    
-		    For k = 1 To m
-		      GraphingCanvas.CurveTo(k, AlphaList(k))
-		    Next 
-		    
-		    
-		  else
-		    
-		    
-		    Var n as integer = TotSteps - 1
-		    Var j as integer = GraphChoicePopupMenu.SelectedRowIndex + 1
-		    
-		    GraphingCanvas.CurveStart(ChartArray(0,0), ChartArray(j,0))
-		    
-		    For i As Integer = 1 To n
-		      GraphingCanvas.CurveTo(ChartArray(0,i), ChartArray(j,i))
-		    Next 
-		    
-		  end if 
-		  
+		Sub Pressed()
+		  DoBump(True)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -2808,6 +2675,38 @@ End
 		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Setting"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="PlotStartIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="-1"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="PlotEndIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="-1"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LastStoreVariableIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="16"
+		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
