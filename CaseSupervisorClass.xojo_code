@@ -12,14 +12,6 @@ Protected Class CaseSupervisorClass
 		  // the following gives the number of main time steps to execute
 		  Δτr = CaseInfo.ΔT/CaseInfo.GM
 		  WaveBuilder = New WaveBuilderClass(CaseInfo) // create the WaveBuilder and initialize it
-		  
-		  // Create and initialize the ATA matrix
-		  ATAMatrix = New Matrix(15) // Initalize an empty 15x15 matrix
-		  ATAMatrix.InverseTest // Check that Matrix code is working
-		  
-		  // Create The Uncertainty Calculator
-		  UncertaintyCalculator = New UncertaintyCalculatorClass(CaseInfo)
-		  
 		End Sub
 	#tag EndMethod
 
@@ -30,13 +22,11 @@ Protected Class CaseSupervisorClass
 		    For N = 0 to CaseInfo.NSteps
 		      τr = N*Δτr // this is the current tau time (needed to update the user interface)
 		      If WaveBuilder.DidDetectorStepOK(N) Then  // If the WaveBuilder was able to execute a sample step
-		        'LoadATA(WaveBuilder.DHDq) // load the ATA matrix with the current values
 		      Else  // If the WaveBuilder was not able to complete the sample step, we are at coalescence
 		        TerminationMessage = "Coalescence Happened"
 		        Exit  // Abort the loop
 		      End If
 		    Next
-		    'UncertaintyCalculator.Calculate(ATAMatrix) // solve for the uncertainties
 		  Catch err As RuntimeException
 		    TerminationMessage = err.Message + " at step " + N.ToString
 		  End Try
@@ -44,22 +34,6 @@ Protected Class CaseSupervisorClass
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub LoadATA(DHDQ() As Double)
-		  // Add everything into the ATA matrix
-		  For j As Integer = 0 To 14
-		    For k As Integer = 0 to 14
-		      ATAMatrix.PData(j,k) = ATAMatrix.PData(j,k) + DHDq(j)*DHDq(k)
-		    Next
-		  Next		  
-		  
-		End Sub
-	#tag EndMethod
-
-
-	#tag Property, Flags = &h0
-		ATAMatrix As Matrix
-	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		CaseInfo As CaseInfoClass
@@ -83,10 +57,6 @@ Protected Class CaseSupervisorClass
 
 	#tag Property, Flags = &h0
 		TerminationMessage As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		UncertaintyCalculator As UncertaintyCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

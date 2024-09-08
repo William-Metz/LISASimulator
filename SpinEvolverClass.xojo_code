@@ -452,8 +452,8 @@ Protected Class SpinEvolverClass
 		Private ΔτhP As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		η As Double
+	#tag Property, Flags = &h21
+		Private η As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

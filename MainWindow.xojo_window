@@ -52,7 +52,7 @@ Begin DesktopWindow MainWindow
       Panels          =   ""
       Scope           =   0
       SmallTabs       =   False
-      TabDefinition   =   "Run\rAnalyze\rGraph"
+      TabDefinition   =   "Run\rGraph"
       TabIndex        =   30
       TabPanelIndex   =   0
       TabStop         =   True
@@ -60,7 +60,7 @@ Begin DesktopWindow MainWindow
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   0
+      Value           =   1
       Visible         =   True
       Width           =   1000
       Begin DesktopListBox ParamNameListBox
@@ -91,7 +91,7 @@ Begin DesktopWindow MainWindow
          InitialParent   =   "MainTabPanel"
          InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nR (ly)\nβ (°)	\nψ (°)\nλ0\nΘ (°)\nΦ (°)	\nΩ (/sky)\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
          Italic          =   False
-         Left            =   31
+         Left            =   126
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -104,7 +104,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -133,7 +133,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   0
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "Graph This Variable:"
          TextAlignment   =   0
@@ -166,7 +166,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          SelectedRowIndex=   0
          TabIndex        =   1
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
          Top             =   75
@@ -201,9 +201,9 @@ Begin DesktopWindow MainWindow
          Height          =   595
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\nx 0\nx 0\nx 0\nx 0\nx 0\nx 0\n0\n0\n2\n50\n1.0"
+         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\n0\n0\n0\n0\n0\n0\n0\n0\n2\n50\n1.0"
          Italic          =   False
-         Left            =   109
+         Left            =   204
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -216,289 +216,13 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   83
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
-      End
-      Begin DesktopLabel ValueOfAnalyzeCaseLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   129
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   22
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   48
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   124
-      End
-      Begin DesktopListBox MatrixListBox
-         AllowAutoDeactivate=   True
-         AllowAutoHideScrollbars=   True
-         AllowExpandableRows=   False
-         AllowFocusRing  =   True
-         AllowResizableColumns=   False
-         AllowRowDragging=   False
-         AllowRowReordering=   False
-         Bold            =   False
-         ColumnCount     =   16
-         ColumnWidths    =   "24, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80"
-         DefaultRowHeight=   21
-         DropIndicatorVisible=   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         GridLineStyle   =   3
-         HasBorder       =   True
-         HasHeader       =   True
-         HasHorizontalScrollbar=   True
-         HasVerticalScrollbar=   True
-         HeadingIndex    =   -1
-         Height          =   357
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         InitialValue    =   "\n1	+0.00e+00\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15"
-         Italic          =   False
-         Left            =   20
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         RequiresSelection=   False
-         RowSelectionType=   0
-         Scope           =   0
-         TabIndex        =   26
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   80
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   960
-         _ScrollOffset   =   0
-         _ScrollWidth    =   -1
-      End
-      Begin DesktopPopupMenu MatrixChoicePopupMenu
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   24
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         InitialValue    =   "ATA\nY Original\nY Inverted\nYNormalized Original\nYNormalized Inverted\nY^-1 x Y\nY0 Normalized Unchanged\n"
-         Italic          =   False
-         Left            =   144
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         SelectedRowIndex=   0
-         TabIndex        =   29
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   37
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   207
-      End
-      Begin DesktopLabel XExplanationLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   58
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   31
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   True
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   8
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "Typing 'x' in the cells for β through φ2 will toggle whether that parameter's uncertainty is calculate or not (a displayed 'x' indicates 'not')."
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   645
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   306
-      End
-      Begin DesktopLabel CaptionForMatrixToDisplayLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   20
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   30
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Text            =   "Matrix To Display:"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   38
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   112
-      End
-      Begin DesktopButton CopyMatrixButton
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Cancel          =   False
-         Caption         =   "Copy Matrix"
-         Default         =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   372
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         MacButtonStyle  =   0
-         Scope           =   0
-         TabIndex        =   33
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   38
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   97
-      End
-      Begin DesktopLabel CaptionForConditionLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   703
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   34
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Text            =   "Condition Number:"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   38
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   123
-      End
-      Begin DesktopLabel ValueOfConditionLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   829
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   35
-         TabPanelIndex   =   2
-         TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   38
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   151
       End
       Begin DesktopLabel CaptionForStatusLabel
          AllowAutoDeactivate=   True
@@ -511,7 +235,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -527,7 +251,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -544,7 +268,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -560,7 +284,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   134
+         Top             =   157
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -577,7 +301,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   569
+         Left            =   475
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -593,7 +317,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   132
+         Top             =   155
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -610,7 +334,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -626,7 +350,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   164
+         Top             =   187
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -643,7 +367,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   569
+         Left            =   475
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -659,7 +383,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   166
+         Top             =   189
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -676,7 +400,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -692,7 +416,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   194
+         Top             =   217
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -709,7 +433,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   569
+         Left            =   475
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -725,7 +449,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   194
+         Top             =   217
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -742,7 +466,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -758,7 +482,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   225
+         Top             =   248
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -775,7 +499,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   569
+         Left            =   475
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -791,7 +515,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   226
+         Top             =   249
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -808,7 +532,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -824,7 +548,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   254
+         Top             =   277
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -841,7 +565,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   573
+         Left            =   479
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -857,7 +581,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   254
+         Top             =   277
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -874,7 +598,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   465
+         Left            =   371
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -890,7 +614,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -907,7 +631,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   202
+         Left            =   297
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -923,7 +647,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   509
+         Top             =   532
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -936,7 +660,7 @@ Begin DesktopWindow MainWindow
          Indeterminate   =   False
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -948,7 +672,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   94
+         Top             =   117
          Transparent     =   True
          Value           =   0.0
          Visible         =   True
@@ -968,7 +692,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   706
+         Left            =   612
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -980,60 +704,11 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   96
-      End
-      Begin DesktopListBox UncertaintyListBox
-         AllowAutoDeactivate=   True
-         AllowAutoHideScrollbars=   True
-         AllowExpandableRows=   False
-         AllowFocusRing  =   False
-         AllowResizableColumns=   False
-         AllowRowDragging=   False
-         AllowRowReordering=   False
-         Bold            =   False
-         ColumnCount     =   1
-         ColumnWidths    =   "160"
-         DefaultRowHeight=   26
-         DropIndicatorVisible=   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         GridLineStyle   =   1
-         HasBorder       =   True
-         HasHeader       =   True
-         HasHorizontalScrollbar=   False
-         HasVerticalScrollbar=   False
-         HeadingIndex    =   -1
-         Height          =   466
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Uncertainty\n?\n?\n\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?"
-         Italic          =   False
-         Left            =   202
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         RequiresSelection=   False
-         RowSelectionType=   0
-         Scope           =   0
-         TabIndex        =   30
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   38
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   160
-         _ScrollOffset   =   0
-         _ScrollWidth    =   -1
       End
       Begin DesktopLabel ValueOfStopReasonLabel
          AllowAutoDeactivate=   True
@@ -1046,7 +721,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   202
+         Left            =   297
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1062,7 +737,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   532
+         Top             =   555
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1080,7 +755,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   860
+         Left            =   766
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1091,7 +766,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   38
+         Top             =   61
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -1110,7 +785,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   401
+         Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1126,7 +801,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   70
+         Top             =   93
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1143,7 +818,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   706
+         Left            =   612
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1159,7 +834,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   70
+         Top             =   93
          Transparent     =   False
          Underline       =   False
          Visible         =   False
@@ -1172,7 +847,7 @@ Begin DesktopWindow MainWindow
          Indeterminate   =   False
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   706
+         Left            =   612
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -1184,7 +859,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   94
+         Top             =   117
          Transparent     =   True
          Value           =   0.0
          Visible         =   False
@@ -1201,7 +876,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   204
+         Left            =   299
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1217,7 +892,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   609
+         Top             =   632
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1242,7 +917,7 @@ Begin DesktopWindow MainWindow
          PageStep        =   20
          Scope           =   0
          TabIndex        =   13
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          TickMarkStyle   =   0
          Tooltip         =   ""
@@ -1273,7 +948,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   15
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "Start (y):"
          TextAlignment   =   0
@@ -1296,7 +971,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   204
+         Left            =   299
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1312,7 +987,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   582
+         Top             =   605
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1341,7 +1016,7 @@ Begin DesktopWindow MainWindow
          MarginTop       =   20.0
          Scope           =   0
          TabIndex        =   16
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          TheTitle        =   ""
          TitleFont       =   "System"
@@ -1374,7 +1049,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   17
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "0.00000000"
          TextAlignment   =   0
@@ -1407,7 +1082,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   18
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "Graph Width / All Data:"
          TextAlignment   =   0
@@ -1440,7 +1115,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          SelectedRowIndex=   0
          TabIndex        =   9
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
          Top             =   79
@@ -1472,7 +1147,7 @@ Begin DesktopWindow MainWindow
          MacButtonStyle  =   0
          Scope           =   0
          TabIndex        =   19
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
          Top             =   79
@@ -1502,7 +1177,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   20
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "Bump Start"
          TextAlignment   =   0
@@ -1537,7 +1212,7 @@ Begin DesktopWindow MainWindow
          MacButtonStyle  =   0
          Scope           =   0
          TabIndex        =   21
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
          Top             =   79
@@ -1567,7 +1242,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          Selectable      =   False
          TabIndex        =   22
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Text            =   "by"
          TextAlignment   =   0
@@ -1600,7 +1275,7 @@ Begin DesktopWindow MainWindow
          Scope           =   0
          SelectedRowIndex=   0
          TabIndex        =   23
-         TabPanelIndex   =   3
+         TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
          Top             =   81
@@ -1652,46 +1327,6 @@ End
 		  End If
 		  
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DisplayMatrix(TheMatrix As Matrix)
-		  Var n As Integer = TheMatrix.pDim-1
-		  For j as Integer = 0 to 14
-		    for k as Integer = 0 to 14
-		      If j > n or k > n Then
-		        MatrixListBox.CellTextAt(j,k+1) = ""
-		      Else
-		        MatrixListBox.CellTextAt(j,k+1) = Format(TheMatrix.pData(j,k), "+0.00e+00")
-		      End If
-		    Next
-		  Next
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DisplayUncertainties(CaseInfo As CaseInfoClass)
-		  'UncertaintyListBox.CellTextAt(0) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.M)))
-		  'UncertaintyListBox.CellTextAt(1) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.δ)))
-		  'UncertaintyListBox.CellTextAt(2) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.V0)))
-		  'UncertaintyListBox.CellTextAt(3) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.R)))
-		  'UncertaintyListBox.CellTextAt(4) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.β)))
-		  'UncertaintyListBox.CellTextAt(5) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.ψ)))
-		  'UncertaintyListBox.CellTextAt(6) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.λ0)))
-		  'Var uTheta As Double = CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.Θ))
-		  'Var uPhi As Double = CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.Φ))
-		  'UncertaintyListBox.CellTextAt(7) = GetUncertaintyString(uTheta)
-		  'UncertaintyListBox.CellTextAt(8) = GetUncertaintyString(uPhi)
-		  'Var d2r As Double = CaseInfo.π/180.0
-		  'Var omega As Double = Sin(CaseInfo.Θ)*uTheta*uPhi/(4*CaseInfo.π)*d2r*d2r
-		  'UncertaintyListBox.CellTextAt(9) = GetUncertaintyString(omega)
-		  'UncertaintyListBox.CellTextAt(10) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10x)))
-		  'UncertaintyListBox.CellTextAt(11) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10y)))
-		  'UncertaintyListBox.CellTextAt(12) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi10z)))
-		  'UncertaintyListBox.CellTextAt(13) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20x)))
-		  'UncertaintyListBox.CellTextAt(14) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20y)))
-		  'UncertaintyListBox.CellTextAt(15) = GetUncertaintyString(CaseInfo.Uncertainties(Integer(CaseInfoClass.Param.chi20z)))
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1857,19 +1492,6 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetUncertaintyString(uc As Double) As String
-		  If uc.IsNotANumber then
-		    Return "(Imaginary)"
-		  ElseIf uc.IsInfinite Then
-		    Return "(Not Solved For)"
-		  Else
-		    Return "± " + uc.ToString
-		  End If
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetValueAndSolveFlag(ByRef Solve as Boolean, Source as String) As Double
 		  If Source.BeginsWith("x ") Then
 		    Solve = False
@@ -1911,175 +1533,6 @@ End
 		  MyPlotCanvas.ClearPlotData
 		  MyPlotCanvas.AddDataToPlot(MyPlotData)
 		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function SultanUncertainty(value As Double, uncertainty As Double) As String
-		  'Number Formatting:
-		  
-		  'Start the program.
-		  'In the first input field or prompt, enter the value that you want to measure the uncertainty for. This can be done via a pop-up window, a slider, a number picker, or any other user interface element depending on your website design.
-		  'This should be a numerical value. If any non-numeric characters are entered, a message box will appear saying "Invalid value entered!".
-		  'In the second input field or prompt, enter the associated uncertainty of the value you have just entered. This can also be done via a pop-up window, a slider, a number picker, or any other user interface element.
-		  'This should be a positive numerical value. The program considers uncertainty as a positive value. If you enter a negative number or zero for uncertainty, you will get a message box saying "Uncertainty must be greater than zero!".
-		  'After you've entered the value and its uncertainty, submit your data. This can be done by clicking the 'Submit' button, pressing the 'Enter' key, or another action based on your website design.
-		  
-		  'Calculation Process:
-		  
-		  'Once the values are inputted correctly, the program will calculate the base-10 logarithm for both the value and uncertainty. It will then round the value and uncertainty according to the computed exponents.
-		  'The program will display a message box with the computed exponents and rounded uncertainty.
-		  
-		  'Result Output:
-		  
-		  'The program will finally adjust the rounded uncertainty for the final display and determine the number of spaces needed for proper alignment.
-		  'It checks whether the number is negative, and accordingly adds spaces or a minus sign before the number for proper formatting.
-		  'Depending on the exponent of the value, the program will generate the final output in two formats: normal and scientific notation.
-		  'If the exponent of the value is within the range from -3 to 6, both the value and the uncertainty will be displayed in normal notation.
-		  'Otherwise, both will be displayed in scientific notation.
-		  
-		  'Special Case:
-		  
-		  'There is a special case where the exponent of the value is greater than 0 and the exponent of the uncertainty is less than 0. In this case, the program will prepare the value with all decimal places (0 to valueExponent) and uncertainty to 8 decimal places.
-		  'Remember, this program is designed to handle and display uncertainty values correctly, but it is your responsibility to ensure the accuracy and correctness of the input data.
-		  
-		  If uncertainty.IsNotANumber Then
-		    Return value.ToString + EndOfLine + "(Imaginary)"
-		  Elseif uncertainty.IsInfinite Then
-		    Return value.ToString + EndOfLine + "(Not Solved For)"
-		  End If
-		  
-		  ' Ensure the uncertainty is a positive value. If it's not, raise an exception and display a message box
-		  Try
-		    If uncertainty <= 0 Then
-		      Raise New RuntimeException("Uncertainty must be greater than zero!")
-		    End If
-		  Catch e As RuntimeException
-		    MsgBox(e.Message)
-		    Return ""
-		  End Try
-		  
-		  ' Calculate the exponent of the value and uncertainty, which is the integer part of their base-10 logarithm
-		  Var valueExponent As Integer = Floor(Log(Abs(value)) / Log(10))
-		  Var uncertaintyExponent As Integer = Floor(Log(uncertainty) / Log(10))
-		  
-		  ' Compute the rounded value mantissa, which is the absolute value divided by 10 raised to its exponent, then rounded to 3 decimal places
-		  Var valueMantissa As Double = abs(value / (10 ^ valueExponent))
-		  Var roundedValueMantissa As Double = Round(valueMantissa * 1000) / 1000
-		  
-		  ' Compute the rounded uncertainty in a similar way, but round to the nearest integer
-		  Var uncertaintyMantissa As Double = uncertainty / (10 ^ uncertaintyExponent)
-		  Var roundedUncertainty As Double = Round(uncertaintyMantissa * 10)
-		  
-		  
-		  ' Adjust the rounded uncertainty for final display by multiplying by 10^-3 and rounding to 3 decimal places
-		  Var uncertaintyForDisplay As Double = roundedUncertainty * 10 ^ (-3)
-		  
-		  ' Determine whether a space or a minus sign is needed before the value
-		  Var BeforeValue As String = "  "
-		  if value < 0 then BeforeValue = "- "
-		  
-		  ' Determine the number of spaces needed for proper alignment in the final display
-		  Var spacesNeeded As Integer
-		  Var spaceString As String = ""
-		  
-		  ' Set the format string
-		  Dim formattedValue, formattedUncertainty As String 
-		  formattedValue = Format(value, "0.00000000") 
-		  
-		  ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
-		  if uncertaintyExponent < -7 Then
-		    formattedUncertainty = "0.00000000*"
-		  else
-		    formattedUncertainty = Format(uncertainty, "0.00000000")
-		  End If
-		  
-		  ' Determine the number of spaces needed to align the uncertainty under the last digit of the value
-		  spacesNeeded = Len(formattedValue) - Len(formattedUncertainty)
-		  
-		  ' Generate the string of spaces needed for alignment
-		  For i As Integer = 1 To spacesNeeded
-		    spaceString = spaceString + " "
-		  Next
-		  
-		  
-		  
-		  ' Check for the special case where the exponent of the value is greater than 0 and the exponent of the uncertainty is less than 0.
-		  If valueExponent > 0 And uncertaintyExponent < 0 Then
-		    ' Prepare the value with all decimal places (0 to valueExponent) and uncertainty to 8 decimal places
-		    Var formatStr As String = "0."
-		    For i As Integer = 1 To valueExponent
-		      formatStr = formatStr + "0"
-		    Next
-		    
-		    Var valueStr As String = Format(value, formatStr)
-		    Var uncertaintyStr As String
-		    ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
-		    if uncertaintyExponent < -7 Then
-		      uncertaintyStr = "0.00000000*"
-		    else
-		      uncertaintyStr = Format(uncertainty, "0.00000000")
-		    End If
-		    
-		    ' Determine the number of spaces needed to align the uncertainty under the last digit of the value
-		    spacesNeeded = valueStr.Length - uncertaintyStr.Length + 2  ' add two more for the space and "±"
-		    
-		    ' Generate the string of spaces needed for alignment
-		    spaceString = ""
-		    For i As Integer = 1 To spacesNeeded
-		      spaceString = spaceString + " "
-		    Next
-		    
-		    ' Return the final formatted string
-		    Return BeforeValue + valueStr + EndOfLine + "±" + spaceString + uncertaintyStr
-		  End If
-		  
-		  ' Check if the value exponent is within the range -3 to 6. If it is, format the value and uncertainty accordingly
-		  If valueExponent >= -3 And valueExponent <= 6 Then
-		    ' Format value and uncertainty
-		    Var valueStr As String
-		    Var uncertaintyStr As String
-		    
-		    ' Find number of decimal places in uncertainty
-		    Var numDecimalPlacesUncertainty As Integer = Len(Uncertainty.ToString) - InStr(Uncertainty.ToString, ".")
-		    
-		    ' Select correct format based on number of decimal places in uncertainty
-		    If numDecimalPlacesUncertainty = 1 Then
-		      valueStr = Format(value, "0.0")
-		      uncertaintyStr = Format(uncertainty, "0.0")
-		    Else
-		      valueStr = Format(value, "0.00")
-		      If valueExponent > -4 Then
-		        uncertaintyStr = Format(uncertainty, "0.0") ' Round uncertainty to one decimal place
-		      Else
-		        uncertaintyStr = Format(uncertainty, "0.00")
-		      End If
-		    End If
-		    
-		    ' Determine the number of spaces needed to align the uncertainty under the value
-		    spacesNeeded = valueStr.Length - uncertaintyStr.Length
-		    
-		    ' Generate the string of spaces needed for alignment
-		    spaceString = ""
-		    For i As Integer = 1 To spacesNeeded
-		      spaceString = spaceString + " "
-		    Next
-		    
-		    ' Return the final formatted string
-		    Return BeforeValue + valueStr + EndOfLine + spaceString + "± " + uncertaintyStr
-		  Else
-		    ' If the value exponent is outside the range -3 to 6, use scientific notation for the value and uncertainty
-		    Var plusMinusLine As String
-		    ' If uncertainty exceeds e-7, add an asterisk after the uncertainty value
-		    if uncertaintyExponent < -7 Then
-		      plusMinusLine = spaceString + "± 0.00000000* e" + Str(valueExponent)
-		    else
-		      plusMinusLine = spaceString + "± " + Str(uncertaintyForDisplay) + "e" + Str(valueExponent)
-		    End If
-		    Return BeforeValue + Str(roundedValueMantissa) + "e" + Str(valueExponent) + EndOfLine + plusMinusLine
-		  End If
-		  
-		  
-		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -2172,27 +1625,21 @@ End
 		    me.RunMode = Timer.RunModes.Off // and we need no more updates
 		    ValueOfStatusLabel.Text = "Stopped"
 		    ValueOfStopReasonLabel.Text = TheSuper.TerminationMessage
-		    If TheSuper.CaseInfo.Uncertainties <> Nil Then
-		      DisplayUncertainties(TheSuper.CaseInfo)
-		      MatrixChoicePopupMenu.SelectedRowIndex = 0
-		      DisplayMatrix(TheSuper.ATAMatrix)
-		      ValueOfConditionLabel.Text = Format(TheSuper.UncertaintyCalculator.Condition, "0.000e-0##")
-		    End if
 		    
-		    if RunFileCheckBox.Value and AllCasesDone then
-		      Var t As TextOutputStream = TextOutputStream.Create(OutputFile)
-		      t.WriteLine("M"+chr(9)+"δ"+chr(9)+"τc"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
-		      +chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ1"+chr(9)+"θ1"+chr(9)+"φ1"+chr(9)+"χ2"+chr(9)+"θ2"+chr(9)+"φ2")
-		      For Each caseItem As CaseInfoClass In TheCases
-		        Var theUncertainties() As String
-		        For Each unc As Double In caseItem.Uncertainties
-		          theUncertainties.Add(unc.ToString)
-		        Next
-		        Var theString As String = String.FromArray(theUncertainties, chr(9))
-		        t.WriteLine(theString)
-		      Next
-		      t.Close
-		    end if 
+		    'if RunFileCheckBox.Value and AllCasesDone then
+		    'Var t As TextOutputStream = TextOutputStream.Create(OutputFile)
+		    't.WriteLine("M"+chr(9)+"δ"+chr(9)+"τc"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
+		    '+chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ1"+chr(9)+"θ1"+chr(9)+"φ1"+chr(9)+"χ2"+chr(9)+"θ2"+chr(9)+"φ2")
+		    'For Each caseItem As CaseInfoClass In TheCases
+		    'Var theUncertainties() As String
+		    'For Each unc As Double In caseItem.Uncertainties
+		    'theUncertainties.Add(unc.ToString)
+		    'Next
+		    'Var theString As String = String.FromArray(theUncertainties, chr(9))
+		    't.WriteLine(theString)
+		    'Next
+		    't.Close
+		    'end if 
 		    
 		  End if		  
 		End Sub
@@ -2207,7 +1654,7 @@ End
 		      System.Beep
 		      me.SelectedPanelIndex = 0
 		      Setting = False
-		    ElseIf me.SelectedPanelIndex = 2 Then
+		    ElseIf me.SelectedPanelIndex = 1 Then
 		      // If we are running files, we have nothing to graph
 		      If RunFileCheckBox.Value = True Then
 		        System.Beep
@@ -2302,60 +1749,6 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events MatrixListBox
-	#tag Event
-		Function HeaderPressed(column as Integer) As Boolean
-		  Return True  // Do not allow sorting
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events MatrixChoicePopupMenu
-	#tag Event
-		Sub SelectionChanged(item As DesktopMenuItem)
-		  Var theATA As Matrix = MainThread.CaseSupervisor.ATAMatrix
-		  Var theY As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.Y
-		  Var theY0 As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.Y0
-		  Var theYNormalized As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.YNormalized
-		  Var theY0Normalized As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.Y0Normalized
-		  Var theProd As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.YInvXY
-		  Var theY0NormalizedUnchanged As Matrix = MainThread.CaseSupervisor.UncertaintyCalculator.Y0NormUnchanged
-		  
-		  
-		  If me.SelectedRowValue = "ATA" Then
-		    DisplayMatrix(theATA)
-		  ElseIf me.SelectedRowValue = "Y Original" Then
-		    DisplayMatrix(theY0)
-		  ElseIf me.SelectedRowValue = "YNormalized Inverted" Then
-		    DisplayMatrix(theYNormalized)
-		  ElseIf me.SelectedRowValue = "YNormalized Original" Then
-		    DisplayMatrix(theY0Normalized)
-		  ElseIf me.SelectedRowValue = "Y Inverted" Then
-		    DisplayMatrix(theY)
-		  ElseIf me.SelectedRowValue = "Y0 Normalized Unchanged" Then
-		    DisplayMatrix(theY0NormalizedUnchanged)
-		  Else
-		    DisplayMatrix(theProd)
-		  End If
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events CopyMatrixButton
-	#tag Event
-		Sub Pressed()
-		  Var c As New Clipboard
-		  Var s As String
-		  Var delim As String
-		  For j As Integer = 0 to MatrixListBox.LastRowIndex
-		    For k As Integer = 1 to MatrixListBox.LastColumnIndex
-		      s = s+ delim + MatrixListBox.CellTextAt(j,k)
-		      delim = ", "
-		    Next
-		    delim = EndOfLine 
-		  Next
-		  c.Text = s
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events CaseProgressBar
 	#tag Event
 		Sub Open()
@@ -2375,21 +1768,6 @@ End
 		    DoStop
 		  End If
 		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events UncertaintyListBox
-	#tag Event
-		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
-		  If row = 2 Then
-		    g.DrawingColor = Color.RGB(230,230,230)
-		    g.FillRectangle(0,0, g.Width, g.Height)
-		  End If
-		End Function
-	#tag EndEvent
-	#tag Event
-		Function HeaderPressed(column as Integer) As Boolean
-		  Return True  // do not allow sorting
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events FileProgressBar
@@ -2688,7 +2066,7 @@ End
 		Name="PlotStartIndex"
 		Visible=false
 		Group="Behavior"
-		InitialValue=""
+		InitialValue="-1"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
@@ -2696,7 +2074,15 @@ End
 		Name="PlotEndIndex"
 		Visible=false
 		Group="Behavior"
-		InitialValue=""
+		InitialValue="-1"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LastStoreVariableIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue="16"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
