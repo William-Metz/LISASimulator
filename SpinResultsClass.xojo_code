@@ -37,7 +37,7 @@ Protected Class SpinResultsClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		DΨprI(7) As Double
+		DΨI(7) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -77,7 +77,7 @@ Protected Class SpinResultsClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Ψpr As Double
+		Ψ As Double
 	#tag EndProperty
 
 
@@ -139,7 +139,7 @@ Protected Class SpinResultsClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Ψpr"
+			Name="Ψ"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

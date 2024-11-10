@@ -1,16 +1,16 @@
 #tag Class
 Protected Class VCalculatorClass
 	#tag Method, Flags = &h0
-		Sub Constructor(Theτc As Double, δ_ As Double, χ_1ℓ As Double, χ_2ℓ As Double)
-		  δ = δ_
+		Sub Constructor(Theτc As Double, Theδ As Double, Theχ1ℓ As Double, Theχ2ℓ As Double, Theλ0 As Double)
+		  δ = Theδ
 		  η = (1-δ*δ)*0.25
 		  π = 3.14159265358979324
 		  γE = 0.577215664901533
 		  // loading coefficients
 		  Var onepδ As Double = 1.0 + δ
 		  Var onemδ As Double = 1.0 - δ
-		  χ1ℓ = χ_1ℓ
-		  χ2ℓ = χ_2ℓ
+		  χ1ℓ = Theχ1ℓ
+		  χ2ℓ = Theχ2ℓ
 		  τc = Theτc
 		  B6 = -1712/315
 		  β3 = (113/48*onepδ*onepδ + 25/4*η)*χ1ℓ + (113/48*onemδ*onemδ + 25/4*η)*χ2ℓ
@@ -139,158 +139,131 @@ Protected Class VCalculatorClass
 		  V5 = V4*V
 		  V6 = V5*V
 		  V7 = V6*V
-		  Ψc = -P0/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7)
+		  Ψcp = -P0/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) + Theλ0
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DVDotdδForLastV() As Double
-		  DVDotdδ = DA0dδ/3*V7*V2+ 9*A0/3*V7*V*DVdδ _
-		  + DA0dδ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dδ*V2 +11*A0/3*V7*V2*A2*V*DVdδ _
-		  + DA0dδ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dδ*V3 + 12*A0/3*V7*V2*A3*V2*DVdδ _
-		  + DA0dδ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dδ*V4 + 13*A0/3*V7*V2*A4*V3*DVdδ _
-		  +DA0dδ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dδ*V5 + 14*A0/3*V7*V2*A5*V4*DVdδ _
-		  + DA0dδ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dδ*V6 + 15*A0/3*V7*V2*A6*V5*DVdδ _
-		  +DA0dδ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dδ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdδ + 15*A0/3*V7*V2*B6*V5*DVdδ _
-		  +DA0dδ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dδ*V7 +16*A0/3*V7*V2*A7*V6*DVdδ
-		  
-		  return DVDotdδ 
+		Function DVDotIdδForLastV() As Double
+		  Return DA0dδ/3*V7*V2+ 9*A0/3*V7*V*DVIdδ _
+		  + DA0dδ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dδ*V2 + 11*A0/3*V7*V2*A2*V*DVIdδ _
+		  + DA0dδ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dδ*V3 + 12*A0/3*V7*V2*A3*V2*DVIdδ _
+		  + DA0dδ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dδ*V4 + 13*A0/3*V7*V2*A4*V3*DVIdδ _
+		  +DA0dδ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dδ*V5 + 14*A0/3*V7*V2*A5*V4*DVIdδ _
+		  + DA0dδ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dδ*V6 + 15*A0/3*V7*V2*A6*V5*DVIdδ _
+		  +DA0dδ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dδ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVIdδ + 15*A0/3*V7*V2*B6*V5*DVIdδ _
+		  +DA0dδ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dδ*V7 +16*A0/3*V7*V2*A7*V6*DVIdδ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DVDotdτcForLastV() As Double
-		  DVDotdτc = 9*A0/3*V7*V*DVdτc _
-		  + 11*A0/3*V7*V2*A2*V*DVdτc _
-		  + 12*A0/3*V7*V2*A3*V2*DVdτc _
-		  + 13*A0/3*V7*V2*A4*V3*DVdτc _
-		  +14*A0/3*V7*V2*A5*V4*DVdτc _
-		  + 15*A0/3*V7*V2*A6*V5*DVdτc _
-		  + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdτc + 15*A0/3*V7*V2*B6*V5*DVdτc _
-		  +16*A0/3*V7*V2*A7*V6*DVdτc
-		  
-		  return DVDotdτc 
+		Function DVDotIdτcForLastV() As Double
+		  Return 9*A0/3*V7*V*DVIdτc _
+		  + 11*A0/3*V7*V2*A2*V*DVIdτc _
+		  + 12*A0/3*V7*V2*A3*V2*DVIdτc _
+		  + 13*A0/3*V7*V2*A4*V3*DVIdτc _
+		  +14*A0/3*V7*V2*A5*V4*DVIdτc _
+		  + 15*A0/3*V7*V2*A6*V5*DVIdτc _
+		  + 15*A0/3*V7*V2*B6*Log(V)*V5*DVIdτc + 15*A0/3*V7*V2*B6*V5*DVIdτc _
+		  +16*A0/3*V7*V2*A7*V6*DVIdτc
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DVDotdχ1ℓForLastV() As Double
-		  DVDotdχ1ℓ = DA0dχ1ℓ/3*V7*V2+ 9*A0/3*V7*V*DVdχ1ℓ _
-		  + DA0dχ1ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ1ℓ*V2 +11*A0/3*V7*V2*A2*V*DVdχ1ℓ _
-		  + DA0dχ1ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ1ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVdχ1ℓ _
-		  + DA0dχ1ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ1ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVdχ1ℓ _
-		  +DA0dχ1ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ1ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVdχ1ℓ _
-		  + DA0dχ1ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ1ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVdχ1ℓ _
-		  +DA0dχ1ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ1ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdχ1ℓ + 15*A0/3*V7*V2*B6*V5*DVdχ1ℓ _
-		  +DA0dχ1ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ1ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVdχ1ℓ
-		  
-		  return DVDotdχ1ℓ 
+		Function DVDotIdχ1ℓForLastV() As Double
+		  Return DA0dχ1ℓ/3*V7*V2+ 9*A0/3*V7*V*DVIdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ1ℓ*V2 +11*A0/3*V7*V2*A2*V*DVIdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ1ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVIdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ1ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVIdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ1ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVIdχ1ℓ _
+		  + DA0dχ1ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ1ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVIdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ1ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVIdχ1ℓ + 15*A0/3*V7*V2*B6*V5*DVIdχ1ℓ _
+		  +DA0dχ1ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ1ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVIdχ1ℓ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DVDotdχ2ℓForLastV() As Double
-		  DVDotdχ2ℓ = DA0dχ2ℓ/3*V7*V2+ 9*A0/3*V7*V*DVdχ2ℓ _
-		  + DA0dχ2ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ2ℓ*V2 +11*A0/3*V7*V2*A2*V*DVdχ2ℓ _
-		  + DA0dχ2ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ2ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVdχ2ℓ _
-		  + DA0dχ2ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ2ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVdχ2ℓ _
-		  +DA0dχ2ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ2ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVdχ2ℓ _
-		  + DA0dχ2ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ2ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVdχ2ℓ _
-		  +DA0dχ2ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ2ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVdχ2ℓ + 15*A0/3*V7*V2*B6*V5*DVdχ2ℓ _
-		  +DA0dχ2ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ2ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVdχ2ℓ
-		  
-		  return DVDotdχ2ℓ 
+		Function DVDotIdχ2ℓForLastV() As Double
+		  Return DA0dχ2ℓ/3*V7*V2+ 9*A0/3*V7*V*DVIdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A2*V2+ A0/3*V7*V2*DA2dχ2ℓ*V2 +11*A0/3*V7*V2*A2*V*DVIdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A3*V3+ A0/3*V7*V2*DA3dχ2ℓ*V3 + 12*A0/3*V7*V2*A3*V2*DVIdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A4*V4+ A0/3*V7*V2*DA4dχ2ℓ*V4 + 13*A0/3*V7*V2*A4*V3*DVIdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2* A5*V5+ A0/3*V7*V2* DA5dχ2ℓ*V5 + 14*A0/3*V7*V2*A5*V4*DVIdχ2ℓ _
+		  + DA0dχ2ℓ/3*V7*V2*A6*V6+ A0/3*V7*V2*DA6dχ2ℓ*V6 + 15*A0/3*V7*V2*A6*V5*DVIdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2*B6*Log(V)*V6+A0/3*V7*V2*DB6dχ2ℓ*Log(V)*V6 + 15*A0/3*V7*V2*B6*Log(V)*V5*DVIdχ2ℓ + 15*A0/3*V7*V2*B6*V5*DVIdχ2ℓ _
+		  +DA0dχ2ℓ/3*V7*V2* A7*V7+A0/3*V7*V2* DA7dχ2ℓ*V7 +16*A0/3*V7*V2*A7*V6*DVIdχ2ℓ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DvdδForLastV() As Double
-		  Dvdδ = DC2dδ*ζ3+ dC3dδ*ζ4 + DC4dδ*ζ5 + DC5dδ*ζ6 + DC6dδ*ζ7 + DC7dδ*ζ7*ζ  _
-		  + Dζdδ +3*C2*ζ2*Dζdδ+ 4*C3*ζ3*Dζdδ + 5*C4*ζ4*Dζdδ + 6*C5*ζ5*Dζdδ + 7*C6*ζ6*Dζdδ-10.5*B6*Log(ζ)*ζ6*Dζdδ _
-		  -1.5*B6*Dζdδ*ζ5+ 8*C7*ζ7*Dζdδ
-		  Return Dvdδ
+		Function DVIdδForLastV() As Double
+		  Return DVIdδ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DvdτcForLastV() As Double
-		  Dvdτc = Dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ)*ζ6 + C7*ζ7) _
-		  + ζ*( 2*C2*ζ*Dζdτc+ 3*C3*ζ2*Dζdτc + 4*C4*ζ3*Dζdτc + 5*C5*ζ4*Dζdτc -1.5*B6*Dζdτc/ζ)*ζ6 _
-		  - 9.0*B6*Log(ζ)*ζ5*Dζdτc+ 7*C7*ζ6*Dζdτc)
-		  Return Dvdτc
+		Function DVIdτcForLastV() As Double
+		  Return DVIdτc
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Dvdχ1ℓForLastV() As Double
-		  Dvdχ1ℓ = ζ*( DC2dχ1ℓ*ζ2+ DC3dχ1ℓ*ζ3 + DC4dχ1ℓ*ζ4 + DC5dχ1ℓ*ζ5 + DC6dχ1ℓ*ζ6 + DC7dχ1ℓ*ζ7)
-		  Return Dvdχ1ℓ
+		Function DVIdχ1ℓForLastV() As Double
+		  Return DVIdχ1ℓ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Dvdχ2ℓForLastV() As Double
-		  Dvdχ2ℓ = ζ*( DC2dχ2ℓ*ζ2+ DC3dχ2ℓ*ζ3 + DC4dχ2ℓ*ζ4 + DC5dχ2ℓ*ζ5 + DC6dχ2ℓ*ζ6 + DC7dχ2ℓ*ζ7)
-		  Return Dvdχ2ℓ
+		Function DVIdχ2ℓForLastV() As Double
+		  Return DVIdχ2ℓ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DΨOrbdδForLastV() As Double
-		  Var LogVIV0 As Double = Log(V/V0)
-		  Var DΨcdδ As Double 
-		  DΨcdδ = -DP0dδ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		Function DΨmpIdδForLastV() As Double
+		  Var dΨcdδ As Double = -DP0dδ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
 		  +  -P0/V5*(1 + DP2dδ*V2 + DP3dδ*V3 + DP4dδ*V4 + DP6dδ*V6 + DP7dδ*V7) 
-		  
-		  DΨOrbdδ = DΨcdδ + DP0dδ/V5 + DP0dδ*P2/V3 + P0*DP2dδ/V3 + DP0dδ*P3/V2 + P0*DP3dδ/V2 _
+		  Return dΨcdδ + DP0dδ/V5 + DP0dδ*P2/V3 + P0*DP2dδ/V3 + DP0dδ*P3/V2 + P0*DP3dδ/V2 _
 		  + DP0dδ*P4/V + P0*DP4dδ/V + DP0dδ*P5*LogVIV0 + P0*DP5dδ*LogVIV0 _
 		  + DP0dδ*P6*V + P0*DP6dδ*V + 15*DP0dδ*B6*LogVIV0*V + 15*P0*DB6dδ*LogVIV0*V + DP0dδ*P7*V2 +P0*DP7dδ*V2 _
-		  -5*P0*Dvdδ/V6 -3* P0*P2*Dvdδ/V4 -2* P0*P3*Dvdδ/V3 - P0*P4*Dvdδ/V2 + P0*P5*V0*Dvdδ/V + P0*P6*Dvdδ _
-		  +15*P0*B6*V0*Dvdδ +15*P0*B6*Log(V/V0)*Dvdδ + 2*P0*P7*V*Dvdδ
-		  Return DΨOrbdδ 
+		  - 5*P0*DVIdδ/V6 -3* P0*P2*DVIdδ/V4 -2* P0*P3*DVIdδ/V3 - P0*P4*DVIdδ/V2 + P0*P5*V0*DVIdδ/V + P0*P6*DVIdδ _
+		  + 15*P0*B6*V0*DVIdδ +15*P0*B6*Log(V/V0)*DVIdδ + 2*P0*P7*V*DVIdδ _
+		  + DΨtailIdV*DVIdδ
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DΨOrbdτcForLastV() As Double
-		  Var LogVIV0 As Double = Log(V/V0)
-		  ΨOrb = -5* P0*Dvdτc/V6 -3* P0*P2*Dvdτc/V4 + -2*P0*P3*Dvdτc/V3 - P0*P4*Dvdτc/V2 + P0*P5*V0*Dvdτc/V + P0*P6* Dvdτc _
-		  +15*P0*B6*V0*Dvdτc +15*P0*B6*LogVIV0*Dvdτc + 2* P0*P7*V*Dvdτc
-		  Return DΨOrbdτc 
+		Function DΨmpIdτcForLastV() As Double
+		  Return -5* P0*DVIdτc/V6 -3* P0*P2*DVIdτc/V4 + -2*P0*P3*DVIdτc/V3 - P0*P4*DVIdτc/V2 + P0*P5*V0*DVIdτc/V + P0*P6* DVIdτc _
+		  +15*P0*B6*V0*DVIdτc +15*P0*B6*LogVIV0*DVIdτc + 2* P0*P7*V*DVIdτc + DΨtailIdV*DVIdτc
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DΨOrbdχ1ℓForLastV() As Double
-		  Var LogVIV0 As Double = Log(V/V0)
-		  Var DΨcdχ1ℓ As Double 
-		  DΨcdχ1ℓ = -DP0dχ1ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		Function DΨmpIdχ1ℓForLastV() As Double
+		  Var dΨcdχ1ℓ As Double = -DP0dχ1ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
 		  +  -P0/V5*(1 + DP2dχ1ℓ*V2 + DP3dχ1ℓ*V3 + DP4dχ1ℓ*V4 + DP6dχ1ℓ*V6 + DP7dχ1ℓ*V7) 
 		  
-		  DΨOrbdχ1ℓ = DΨcdχ1ℓ + DP0dχ1ℓ/V5 + DP0dχ1ℓ*P2/V3 + P0*DP2dχ1ℓ/V3 + DP0dχ1ℓ*P3/V2 + P0*DP3dχ1ℓ/V2 _
+		  Return dΨcdχ1ℓ + DP0dχ1ℓ/V5 + DP0dχ1ℓ*P2/V3 + P0*DP2dχ1ℓ/V3 + DP0dχ1ℓ*P3/V2 + P0*DP3dχ1ℓ/V2 _
 		  + DP0dχ1ℓ*P4/V + P0*DP4dχ1ℓ/V + DP0dχ1ℓ*P5*LogVIV0 + P0*DP5dχ1ℓ*LogVIV0 _
 		  + DP0dχ1ℓ*P6*V + P0*DP6dχ1ℓ*V + 15*DP0dχ1ℓ*B6*LogVIV0*V + 15*P0*DB6dχ1ℓ*LogVIV0*V + DP0dχ1ℓ*P7*V2 +P0*DP7dχ1ℓ*V2 _
-		  -5*P0*Dvdχ1ℓ/V6 -3* P0*P2*Dvdχ1ℓ/V4 -2* P0*P3*Dvdχ1ℓ/V3 - P0*P4*Dvdχ1ℓ/V2 + P0*P5*V0*Dvdχ1ℓ/V + P0*P6*Dvdχ1ℓ _
-		  +15*P0*B6*V0*Dvdχ1ℓ +15*P0*B6*Log(V/V0)*Dvdχ1ℓ + 2*P0*P7*V*Dvdχ1ℓ
-		  Return DΨOrbdχ1ℓ 
+		  -5*P0*DVIdχ1ℓ/V6 -3* P0*P2*DVIdχ1ℓ/V4 -2* P0*P3*DVIdχ1ℓ/V3 - P0*P4*DVIdχ1ℓ/V2 + P0*P5*V0*DVIdχ1ℓ/V + P0*P6*DVIdχ1ℓ _
+		  +15*P0*B6*V0*DVIdχ1ℓ +15*P0*B6*Log(V/V0)*DVIdχ1ℓ + 2*P0*P7*V*DVIdχ1ℓ + DΨtailIdV*DVIdχ1ℓ
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function DΨOrbdχ2ℓForLastV() As Double
-		  Var LogVIV0 As Double = Log(V/V0)
-		  Var DΨcdχ2ℓ As Double 
-		  DΨcdχ2ℓ = -DP0dχ2ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
+		Function DΨmpIdχ2ℓForLastV() As Double
+		  Var dΨcdχ2ℓ As Double = -DP0dχ2ℓ/V5*(1 + P2*V2 + P3*V3 + P4*V4 + P6*V6 + P7*V7) _
 		  +  -P0/V5*(1 + DP2dχ2ℓ*V2 + DP3dχ2ℓ*V3 + DP4dχ2ℓ*V4 + DP6dχ2ℓ*V6 + DP7dχ2ℓ*V7) 
 		  
-		  DΨOrbdχ2ℓ = DΨcdχ2ℓ + DP0dχ2ℓ/V5 + DP0dχ2ℓ*P2/V3 + P0*DP2dχ2ℓ/V3 + DP0dχ2ℓ*P3/V2 + P0*DP3dχ2ℓ/V2 _
+		  Return dΨcdχ2ℓ + DP0dχ2ℓ/V5 + DP0dχ2ℓ*P2/V3 + P0*DP2dχ2ℓ/V3 + DP0dχ2ℓ*P3/V2 + P0*DP3dχ2ℓ/V2 _
 		  + DP0dχ2ℓ*P4/V + P0*DP4dχ2ℓ/V + DP0dχ2ℓ*P5*LogVIV0 + P0*DP5dχ2ℓ*LogVIV0 _
 		  + DP0dχ2ℓ*P6*V + P0*DP6dχ2ℓ*V + 15*DP0dχ2ℓ*B6*LogVIV0*V + 15*P0*DB6dχ2ℓ*LogVIV0*V + DP0dχ2ℓ*P7*V2 +P0*DP7dχ2ℓ*V2 _
-		  -5*P0*Dvdχ2ℓ/V6 -3* P0*P2*Dvdχ2ℓ/V4 -2* P0*P3*Dvdχ2ℓ/V3 - P0*P4*Dvdχ2ℓ/V2 + P0*P5*V0*Dvdχ2ℓ/V + P0*P6*Dvdχ2ℓ _
-		  +15*P0*B6*V0*Dvdχ2ℓ +15*P0*B6*Log(V/V0)*Dvdχ2ℓ + 2*P0*P7*V*Dvdχ2ℓ
-		  Return DΨOrbdχ2ℓ 
+		  -5*P0*DVIdχ2ℓ/V6 -3* P0*P2*DVIdχ2ℓ/V4 -2* P0*P3*DVIdχ2ℓ/V3 - P0*P4*DVIdχ2ℓ/V2 + P0*P5*V0*DVIdχ2ℓ/V + P0*P6*DVIdχ2ℓ _
+		  +15*P0*B6*V0*DVIdχ2ℓ +15*P0*B6*Log(V/V0)*DVIdχ2ℓ + 2*P0*P7*V*DVIdχ2ℓ + DΨtailIdV*DVIdχ2ℓ
 		  
 		End Function
 	#tag EndMethod
@@ -312,23 +285,30 @@ Protected Class VCalculatorClass
 		  V6 = V5*V
 		  V7 = V6*V
 		  Dζdτc =-0.0764277840621157*(1/(η*(-τ + τc)))^0.125/(-τ + τc)
-		  Dζdδ = 0.0214953142674701*δ^2*(1/(η*(-τ + τc)))^0.125/η^2 + 0.0382138920310579*(1/(η*(-τ + τc)))^0.125/η
+		  Dζdδ = 0.0214953142674701*δ*δ*(1/(η*(-τ + τc)))^0.125/η^2 + 0.0382138920310579*(1/(η*(-τ + τc)))^0.125/η
+		  DVIdδ = DC2dδ*ζ3+ dC3dδ*ζ4 + DC4dδ*ζ5 + DC5dδ*ζ6 + DC6dδ*ζ7 + DC7dδ*ζ7*ζ  _
+		  + Dζdδ +3*C2*ζ2*Dζdδ+ 4*C3*ζ3*Dζdδ + 5*C4*ζ4*Dζdδ + 6*C5*ζ5*Dζdδ + 7*C6*ζ6*Dζdδ-10.5*B6*Log(ζ)*ζ6*Dζdδ _
+		  -1.5*B6*Dζdδ*ζ5+ 8*C7*ζ7*Dζdδ
+		  DVIdτc = Dζdτc*(1 + C2*ζ2+ C3*ζ3 + C4*ζ4 + C5*ζ5 + (C6-1.5*B6*Log(ζ)*ζ6 + C7*ζ7) _
+		  + ζ*( 2*C2*ζ*Dζdτc+ 3*C3*ζ2*Dζdτc + 4*C4*ζ3*Dζdτc + 5*C5*ζ4*Dζdτc -1.5*B6*Dζdτc/ζ)*ζ6 _
+		  - 9.0*B6*Log(ζ)*ζ5*Dζdτc+ 7*C7*ζ6*Dζdτc)
+		  DVIdχ1ℓ = ζ*( DC2dχ1ℓ*ζ2+ DC3dχ1ℓ*ζ3 + DC4dχ1ℓ*ζ4 + DC5dχ1ℓ*ζ5 + DC6dχ1ℓ*ζ6 + DC7dχ1ℓ*ζ7)
+		  DVIdχ2ℓ = ζ*( DC2dχ2ℓ*ζ2+ DC3dχ2ℓ*ζ3 + DC4dχ2ℓ*ζ4 + DC5dχ2ℓ*ζ5 + DC6dχ2ℓ*ζ6 + DC7dχ2ℓ*ζ7)
+		  LogVIV0 = Log(V/V0)
+		  DΨtailIdV = -6*V*V*(3*LogVIV0-1.0)
 		  Return V
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function VDotForLastV() As Double
-		  VDot = A0/3*V7*V2*(1.0 + A2*V2 + A3*V3+ A4*V4 + A5*V5 + (A6+B6*Log(V))*V6 + A7*V7)
-		  Return VDot
+		  Return A0/3*V7*V2*(1.0 + A2*V2 + A3*V3+ A4*V4 + A5*V5 + (A6+B6*Log(V))*V6 + A7*V7)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ΨOrbForLastV() As Double
-		  Var LogVIV0 As Double = Log(V/V0)
-		  ΨOrb = Ψc + P0/V5 + P0*P2/V3 + P0*P3/V2 + P0*P4/V + P0*P5*LogVIV0 + P0*P6*V+15*P0*B6*LogVIV0*V+ P0*P7*V2
-		  Return ΨOrb
+		Function ΨmpForLastV() As Double
+		  Return Ψcp + P0/V5 + P0*P2/V3 + P0*P3/V2 + P0*P4/V + P0*P5*LogVIV0 + P0*P6*V+15*P0*B6*LogVIV0*V+ P0*P7*V2 - 6*V3*LogVIV0
 		End Function
 	#tag EndMethod
 
@@ -642,35 +622,19 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DVDotDδ As Double
+		Private DVIdδ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DVDotDτc As Double
+		Private DVIdτc As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DVDotdχ1ℓ As Double
+		Private DVIdχ1ℓ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DVDotdχ2ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Dvdδ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Dvdτc As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Dvdχ1ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Dvdχ2ℓ As Double
+		Private DVIdχ2ℓ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -721,8 +685,8 @@ Protected Class VCalculatorClass
 		Private Dβ7dχ2ℓ As Double
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		Dζdδ As Double
+	#tag Property, Flags = &h21
+		Private Dζdδ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -730,19 +694,11 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DΨOrbdδ As Double
+		Private DΨtailIdV As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DΨOrbdτc As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private DΨOrbdχ1ℓ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private DΨOrbdχ2ℓ As Double
+		Private LogVIV0 As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -886,11 +842,11 @@ Protected Class VCalculatorClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private Ψc As Double
+		Private Ψcp As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private ΨOrb As Double
+		Private Ψmp As Double
 	#tag EndProperty
 
 

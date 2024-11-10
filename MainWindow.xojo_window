@@ -60,7 +60,7 @@ Begin DesktopWindow MainWindow
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   0
+      Value           =   2
       Visible         =   True
       Width           =   1000
       Begin DesktopListBox ParamNameListBox
@@ -1612,7 +1612,6 @@ Begin DesktopWindow MainWindow
    End
    Begin MainThreadClass MainThread
       DebugIdentifier =   ""
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -1621,6 +1620,7 @@ Begin DesktopWindow MainWindow
       TabPanelIndex   =   0
       ThreadID        =   0
       ThreadState     =   0
+      Type            =   0
    End
 End
 #tag EndDesktopWindow
