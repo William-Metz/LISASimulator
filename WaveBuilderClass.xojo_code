@@ -3612,7 +3612,7 @@ Protected Class WaveBuilderClass
 		  dAdβ(4) = -3*s2p2*sβ*cβ
 		  dAdβ(5) = -45/32 *c1p6*δ*cβ
 		  dAdβ(6) = 87/64 *c1p2*c2*δ*cβ _
-		   - 5/256 *c1p2*c4*δ*cβ _
+		  - 5/256 *c1p2*c4*δ*cβ _
 		  - 175/256 *c1p2*δ*cβ
 		  dAdβ(7) = 87/64 *c2*δ*s1p2*cβ _
 		  + 5/256 *c4*δ*s1p2*cβ _
@@ -5959,7 +5959,7 @@ Protected Class WaveBuilderClass
 		  dAdδ(146) = 14*δ*s3β* c1p3*s1p5 _
 		  + 6*δ*sβ* c1p3*s1p5
 		  dAdδ(147) = - 28/3* δ*c3β* c1p2*s1p6 - _
-		   4/3 *δ*cβ *c1p2*s1p6
+		  4/3 *δ*cβ *c1p2*s1p6
 		  dAdδ(148) = - 6*δ*s3β* c1*s1p7 _
 		  + 2*δ*sβ *c1*s1p7
 		  dAdδ(149) = - 4*δ*cβ* sβ *s1p8
@@ -6430,7 +6430,7 @@ Protected Class WaveBuilderClass
 		  - 1/8* δ*cβ* c4*s2*χsxDN _
 		  - 1/2* δ*sβ *c4*s2*χszDN
 		  dAdδ(218) = 1/2 *δ*cβ* s2p2*c2*χszDN - _
-		   1/2* δ*sβ *s2p2*c2*χsxDN
+		  1/2* δ*sβ *s2p2*c2*χsxDN
 		  dAdδ(219) = δ*cβ *s2p3*χsxDN
 		  dAdδ(220) = 1/6* δ*cβ *s1p3*c2*c1*χsxDN _
 		  + 2/3* δ*sβ *s1p3*c2*c1*χszDN _
@@ -7663,7 +7663,7 @@ Protected Class WaveBuilderClass
 		  dAdχsxDN(92) = 0
 		  dAdχsxDN(93) = 3/4* s2p3 _
 		  + 1/4 *c2β* s2p3 - _
-		   3/8 *η*s2p3 _
+		  3/8 *η*s2p3 _
 		  - 1/8 *η*c2β *s2p3
 		  dAdχsxDN(94) = 10/3*cβ*sβ*c2*s2p2 _
 		  + 1/3 *η*cβ* sβ* c2*s2p2 
@@ -9640,7 +9640,8 @@ Protected Class WaveBuilderClass
 		  End If
 		  
 		  // Otherwise, check if we can get data from the spin evolver
-		  Var spinData As SpinResultsClass = SpinEvolver.GetSpinDataAtTime(StepNumber*Δτ)
+		  τrDN = StepNumber*Δτr
+		  Var spinData As SpinResultsClass = SpinEvolver.GetSpinDataAtTime(τrDN)
 		  If spinData = Nil Then Return False  // If the method returns nothing, coalescence must have happened
 		  
 		  // We have data, so
@@ -9659,13 +9660,11 @@ Protected Class WaveBuilderClass
 		  χszDN = spinData.χsz
 		  
 		  // Calculate the wave phase
-		  Var τrm As Double = (StepNumber - 0.5)*Δτr
 		  ΨrDN = spinData.Ψ
 		  // do the following instead of the above if we want the data in the orbiting LISA frame
 		  // ΨrDN = ΨrDP + (1.0 + Parameters.Ve*Sin(Parameters.Θ)*Sin(Parameters.GMΩe*τrm - Parameters.Φ))*(spinData.Ψ - ΨP)
-		  ΨrDP = ΨrDN
-		  ΨP = spinData.Ψ
-		  τrDN = StepNumber*Δτr
+		  // ΨrDP = ΨrDN
+		  // ΨP = spinData.Ψ
 		  
 		  // Calculate the wave
 		  CalculateAmplitudes
