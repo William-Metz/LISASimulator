@@ -60,7 +60,7 @@ Begin DesktopWindow MainWindow
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   1
+      Value           =   0
       Visible         =   True
       Width           =   1000
       Begin DesktopListBox ParamNameListBox
@@ -201,13 +201,13 @@ Begin DesktopWindow MainWindow
          Height          =   595
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\n0\n0\n0\n0\n0\n0\n0\n0\n2\n50\n1.0"
+         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\n0\n0\n0\n0\n0\n0\n0\n0\n2\n10\n1.0"
          Italic          =   False
          Left            =   204
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
-         LockRight       =   True
+         LockRight       =   False
          LockTop         =   True
          RequiresSelection=   False
          RowSelectionType=   0
@@ -663,8 +663,8 @@ Begin DesktopWindow MainWindow
          Left            =   307
          LockBottom      =   False
          LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
+         LockLeft        =   True
+         LockRight       =   False
          LockTop         =   True
          MaximumValue    =   100
          Scope           =   0
@@ -758,8 +758,8 @@ Begin DesktopWindow MainWindow
          Left            =   766
          LockBottom      =   False
          LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
+         LockLeft        =   False
+         LockRight       =   True
          LockTop         =   True
          Scope           =   0
          TabIndex        =   32
@@ -821,8 +821,8 @@ Begin DesktopWindow MainWindow
          Left            =   612
          LockBottom      =   False
          LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
+         LockLeft        =   False
+         LockRight       =   True
          LockTop         =   True
          Multiline       =   False
          Scope           =   0
@@ -1295,6 +1295,7 @@ Begin DesktopWindow MainWindow
       TabPanelIndex   =   0
       ThreadID        =   0
       ThreadState     =   0
+      Type            =   0
    End
 End
 #tag EndDesktopWindow
