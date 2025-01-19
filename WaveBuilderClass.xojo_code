@@ -894,14 +894,17 @@ Protected Class WaveBuilderClass
 
 	#tag Method, Flags = &h0
 		Sub SaveDataForPlotting(τr As Double)
-		  If Not Parameters.FromFile Then
-		    Var t As Double = τr*Parameters.GM/Parameters.Year
-		    Var ω As Double = VDN*VDN*VDN/Parameters.GM
-		    Var torb As Double = 2*Parameters.π/ω
-		    Var myNames() As String = Array("t-y", "HP", "HX", "Torb")
-		    Var myValues() As Double = Array(t, HP, HX, torb)
-		    Parameters.DataRecorder.WriteData(myNames, myValues, Parameters.NSteps)
-		  End If
+		  Var t As Double = τr*Parameters.GM/Parameters.Year
+		  Var χ1x As Double = χsxDN + χaxDN
+		  Var χ1y As Double = χsyDN + χayDN
+		  Var χ1z As Double = χszDN + χazDN
+		  Var χ2x As Double = χsxDN - χaxDN
+		  Var χ2y As Double = χsyDN - χayDN
+		  Var χ2z As Double = χszDN - χazDN
+		  Var myValues() As Double = Array(HP, HX, VDN, αDN, ιDN, ΨrDN, χ1x, χ1y, χ1z, χ2x, χ2y, χ2z, t)
+		  Var nOfDoubles As Integer = Parameters.NSteps
+		  If Parameters.SaveToFile Then nOfDoubles = -1
+		  Parameters.DataRecorder.WriteData(myValues, nOfDoubles)
 		End Sub
 	#tag EndMethod
 
@@ -1077,14 +1080,6 @@ Protected Class WaveBuilderClass
 
 	#tag Property, Flags = &h0
 		VDN As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		VeCosΘ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		VeSinΘ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1319,22 +1314,6 @@ Protected Class WaveBuilderClass
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="VeCosΘ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="VeSinΘ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

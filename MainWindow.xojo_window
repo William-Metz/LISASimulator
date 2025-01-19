@@ -20,19 +20,10 @@ Begin DesktopWindow MainWindow
    MinimumHeight   =   650
    MinimumWidth    =   1000
    Resizeable      =   True
-   Title           =   "LISA Simulator"
+   Title           =   "Binary Wave Generator"
    Type            =   0
    Visible         =   True
    Width           =   1000
-   Begin Timer InterfaceUpdateTimer
-      Enabled         =   True
-      Index           =   -2147483648
-      LockedInPosition=   False
-      Period          =   500
-      RunMode         =   0
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
    Begin DesktopTabPanel MainTabPanel
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -60,9 +51,117 @@ Begin DesktopWindow MainWindow
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   0
+      Value           =   1
       Visible         =   True
       Width           =   1000
+      Begin DesktopRectangle RectForStopInfo
+         AllowAutoDeactivate=   True
+         BorderColor     =   &c000000
+         BorderThickness =   1.0
+         CornerSize      =   0.0
+         Enabled         =   True
+         FillColor       =   &cFFFFFFFF
+         Height          =   164
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Left            =   437
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   40
+         TabPanelIndex   =   1
+         Tooltip         =   ""
+         Top             =   442
+         Transparent     =   False
+         Visible         =   True
+         Width           =   298
+      End
+      Begin DesktopRectangle RectForCaseFile
+         AllowAutoDeactivate=   True
+         BorderColor     =   &c000000
+         BorderThickness =   1.0
+         CornerSize      =   0.0
+         Enabled         =   True
+         FillColor       =   &cFFFFFFFF
+         Height          =   56
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Left            =   249
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   39
+         TabPanelIndex   =   1
+         Tooltip         =   ""
+         Top             =   49
+         Transparent     =   True
+         Visible         =   True
+         Width           =   486
+         Begin DesktopLabel CaptionForCaseProgress
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectForCaseFile"
+            Italic          =   False
+            Left            =   400
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   0
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Text            =   "Progress:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   66
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   68
+         End
+      End
+      Begin DesktopRectangle RectForRunInfo
+         AllowAutoDeactivate=   True
+         BorderColor     =   &c000000
+         BorderThickness =   1.0
+         CornerSize      =   0.0
+         Enabled         =   True
+         FillColor       =   &cFFFFFFFF
+         Height          =   318
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Left            =   437
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   38
+         TabPanelIndex   =   1
+         Tooltip         =   ""
+         Top             =   114
+         Transparent     =   False
+         Visible         =   True
+         Width           =   298
+      End
       Begin DesktopListBox ParamNameListBox
          AllowAutoDeactivate=   True
          AllowAutoHideScrollbars=   True
@@ -86,12 +185,12 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   595
+         Height          =   492
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nR (ly)\nβ (°)	\nψ (°)\nλ0\nΘ (°)\nΦ (°)	\nΩ (/sky)\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
+         InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\ntc (y)\nλ0\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nβ (°)	\nψ (°)\nR (ly)\nZ\nPN Order\nΔT (s)\nDuration (y)"
          Italic          =   False
-         Left            =   126
+         Left            =   249
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -104,7 +203,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   61
+         Top             =   114
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -198,12 +297,12 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   595
+         Height          =   492
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n1.0e7\n39\n24\n0\n5\n268.5\n\n0\n0\n0\n0\n0\n0\n0\n0\n2\n10\n1.0"
+         InitialValue    =   "Case 1\n10000\n0.1\n500\n\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1.0e7\n0\n3, 7\n10\n1.0"
          Italic          =   False
-         Left            =   204
+         Left            =   327
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -216,7 +315,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   61
+         Top             =   114
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -235,7 +334,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -251,7 +350,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   61
+         Top             =   184
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -268,7 +367,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -284,7 +383,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   157
+         Top             =   262
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -301,7 +400,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   475
+         Left            =   598
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -317,11 +416,11 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   155
+         Top             =   278
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   100
+         Width           =   117
       End
       Begin DesktopLabel CaptionForStepNumLabel
          AllowAutoDeactivate=   True
@@ -334,7 +433,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -350,7 +449,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   187
+         Top             =   292
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -367,7 +466,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   475
+         Left            =   598
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -383,11 +482,11 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   189
+         Top             =   312
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   114
+         Width           =   117
       End
       Begin DesktopLabel CaptionForSimTimeLabel
          AllowAutoDeactivate=   True
@@ -400,7 +499,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -416,7 +515,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   217
+         Top             =   322
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -433,7 +532,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   475
+         Left            =   598
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -449,11 +548,11 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   217
+         Top             =   340
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   114
+         Width           =   117
       End
       Begin DesktopLabel CaptionForVLabel
          AllowAutoDeactivate=   True
@@ -466,7 +565,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -482,7 +581,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   248
+         Top             =   353
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -499,7 +598,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   475
+         Left            =   598
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -515,7 +614,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   249
+         Top             =   372
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -532,7 +631,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -548,7 +647,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   277
+         Top             =   382
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -565,7 +664,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   479
+         Left            =   631
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -581,11 +680,11 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   277
+         Top             =   400
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   114
+         Width           =   84
       End
       Begin DesktopLabel ValueOfStatusLabel
          AllowAutoDeactivate=   True
@@ -598,7 +697,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   371
+         Left            =   521
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -614,7 +713,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   61
+         Top             =   166
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -631,7 +730,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   297
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -647,7 +746,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   532
+         Top             =   444
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -660,7 +759,7 @@ Begin DesktopWindow MainWindow
          Indeterminate   =   False
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -672,7 +771,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   117
+         Top             =   222
          Transparent     =   True
          Value           =   0.0
          Visible         =   True
@@ -692,7 +791,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   612
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -704,11 +803,11 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   61
+         Top             =   134
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   96
+         Width           =   131
       End
       Begin DesktopLabel ValueOfStopReasonLabel
          AllowAutoDeactivate=   True
@@ -721,7 +820,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   297
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -737,7 +836,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   555
+         Top             =   467
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -755,7 +854,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   766
+         Left            =   267
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -766,7 +865,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   61
+         Top             =   67
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -785,7 +884,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   307
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -801,53 +900,20 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   93
+         Top             =   198
          Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   99
       End
-      Begin DesktopLabel CaptionForFProgLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "MainTabPanel"
-         Italic          =   False
-         Left            =   612
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   34
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Text            =   "File Progress:"
-         TextAlignment   =   0
-         TextColor       =   &c000000
-         Tooltip         =   ""
-         Top             =   93
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   False
-         Width           =   99
-      End
       Begin ProgressBar FileProgressBar
          AllowAutoDeactivate=   True
          Enabled         =   True
-         Height          =   14
+         Height          =   12
          Indeterminate   =   False
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
-         Left            =   612
+         Left            =   474
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -859,11 +925,11 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   117
+         Top             =   69
          Transparent     =   True
          Value           =   0.0
          Visible         =   False
-         Width           =   259
+         Width           =   242
       End
       Begin DesktopLabel ValueOfActualTimeLabel
          AllowAutoDeactivate=   True
@@ -876,7 +942,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   299
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -892,7 +958,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   632
+         Top             =   551
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -971,7 +1037,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   299
+         Left            =   457
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -987,7 +1053,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   605
+         Top             =   526
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1072,7 +1138,7 @@ Begin DesktopWindow MainWindow
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Italic          =   False
-         Left            =   612
+         Left            =   597
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1088,7 +1154,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   77
+         Top             =   79
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1106,7 +1172,7 @@ Begin DesktopWindow MainWindow
          InitialParent   =   "MainTabPanel"
          InitialValue    =   "1.0\n0.5\n0.2\n0.1\n0.05\n0.02\n0.01\n0.005\n0.002\n0.001\n0.0005\n0.0002\n0.0001\n0.00005\n0.00001\n"
          Italic          =   False
-         Left            =   765
+         Left            =   750
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1118,7 +1184,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   79
+         Top             =   80
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1284,6 +1350,507 @@ Begin DesktopWindow MainWindow
          Visible         =   True
          Width           =   128
       End
+      Begin DesktopRectangle RectforSaveInfo
+         AllowAutoDeactivate=   True
+         BorderColor     =   &c000000
+         BorderThickness =   1.0
+         CornerSize      =   0.0
+         Enabled         =   True
+         FillColor       =   &cFFFFFFFF
+         Height          =   115
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Left            =   249
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   41
+         TabPanelIndex   =   1
+         Tooltip         =   ""
+         Top             =   620
+         Transparent     =   False
+         Visible         =   True
+         Width           =   486
+         Begin DesktopLabel Label1
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   262
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   0
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Text            =   "Save Data:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   627
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   74
+         End
+         Begin DesktopCheckBox CheckBoxForHP
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "h+"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   350
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   1
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   627
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   49
+         End
+         Begin DesktopCheckBox CheckBoxForHX
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "hx"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   411
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   2
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   627
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   50
+         End
+         Begin DesktopCheckBox CheckBoxForV
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "v"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   473
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   3
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   626
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   46
+         End
+         Begin DesktopCheckBox CheckBoxForAlpha
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "α"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   531
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   4
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   627
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   48
+         End
+         Begin DesktopCheckBox CheckBoxForIota
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "ι"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   591
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   5
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   627
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   42
+         End
+         Begin DesktopCheckBox CheckBoxForChi1x
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "χ1x"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   350
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   6
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   659
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   50
+         End
+         Begin DesktopCheckBox CheckBoxForChi1y
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "χ1y"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   410
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   7
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   659
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   49
+         End
+         Begin DesktopCheckBox CheckBoxForChi1z
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "χ1z"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   469
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   8
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   659
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   50
+         End
+         Begin DesktopCheckBox CheckBoxForChi2x
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "χ2x"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   533
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   9
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   659
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   52
+         End
+         Begin DesktopCheckBox CheckBoxForChi2y
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Caption         =   "χ2y"
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   591
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   10
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   659
+            Transparent     =   False
+            Underline       =   False
+            Value           =   False
+            Visible         =   True
+            VisualState     =   0
+            Width           =   53
+         End
+         Begin DesktopPopupMenu SaveToMenu
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            InitialValue    =   "Save to memory\nSave to hard drive"
+            Italic          =   False
+            Left            =   531
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            SelectedRowIndex=   0
+            TabIndex        =   12
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   695
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   168
+         End
+         Begin DesktopButton SelectAllButton
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Cancel          =   False
+            Caption         =   "Select All"
+            Default         =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "RectforSaveInfo"
+            Italic          =   False
+            Left            =   348
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            MacButtonStyle  =   0
+            Scope           =   0
+            TabIndex        =   13
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   691
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   80
+         End
+      End
+      Begin DesktopCheckBox CheckBoxForPsi
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Ψ"
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   647
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   42
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   628
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   53
+      End
+      Begin DesktopCheckBox CheckBoxForChi2z
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "χ2z"
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MainTabPanel"
+         Italic          =   False
+         Left            =   647
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   43
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   660
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   48
+      End
+   End
+   Begin Timer InterfaceUpdateTimer
+      Enabled         =   True
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Period          =   500
+      RunMode         =   0
+      Scope           =   0
+      TabPanelIndex   =   0
    End
    Begin MainThreadClass MainThread
       DebugIdentifier =   ""
@@ -1379,15 +1946,16 @@ End
 		    OutputFile = FolderItem.ShowSaveFileDialog(FileTypeGroup1.Text, "Untitled.txt") // define an output file
 		    If OutputFile = Nil Then Return // bail out if the user has cancelled
 		  Else
-		    TheCases.Add(GetDisplayCase)
+		    TheCases.Add(GetDisplayCase)  // if we are running from the screen, get screen values
 		  End if
-		  AllCasesDone = False 
-		  ValueOfStatusLabel.Text = "Running"
-		  ValueOfStopReasonLabel.Text = ""
-		  MainThread.LoadCases(TheCases)
-		  MainThread.Priority = Thread.HighPriority
-		  MainThread.Start
-		  InterfaceUpdateTimer.RunMode = Timer.RunModes.Multiple
+		  AllCasesDone = False // clear this flag: we are just starting
+		  ValueOfStatusLabel.Text = "Running"  // let the user know we are running
+		  ValueOfStopReasonLabel.Text = ""  // clear any previous stop information
+		  MainThread.LoadCases(TheCases)  // load the case or cases into the main thread
+		  MainThread.Priority = Thread.HighPriority // set thread priority as high as possible
+		  MainThread.Start // start the main thread
+		  InterfaceUpdateTimer.RunMode = Timer.RunModes.Multiple  // set the interface timer running
+		  //  Each time the interface timer fires, we update the user interface
 		  
 		  
 		  
@@ -1407,44 +1975,29 @@ End
 
 	#tag Method, Flags = &h0
 		Function GetCaseFromValues(Values() As String) As CaseInfoClass
+		  GetSaveValues(values) // get the list of variable names to save from the interface
 		  Var thisCase As New CaseInfoClass
 		  Var Flag As Boolean
-		  thisCase.SolveFor.ResizeTo(Integer(CaseInfoClass.Param.NItems) - 1)
-		  thisCase.M = GetValueAndSolveFlag(Flag, Values(0))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.M)) = Flag
-		  thisCase.δ = GetValueAndSolveFlag(Flag, Values(1))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.δ)) = Flag
-		  thisCase.T0 = GetValueAndSolveFlag(Flag, Values(2))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.τc)) = Flag
-		  thisCase.R = GetValueAndSolveFlag(Flag, Values(3))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.R)) = Flag
-		  thisCase.β = GetValueAndSolveFlag(Flag, Values(4))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.β)) = Flag
-		  thisCase.ψ = GetValueAndSolveFlag(Flag, Values(5))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.ψ)) = Flag
-		  thisCase.λ0 = GetValueAndSolveFlag(Flag, Values(6))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.λ0)) = Flag
-		  thisCase.Θ = GetValueAndSolveFlag(Flag, Values(7))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.Θ)) = Flag
-		  thisCase.Φ = GetValueAndSolveFlag(Flag, Values(8))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.Φ)) = Flag
-		  thisCase.χ1 = GetValueAndSolveFlag(Flag, Values(9))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.χ1)) = Flag
-		  thisCase.θ1 = GetValueAndSolveFlag(Flag, Values(10))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.θ1)) = Flag
-		  thisCase.φ1 = GetValueAndSolveFlag(Flag, Values(11))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.φ1)) = Flag
-		  thisCase.χ2 = GetValueAndSolveFlag(Flag, Values(12))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.χ2)) = Flag
-		  thisCase.θ2 = GetValueAndSolveFlag(Flag, Values(13))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.θ2)) = Flag
-		  thisCase.φ2 = GetValueAndSolveFlag(Flag, Values(14))
-		  thisCase.SolveFor(Integer(CaseInfoClass.Param.φ2)) = Flag
-		  thisCase.ρ0 = values(15).ToDouble
-		  thisCase.PNOrder = values(16).ToInteger
-		  thisCase.Detectors = values(17).ToInteger
-		  thisCase.ΔT = values(18).ToDouble
-		  thisCase.RunDuration = values(19).ToDouble
+		  thisCase.M = Values(0).ToDouble
+		  thisCase.δ = Values(1).ToDouble
+		  thisCase.T0 = Values(2).ToDouble
+		  thisCase.λ0 = Values(3).ToDouble
+		  thisCase.χ1 = Values(4).ToDouble
+		  thisCase.θ1 = Values(5).ToDouble
+		  thisCase.φ1 = Values(6).ToDouble
+		  thisCase.χ2 = Values(7).ToDouble
+		  thisCase.θ2 = Values(8).ToDouble
+		  thisCase.φ2 = Values(9).ToDouble
+		  thisCase.β = Values(10).ToDouble
+		  thisCase.ψ = Values(11).ToDouble
+		  thisCase.R = Values(12).ToDouble
+		  thisCase.Z = Values(13).ToDouble
+		  thisCase.PNOrder = Values(14).NthField(",",0)
+		  thisCase.PNForV = Values(14).NthField(",",1)
+		  thisCase.ΔT = Values(15).ToDouble
+		  thisCase.RunDuration = Values(16).ToDouble
+		  thisCase.SetSaveNames(Values, 17)
+		  thisCase.SaveToFile = SaveToMenu.SelectedRowIndex = 1
 		  thisCase.FinishConstruction
 		  Return thisCase
 		End Function
@@ -1452,27 +2005,26 @@ End
 
 	#tag Method, Flags = &h0
 		Sub GetCasesFromFile()
-		  // To make a txt file that can be read by this code:
-		  //    Rows should be parameters, in the order shown in the CaseListBox (ignoring Ω), separated by tabs.
-		  //    All parameters need values, parameters not to be solved for should have x in front of them.
-		  //    Do not write data in text file with commas.
+		  // To make a text file that can be read by this code:
+		  //    Rows should be parameters, in the order shown in the CaseListBox (ignoring tc), separated by tabs.
 		  
 		  Var f As FolderItem
 		  Var textInput As TextInputStream
 		  Var rowFromFile As String
 		  
+		  // Show a dialog box to open the text file containing the data
 		  f = FolderItem.ShowOpenFileDialog(FileTypeGroup1.Text)
 		  
 		  If f <> Nil Then
-		    textInput = TextInputStream.Open(f)
-		    textInput.Encoding = Encodings.UTF8
+		    textInput = TextInputStream.Open(f)  // open it
+		    textInput.Encoding = Encodings.UTF8   // interpret it as having UTF8 encoding
 		    Do
-		      rowFromFile = textInput.ReadLine
-		      Var values() As String = rowFromFile.ToArray(String.Chr(9))
-		      Var thisCase As CaseInfoClass = GetCaseFromValues(values)
-		      thisCase.FromFile = True
-		      TheCases.Add(thisCase)
-		    Loop Until textInput.EndOfFile
+		      rowFromFile = textInput.ReadLine // get a line corresponding to the case
+		      Var values() As String = rowFromFile.ToArray(String.Chr(9)) // convert the tab-delimited list to an array
+		      Var thisCase As CaseInfoClass = GetCaseFromValues(values)  // create the case
+		      thisCase.FromFile = True // this flag will be set if we have one or more cases to process
+		      TheCases.Add(thisCase)  // add the case to the list to execute
+		    Loop Until textInput.EndOfFile  // and keep going until we reach the end of the file
 		    textInput.Close
 		  End If
 		  
@@ -1485,24 +2037,57 @@ End
 		  Var theValue As String
 		  For i As Integer = 0 to CaseListBox.LastRowIndex // for all entries in the list box
 		    theValue = CaseListBox.CellTextAt(i) // get the text entered in the list box
-		    if i <> 3 And i <> 10 Then theValues.Add(theValue) // skip over an entry corresponding to Ω or Tc
+		    if i <> 3 Then theValues.Add(theValue) // skip over an entry corresponding to tc
 		  Next
-		  Return GetCaseFromValues(theValues)
+		  Return GetCaseFromValues(theValues)  // get the case that expresses these values
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetValueAndSolveFlag(ByRef Solve as Boolean, Source as String) As Double
-		  If Source.BeginsWith("x ") Then
-		    Solve = False
-		    Return Source.Middle(2).ToDouble
-		  Else
-		    Solve = True
-		    Return Source.ToDouble
+		Sub GetSaveValues(Values() As String)
+		  Var s As String
+		  Var i As Integer = Values.LastIndex + 1
+		  If CheckBoxForHP.Value Then s = "h+"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForHX.Value Then s = "hx"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForV.Value Then s = "v"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForAlpha.Value Then s = "α"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForIota.Value Then s = "ι"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForPsi.Value Then s = "Ψ"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi1x.Value Then s = "χ1x"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi1y.Value Then s = "χ1y"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi1z.Value Then s = "χ1z"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi2x.Value Then s = "χ2x"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi2y.Value Then s = "χ2y"
+		  Values.Add(s)
+		  s = ""
+		  If CheckBoxForChi2z.Value Then s = "χ2z"
+		  Values.Add(s)
+		  // If we are storing ANY variable, we must also store "t-y"
+		  If Values.LastIndex > i Then // if our array is now longer than it was
+		    Values.AddAt(0,"t-y")  // Add "t-y" as the first element
 		  End If
-		  
-		End Function
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1609,43 +2194,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events InterfaceUpdateTimer
-	#tag Event
-		Sub Action()
-		  Var TheSuper As CaseSupervisorClass = MainThread.CaseSupervisor  // Get a reference to the supervisor
-		  // Whether the thread is running or not, update these values
-		  ValueOfSimTimeLabel.Text = Format(TheSuper.τr*TheSuper.CaseInfo.GM/TheSuper.CaseInfo.Year, "0.0000000")
-		  ValueOfVLabel.Text = Format(TheSuper.WaveBuilder.VDN,"0.000000")
-		  ValueOfRunTimeLabel.Text = Format((System.Ticks - TheSuper.StartTicks)/60.0, "###0.00")
-		  ValueOfStepNumberLabel.Text = TheSuper.N.ToString
-		  If MainThread.State = Thread.Running then  // if the thread is running
-		    CaseProgressBar.Value = Round(TheSuper.N*100/TheSuper.CaseInfo.NSteps)  // update the progress bar
-		  Else // the thread has stopped, meaning that this case is done
-		    CaseProgressBar.Value = 0  // set
-		    StartStopButton.Caption = "Run"
-		    me.RunMode = Timer.RunModes.Off // and we need no more updates
-		    ValueOfStatusLabel.Text = "Stopped"
-		    ValueOfStopReasonLabel.Text = TheSuper.TerminationMessage
-		    
-		    'if RunFileCheckBox.Value and AllCasesDone then
-		    'Var t As TextOutputStream = TextOutputStream.Create(OutputFile)
-		    't.WriteLine("M"+chr(9)+"δ"+chr(9)+"τc"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
-		    '+chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ1"+chr(9)+"θ1"+chr(9)+"φ1"+chr(9)+"χ2"+chr(9)+"θ2"+chr(9)+"φ2")
-		    'For Each caseItem As CaseInfoClass In TheCases
-		    'Var theUncertainties() As String
-		    'For Each unc As Double In caseItem.Uncertainties
-		    'theUncertainties.Add(unc.ToString)
-		    'Next
-		    'Var theString As String = String.FromArray(theUncertainties, chr(9))
-		    't.WriteLine(theString)
-		    'Next
-		    't.Close
-		    'end if 
-		    
-		  End if		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events MainTabPanel
 	#tag Event
 		Sub PanelChanged()
@@ -1674,7 +2222,7 @@ End
 		          PlotEndIndex = PlotTimes.LastIndex
 		          Setting = True
 		          For i As Integer = 1 to vNamelist.LastIndex
-		            GraphChoicePopupMenu.AddRow(vNamelist(i))
+		            If Not vNamelist(i).IsEmpty Then GraphChoicePopupMenu.AddRow(vNamelist(i))
 		          Next
 		          GraphChoicePopupMenu.SelectedRowIndex = -1
 		          Setting = False
@@ -1808,6 +2356,62 @@ End
 	#tag Event
 		Sub Pressed()
 		  DoBump(True)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SelectAllButton
+	#tag Event
+		Sub Pressed()
+		  // Set all data checkboxes
+		  CheckBoxForAlpha.Value = True
+		  CheckBoxForChi1x.Value = True
+		  CheckBoxForChi1y.Value = True
+		  CheckBoxForChi1z.Value = True
+		  CheckBoxForChi2x.Value = True
+		  CheckBoxForChi2y.Value = True
+		  CheckBoxForChi2z.Value = True
+		  CheckBoxForHP.Value = True
+		  CheckBoxForHX.Value = True
+		  CheckBoxForIota.Value = True
+		  CheckBoxForPsi.Value = True
+		  CheckBoxForV.Value = True
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events InterfaceUpdateTimer
+	#tag Event
+		Sub Action()
+		  Var TheSuper As CaseSupervisorClass = MainThread.CaseSupervisor  // Get a reference to the supervisor
+		  // Whether the thread is running or not, update these values
+		  ValueOfSimTimeLabel.Text = Format(TheSuper.τr*TheSuper.CaseInfo.GM/TheSuper.CaseInfo.Year, "0.0000000")
+		  ValueOfVLabel.Text = Format(TheSuper.WaveBuilder.VDN,"0.000000")
+		  ValueOfRunTimeLabel.Text = Format((System.Ticks - TheSuper.StartTicks)/60.0, "###0.00")
+		  ValueOfStepNumberLabel.Text = TheSuper.N.ToString
+		  If MainThread.State = Thread.Running then  // if the thread is running
+		    CaseProgressBar.Value = Round(TheSuper.N*100/TheSuper.CaseInfo.NSteps)  // update the progress bar
+		  Else // the thread has stopped, meaning that this case is done
+		    CaseProgressBar.Value = 0  // set
+		    StartStopButton.Caption = "Run"
+		    me.RunMode = Timer.RunModes.Off // and we need no more updates
+		    ValueOfStatusLabel.Text = "Stopped"
+		    ValueOfStopReasonLabel.Text = TheSuper.TerminationMessage
+		    
+		    'if RunFileCheckBox.Value and AllCasesDone then
+		    'Var t As TextOutputStream = TextOutputStream.Create(OutputFile)
+		    't.WriteLine("M"+chr(9)+"δ"+chr(9)+"τc"+chr(9)+"R"+chr(9)+"β"+chr(9)+"ψ"+chr(9)+"λ0"+chr(9)+"Θ"_
+		    '+chr(9)+"Φ"+chr(9)+"Ω"+chr(9)+"χ1"+chr(9)+"θ1"+chr(9)+"φ1"+chr(9)+"χ2"+chr(9)+"θ2"+chr(9)+"φ2")
+		    'For Each caseItem As CaseInfoClass In TheCases
+		    'Var theUncertainties() As String
+		    'For Each unc As Double In caseItem.Uncertainties
+		    'theUncertainties.Add(unc.ToString)
+		    'Next
+		    'Var theString As String = String.FromArray(theUncertainties, chr(9))
+		    't.WriteLine(theString)
+		    'Next
+		    't.Close
+		    'end if 
+		    
+		  End if		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

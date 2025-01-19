@@ -9,7 +9,7 @@ Protected Class CaseSupervisorClass
 		  StartTicks = System.Ticks
 		  CaseInfo = currentCaseInfo // save the parameters for the current case
 		  
-		  // the following gives the number of main time steps to execute
+		  // the following calculates the unitless time step length in the detector frame.
 		  Δτr = CaseInfo.ΔT/CaseInfo.GM
 		  WaveBuilder = New WaveBuilderClass(CaseInfo) // create the WaveBuilder and initialize it
 		End Sub
@@ -20,7 +20,7 @@ Protected Class CaseSupervisorClass
 		  // This method actually executes the steps for the current case in question.
 		  Try
 		    For N = 0 to CaseInfo.NSteps
-		      τr = N*Δτr // this is the current tau time (needed to update the user interface)
+		      τr = N*Δτr // this is the current tau time at the receiver (needed to update the user interface)
 		      If WaveBuilder.DidDetectorStepOK(N) Then  // If the WaveBuilder was able to execute a sample step
 		      Else  // If the WaveBuilder was not able to complete the sample step, we are at coalescence
 		        TerminationMessage = "Coalescence Happened"

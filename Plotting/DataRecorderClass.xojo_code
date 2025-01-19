@@ -15,24 +15,28 @@ Protected Class DataRecorderClass
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Constructor(TheVNames() As String)
+		  VNames.ResizeTo(Names.LastIndex)
+		  For i As Integer = 0 To Names.LastIndex
+		    VNames(i) = Names(i)
+		  Next
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
-		Private Sub CreateFolder(TheVNames() as String, InternalSize as Integer = -1)
+		Private Sub CreateFolder(InternalSize as Integer)
 		  // This method creates a folder for the data items to be saved and initializes
 		  // binary streams for each of the items to be saved. It returns "OK" if all
 		  // went well, and an error message otherwise.
 		  
 		  // The following if statement ensures that we have some variable names.
-		  If TheVNames.LastIndex = -1 Then
+		  If VNames.LastIndex = -1 Then
 		    Var e as New RuntimeException
 		    e.Message = "CreateFolder: No variable names supplied."
 		    Raise e
 		  Else // we have names
-		    //  so create a clone of the supplied variable names list
-		    VNames.ResizeTo(TheVNames.LastIndex)
-		    For i As Integer = 0 To TheVNames.LastIndex
-		      VNames(i) = TheVNames(i)
-		    Next
-		    If InternalSize < 0 Then // if we are writing to hard disk
+		    If InternalSize < 0 Then // if we are writing to the hard drive
 		      Try
 		        Var d As New FolderItem("") // get directory containing the application
 		        Var dateTimeOfNow As DateTime = DateTime.Now // current date
@@ -133,25 +137,20 @@ Protected Class DataRecorderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub WriteData(Names() As String, Values() As Double, NumberOfDoubles As Integer = -1)
-		  // This method writes a record consisting of a set of double values.
-		  // The first time this method is called, it sets up a folder of files on disk,
-		  // or if the optional parameter specifying the number of doubles to store
-		  // is supplied, data is written internally to memory. 
-		  
+		Sub WriteData(Values() As Double, NumberofDoubles As Integer = -1)
 		  If Bs.LastIndex = -1 and Ms.LastIndex = -1 Then // if this is the first call to this function
 		    // Make sure that there is a one-to-one correspondance between
 		    // variable names and data items provided
-		    If Names.LastIndex <> Values.LastIndex Then // if the arrays do not have equal length
+		    If VNames.LastIndex <> Values.LastIndex Then // if the arrays do not have equal length
 		      Var e as New RuntimeException  // that is an error
 		      e.Message = "WriteData: The name and value lists are different sizes"
 		      Raise e
 		    Else // if we are good, create a folder (or a set of memory streams)
-		      CreateFolder(Names, NumberOfDoubles)
+		      CreateFolder(NumberOfDoubles)
 		    End If
 		  End If
 		  
-		  If Ms.LastIndex =  -1 Then // If we have no memory streams, we must be writing data to disk
+		  If Ms.LastIndex =  -1 Then // If we have no memory streams, we must be writing data to hard drive\
 		    If Bs.LastIndex = -1 Then // if we also have no binary streams
 		      Var e as New RuntimeException  // that is an error
 		      e.Message = "WriteData: No output streams defined for data"
@@ -159,7 +158,7 @@ Protected Class DataRecorderClass
 		    Else
 		      Try
 		        For i as Integer = 0 to Values.LastIndex
-		          Bs(i).WriteDouble(Values(i))
+		          If Not VNames(i).IsEmpty Then Bs(i).WriteDouble(Values(i))
 		        Next
 		      Catch e As RuntimeException
 		        CloseData // fatal error means that we should close out the files
@@ -173,17 +172,39 @@ Protected Class DataRecorderClass
 		      Raise e
 		    Else // otherwise, write the data to the memory streams
 		      For i as Integer = 0 to Values.LastIndex
-		        Ms(i).Write(Values(i))
+		        If Not VNames(i).IsEmpty Then Ms(i).Write(Values(i))
 		      Next
 		    End If
 		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub WriteData(Names() As String, Values() As Double, NumberOfDoubles As Integer = -1)
+		  // This method writes a record consisting of a set of double values.
+		  // The first time this method is called, it sets up a folder of files on the hard drive,
+		  // or if the optional parameter specifying the number of doubles to store for each value
+		  // is supplied, data is written internally to memory. 
+		  
+		  If Bs.LastIndex = -1 and Ms.LastIndex = -1 Then // if this is the first call to this function
+		    //  so create a clone of the supplied variable names list and save it to the VNames property
+		    VNames.ResizeTo(Names.LastIndex)
+		    For i As Integer = 0 To Names.LastIndex
+		      VNames(i) = Names(i)
+		    Next
+		  End If
+		  
+		  // Do the actual writing
+		  WriteData(Values, NumberOfDoubles)
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod
 
 
 	#tag Note, Name = Class Info
-		This class can be used in a version of LISA to create a binary file of data.
+		This class can be used in a version of BinaryWave to create a binary file of data.
 		It writes data in blocks of binary 8 bytes to keep things fast. It alternatively
 		can write data to memory instead of to hard disk files.
 		

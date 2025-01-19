@@ -1,49 +1,6 @@
 #tag Class
 Protected Class CaseInfoClass
 	#tag Method, Flags = &h0
-		Function Clone() As CaseInfoClass
-		  Var P As New CaseInfoClass
-		  P.Detectors = Detectors
-		  P.DZDR = DZDR
-		  P.FromFile = FromFile
-		  P.GM = GM
-		  P.GMΩe = GMΩe
-		  P.M = M
-		  P.NSteps = NSteps
-		  P.OneI1pZ = OneI1pZ
-		  P.PNOrder = PNOrder
-		  P.R = R
-		  P.RunDuration = RunDuration
-		  P.SolveFor.ResizeTo(SolveFor.LastIndex)
-		  For i As Integer = 0 to SolveFor.LastIndex
-		    P.SolveFor(i) = SolveFor(i)
-		  Next
-		  P.T0 = T0
-		  P.Ve = Ve
-		  P.Year = Year
-		  P.Z = Z
-		  P.β = β
-		  P.δ = δ
-		  P.ΔT = ΔT
-		  P.Θ = Θ
-		  P.λ0 = λ0
-		  P.π = π
-		  P.ρ0 = ρ0
-		  P.τc = τc
-		  P.Φ = Φ
-		  P.χ1 = χ1
-		  P.θ1 = θ1
-		  P.φ1 = φ1
-		  P.χ2 = χ2
-		  P.θ2 = θ2
-		  P.φ2 = φ2
-		  P.ψ = ψ
-		  Return P
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub FinishConstruction()
 		  // This method takes the information provided by the main window and fleshes out the parameter list.
 		  // This assumes that M is in solar masses, T0 (the binary orbital period in the solar-system frame) is in s,
@@ -51,17 +8,11 @@ Protected Class CaseInfoClass
 		  // The spin variables are assumed to be already unitless (in units of the star's squared  mass).
 		  // The run duration is assumed to be in years, but the step time is in seconds.
 		  
-		  Uncertainties.ResizeTo(14)  // We have 15 fundamental parameters
 		  Year = 3.15576e7  // length of the year in seconds
 		  GM = 4.9267e-6*M   // the mass of the sun in seconds times the mass of the system in solar masses
-		  Ve = 9.936e-5   //Average orbital speed of the LISA detector in units of c
 		  GMΩe = GM*1.99213231e-7 //Unitless value of LISA's orbital frequency
 		  R = R*Year // get R in seconds
 		  NSteps = Round(RunDuration*Year/ΔT)
-		  Var universe As New UniverseClass(R) // Create a universe class to solve the Z(R) problem
-		  Z = universe.GetZ // get the Z value for the given value of R
-		  DZDR = universe.GetDZDR // get the derivative of Z with respect to R
-		  OneI1pZ = 1.0/(1.0 + Z)
 		  π = 3.14159265358979324  // record the value of pi so that we only have to define it once
 		  
 		  // convert all angles from radians to degrees
@@ -69,9 +20,6 @@ Protected Class CaseInfoClass
 		  β = radiansFromDegrees*β
 		  ψ = radiansFromDegrees*ψ
 		  λ0 = radiansFromDegrees*λ0
-		  ρ0 = radiansFromDegrees*ρ0
-		  Θ = radiansFromDegrees*Θ
-		  Φ = radiansFromDegrees*Φ
 		  θ1 = radiansFromDegrees*θ1
 		  φ1 = radiansFromDegrees*φ1
 		  θ2 = radiansFromDegrees*θ2
@@ -79,6 +27,7 @@ Protected Class CaseInfoClass
 		  
 		  // Calculate τc. it doesn't matter if this is completely accurate, as τc becomes the fundamental parameter,
 		  // and its connection to T0 is only to allow the user to enter something more intuitive than the time to coalescence.
+		  // See the BinaryWaveMath file for the formula being used here.
 		  Var v0 As Double = Pow(GM*2.0*π*(1.0 + Z)/T0,1/3)
 		  Var η As Double = 0.25*(1.0 - δ*δ)
 		  Var Σℓ As Double = 0.5*((1.0-δ)*χ2*Cos(θ2) - (1.0+δ)*χ1*Cos(θ1))
@@ -87,25 +36,29 @@ Protected Class CaseInfoClass
 		  Var T3 As Double = 64/3*(47/40*Sℓ + δ*15/32*Σℓ-3/10*π)
 		  Var T4 As Double = 64*(743/2688 + 11/32*η)^2 - 128/9*(1855099/14450688 + 56975/258048*η - 371/2048*η*η)
 		  τc = 5/(256*η*v0^8)*(1.0 + T2*v0^2 + T3*v0^3 + T4*v0^4)
+		  // Not sure what these are doing.
 		  Var vC As New VCalculatorClass(τc, δ, 0, 0)
 		  Var v1 As Double = vC.VAtTime(0.0)
-		  
-		  // Initialize the DataRecorder class
-		  DataRecorder = New DataRecorderClass
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetSaveNames(Values() as String, StartIndex as Integer)
+		  // This method takes a list of string variable names from a case values list
+		  // sets up a list consisting of variable names to be saved, and then initializes
+		  // the DataRecorder class to store such a variable list.
+		  Var VNames() As String  // create an array
+		  For i As Integer = StartIndex To Values.LastIndex
+		    VNames.Add(Values(i))  // load it with the values supplied
+		  Next
+		  // initialize the DataRecorder instance with that list of variable names
+		  DataRecorder = New DataRecorderClass(VNames)
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
 		DataRecorder As DataRecorderClass
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Detectors As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		DZDR As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -129,7 +82,7 @@ Protected Class CaseInfoClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		OneI1pZ As Double
+		PNForV As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -145,19 +98,11 @@ Protected Class CaseInfoClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		SolveFor() As Boolean
+		SaveToFile As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		T0 As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Uncertainties() As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Ve As Double = 0.993362e-5
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -181,10 +126,6 @@ Protected Class CaseInfoClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Θ As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		θ1 As Double
 	#tag EndProperty
 
@@ -201,15 +142,7 @@ Protected Class CaseInfoClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ρ0 As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		τc As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Φ As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -237,19 +170,17 @@ Protected Class CaseInfoClass
 		M
 		  δ
 		  τc
-		  R
-		  β
-		  ψ
 		  λ0
-		  Θ
-		  Φ
 		  χ1
 		  θ1
 		  φ1
 		  χ2
 		  θ2
 		  φ2
-		NItems
+		  R
+		  β
+		  ψ
+		Nitems
 	#tag EndEnum
 
 
@@ -295,26 +226,10 @@ Protected Class CaseInfoClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Detectors"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="GMΩe"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Ve"
-			Visible=false
-			Group="Behavior"
-			InitialValue="0.993362e-5"
 			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
@@ -351,31 +266,7 @@ Protected Class CaseInfoClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Θ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="λ0"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ρ0"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Φ"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -488,22 +379,6 @@ Protected Class CaseInfoClass
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="R"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OneI1pZ"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="DZDR"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
