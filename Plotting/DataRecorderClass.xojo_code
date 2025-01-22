@@ -16,23 +16,15 @@ Protected Class DataRecorderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub CreateFolder(TheVNames() as String, InternalSize as Integer = -1)
+		Private Sub CreateFolder()
 		  // This method creates a folder for the data items to be saved and initializes
 		  // binary streams for each of the items to be saved. It returns "OK" if all
 		  // went well, and an error message otherwise.
 		  
 		  // The following if statement ensures that we have some variable names.
-		  If TheVNames.LastIndex = -1 Then
-		    Var e as New RuntimeException
-		    e.Message = "CreateFolder: No variable names supplied."
-		    Raise e
-		  Else // we have names
-		    //  so create a clone of the supplied variable names list
-		    VNames.ResizeTo(TheVNames.LastIndex)
-		    For i As Integer = 0 To TheVNames.LastIndex
-		      VNames(i) = TheVNames(i)
-		    Next
-		    If InternalSize < 0 Then // if we are writing to hard disk
+		  // Otherwise, we do nothing.
+		  If VNames.LastIndex > -1 Then
+		    If ArrayMax < 0 Then // if we are writing to hard disk
 		      Try
 		        Var d As New FolderItem("") // get directory containing the application
 		        Var dateTimeOfNow As DateTime = DateTime.Now // current date
@@ -45,9 +37,9 @@ Protected Class DataRecorderClass
 		        d = d.Child("LD"+ DateTimeString) // set up folder item for the enclosing folder
 		        d.CreateFolder // create the folder
 		        Var f As FolderItem
-		        Bs.ResizeTo(TheVNames.LastIndex) // make sure we have as many elements as vNames().
-		        For i As Integer = 0 to TheVNames.LastIndex // go through all the variable names
-		          f = d.Child(TheVNames(i) + ".lsb") // define a file for each
+		        Bs.ResizeTo(VNames.LastIndex) // make sure we have as many elements as vNames().
+		        For i As Integer = 0 to VNames.LastIndex // go through all the variable names
+		          f = d.Child(VNames(i) + ".lsb") // define a file for each
 		          Bs(i) = BinaryStream.Create(f) // create a binary stream for each
 		        Next
 		      Catch e As RuntimeException
@@ -61,9 +53,9 @@ Protected Class DataRecorderClass
 		        Raise e
 		      End If
 		    Else // we must be storing data to memory instead
-		      Ms.ResizeTo(TheVNames.LastIndex)
-		      For i As Integer = 0 to TheVNames.LastIndex
-		        Ms(i) = New MemoryStreamClass(TheVNames(i), InternalSize)
+		      Ms.ResizeTo(VNames.LastIndex)
+		      For i As Integer = 0 to VNames.LastIndex
+		        Ms(i) = New MemoryStreamClass(VNames(i), ArrayMax)
 		      Next
 		    End If
 		  End If
@@ -133,51 +125,53 @@ Protected Class DataRecorderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub WriteData(Names() As String, Values() As Double, NumberOfDoubles As Integer = -1)
+		Sub SetDataSource(theSource As WaveBuilderClass)
+		  DataSource = theSource
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetVariableNames(theNames() As String, arraySize As Integer = -1)
+		  VNames = theNames
+		  ArrayMax = arraySize
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub WriteData()
 		  // This method writes a record consisting of a set of double values.
 		  // The first time this method is called, it sets up a folder of files on disk,
 		  // or if the optional parameter specifying the number of doubles to store
 		  // is supplied, data is written internally to memory. 
 		  
-		  If Bs.LastIndex = -1 and Ms.LastIndex = -1 Then // if this is the first call to this function
-		    // Make sure that there is a one-to-one correspondance between
-		    // variable names and data items provided
-		    If Names.LastIndex <> Values.LastIndex Then // if the arrays do not have equal length
-		      Var e as New RuntimeException  // that is an error
-		      e.Message = "WriteData: The name and value lists are different sizes"
-		      Raise e
-		    Else // if we are good, create a folder (or a set of memory streams)
-		      CreateFolder(Names, NumberOfDoubles)
-		    End If
-		  End If
-		  
-		  If Ms.LastIndex =  -1 Then // If we have no memory streams, we must be writing data to disk
-		    If Bs.LastIndex = -1 Then // if we also have no binary streams
-		      Var e as New RuntimeException  // that is an error
-		      e.Message = "WriteData: No output streams defined for data"
-		      Raise e
-		    Else
-		      Try
-		        For i as Integer = 0 to Values.LastIndex
-		          Bs(i).WriteDouble(Values(i))
+		  If VNames.LastIndex > -1 Then // If we have some data to write
+		    If Ms.LastIndex =  -1 Then // If we have no memory streams, we must be writing data to disk
+		      If Bs.LastIndex = -1 Then // if we also have no binary streams
+		        Var e as New RuntimeException  // that is an error
+		        e.Message = "WriteData: No output streams defined for data"
+		        Raise e
+		      Else
+		        Try
+		          For i as Integer = 0 to VNames.LastIndex
+		            Bs(i).WriteDouble(DataSource.GetNamedValue(VNames(i)))
+		          Next
+		        Catch e As RuntimeException
+		          CloseData // fatal error means that we should close out the files
+		          Raise e // re-raise the error so that the calling program knows.
+		        End Try
+		      End If
+		    Else // we have no binary streams, so we are writing data to memory
+		      If Ms.LastIndex = -1 Then // if we also have no memory streams
+		        Var e as New RuntimeException  // that is an error
+		        e.Message = "WriteData: No output streams defined for data"
+		        Raise e
+		      Else // otherwise, write the data to the memory streams
+		        For i as Integer = 0 to VNames.LastIndex
+		          Ms(i).Write(DataSource.GetNamedValue(VNames(i)))
 		        Next
-		      Catch e As RuntimeException
-		        CloseData // fatal error means that we should close out the files
-		        Raise e // re-raise the error so that the calling program knows.
-		      End Try
-		    End If
-		  Else // we have no binary streams, so we are writing data to memory
-		    If Ms.LastIndex = -1 Then // if we also have no memory streams
-		      Var e as New RuntimeException  // that is an error
-		      e.Message = "WriteData: No output streams defined for data"
-		      Raise e
-		    Else // otherwise, write the data to the memory streams
-		      For i as Integer = 0 to Values.LastIndex
-		        Ms(i).Write(Values(i))
-		      Next
+		      End If
 		    End If
 		  End If
-		  
 		End Sub
 	#tag EndMethod
 
@@ -189,38 +183,25 @@ Protected Class DataRecorderClass
 		
 		In some place accessible to the routines generating data that you want to save,
 		define a property to hold an instance of this class. As you start a run create a new
-		instance of the class, and put it in the property.
+		instance of the class, and put it in the property. Also call the "SetVariableNames"
+		with an array of valid variable names and an optional array size if you are saving to
+		memory. This should generally be the maximum number of steps that the program
+		will execute. (If you do not specify an array size or set it to -1, the class will assume
+		that you are writing to the hard drive instead of memory.) As you start, you should
+		also call the "SetDataSource" method with the WaveBuilderClass instance that
+		will provide the data.
 		
 		Then, EXACTLY ONCE per main program time step, one should call the WriteData
-		method with two arrays: one containing a list of variable names, and containing the
-		variable values at the current time step. If either list is longer than the other,
-		a RuntimeError is generated.
+		method. It will extract the values for the variables named in the list and write
+		them to data or to memory. This method will call the WaveBuilderClass's
+		GetNamedValue for each item in the list and save the provided data to memory
+		or to the hard drive.
 		
-		if the variable is not unitless, provide its units by including a "-" in the variable
-		name in the variable name list and follow that character with the appropriate unit.
-		For example, one should ALWAYS include a time variable, which can be named either
-		"t-s" or "t-y" depending on whether the time supplied has unit of seconds or years.
-		
-		DO NOT call the WriteData method in multiple places with different lists of variable
-		names. Executions of the method after the first will ignore the name list, and generate
-		an error if the array of values does not have the same number of elements as the saved
-		the original call to this method did.
-		
-		(If you really need to do multiple calls with different names during a cycle, then define
-		a separate instance of the class for each dataset you need to save.)
-		
-		If you wre writing data to disk, the method creates a folder whose name has the
-		format "LDyymmddhhmmss" where the small letters are replaced by the date and
-		time the folder was created (so that each folder is unique) and a set of data files
+		If we are writing data to disk, the "SetVariableNames" method creates a folder whose
+		name has the format "LDyymmddhhmmss" where the small letters are replaced by the
+		date and time the folder was created (so that each folder is unique) and a set of data files
 		inside that folder. Each file will have the name specified by an element of the array
 		passed to this method and a final extension of ".lsb".
-		
-		You can save data to memory by including the optional integer parameter in this
-		call. This integer specifies the maximum number of doubles that you expect to
-		write for a given variable during a run (generally, the maximum number of steps the
-		program will execute). This reserves sufficient space in the array at the beginning
-		(building arrays by adding an item at a time takes time and is an inefficient way to use
-		memory).
 		
 		If there is some kind of error, this method raises a RuntimeException.To handle these
 		errors in the main program, enclose the call in a Try-Catch structure.
@@ -232,17 +213,25 @@ Protected Class DataRecorderClass
 		itself goes out of scope. But it is OK to execute this method many times (it will not do anything
 		if called when the files are already closed), so feel free to use it freely anywhere you like.
 		
-		To retrieve saved data, call the GetDataFor method with the name of the variable you 
-		are looking for. It returns Nil if the name was not found or there was another kind of
+		To retrieve saved data from memory, call the GetDataFor method with the name of the variable
+		you are looking for. It returns Nil if the name was not found or there was another kind of
 		problem. The GetVariableNames method returns the list of variable names (which again
-		will be Nil if there aren't any.
+		will be Nil if there aren't any).
 		
 		
 	#tag EndNote
 
 
 	#tag Property, Flags = &h21
+		Private ArrayMax As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private Bs() As BinaryStream
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private DataSource As WaveBuilderClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

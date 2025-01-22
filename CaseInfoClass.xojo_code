@@ -5,7 +5,7 @@ Protected Class CaseInfoClass
 		  Var P As New CaseInfoClass
 		  P.Detectors = Detectors
 		  P.DZDR = DZDR
-		  P.FromFile = FromFile
+		  P.ID = ID
 		  P.GM = GM
 		  P.GMΩe = GMΩe
 		  P.M = M
@@ -87,8 +87,9 @@ Protected Class CaseInfoClass
 		  Var T3 As Double = 64/3*(47/40*Sℓ + δ*15/32*Σℓ-3/10*π)
 		  Var T4 As Double = 64*(743/2688 + 11/32*η)^2 - 128/9*(1855099/14450688 + 56975/258048*η - 371/2048*η*η)
 		  τc = 5/(256*η*v0^8)*(1.0 + T2*v0^2 + T3*v0^3 + T4*v0^4)
-		  Var vC As New VCalculatorClass(τc, δ, 0, 0,λ0)
-		  Var v1 As Double = vC.VAtTime(0.0)
+		  // Not clear what the following is for, as vC will be destroyed at the end of the method
+		  //Var vC As New VCalculatorClass(τc, δ, 0, 0,λ0)
+		  //Var v1 As Double = vC.VAtTime(0.0)
 		  
 		  // Initialize the DataRecorder class
 		  DataRecorder = New DataRecorderClass
@@ -109,15 +110,15 @@ Protected Class CaseInfoClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		FromFile As Boolean = False
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		GM As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		GMΩe As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ID As String = "Disp"
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -130,6 +131,10 @@ Protected Class CaseInfoClass
 
 	#tag Property, Flags = &h0
 		OneI1pZ As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PNForV As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -237,18 +242,18 @@ Protected Class CaseInfoClass
 		M
 		  δ
 		  τc
-		  R
-		  β
-		  ψ
 		  λ0
-		  Θ
-		  Φ
 		  χ1
 		  θ1
 		  φ1
 		  χ2
 		  θ2
 		  φ2
+		  β
+		  ψ
+		  R
+		  Θ
+		  Φ
 		NItems
 	#tag EndEnum
 
@@ -519,12 +524,12 @@ Protected Class CaseInfoClass
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="FromFile"
+			Name="ID"
 			Visible=false
 			Group="Behavior"
 			InitialValue="False"
-			Type="Boolean"
-			EditorType=""
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NSteps"
@@ -540,6 +545,14 @@ Protected Class CaseInfoClass
 			Group="Behavior"
 			InitialValue=""
 			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PNForV"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

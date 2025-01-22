@@ -3,13 +3,15 @@ Protected Class MainThreadClass
 Inherits Thread
 	#tag Event
 		Sub Run()
-		  Var CaseInfoet As CaseInfoClass
-		  For each CaseInfoet in Cases
-		    CaseSupervisor = New CaseSupervisorClass(CaseInfoet)
-		    CaseSupervisor.DoSteps
+		  // This is the run ef
+		  Var theCase As CaseInfoClass
+		  // For each case we have set up
+		  For each theCase in Cases
+		    // create a new CaseSupervisor
+		    CaseSupervisor = New CaseSupervisorClass(theCase)
+		    CaseSupervisor.DoSteps  // execute steps for the case
 		  Next
-		  
-		  MainWindow.AllCasesDone = True 
+		  MainWindow.AllCasesDone = True // Let the main window know we are done
 		  
 		  
 		  
@@ -18,8 +20,8 @@ Inherits Thread
 
 
 	#tag Method, Flags = &h0
-		Sub LoadCases(TheCases() As CaseInfoClass)
-		  Cases = TheCases
+		Sub LoadCases(theCases() As CaseInfoClass)
+		  Cases = theCases
 		End Sub
 	#tag EndMethod
 
@@ -34,6 +36,18 @@ Inherits Thread
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Type"
+			Visible=true
+			Group="Behavior"
+			InitialValue=""
+			Type="Types"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Cooperative"
+				"1 - Preemptive"
+			#tag EndEnumValues
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
 			Visible=true

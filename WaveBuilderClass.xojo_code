@@ -9498,137 +9498,141 @@ Protected Class WaveBuilderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(P As CaseInfoClass)
-		  // Initialize constants
-		  Parameters = P
-		  cosβ= Cos(P.β)
-		  Sinβ= Sin(P.β)
-		  δ = P.δ
-		  β = P.β
-		  η = 0.25*(1.0 - δ*δ)
-		  π = P.π
-		  VeSinΘ = P.Ve*Sin(P.Θ)
-		  VeCosΘ = P.Ve*Cos(P.Θ)
-		  Δτr = P.ΔT/P.GM
-		  Δτ = Δτr/(1.0 + P.Z)
-		  SpinEvolver = New SpinEvolverClass(P)
-		  
-		  // Initialize the Noise class
-		  Noise = New NoiseClass(Parameters.ΔT)
-		  
-		  // Set up the base case
-		  'SourceEvolverBase = New SourceEvolverClass(P)
-		  '// We need the following for calculating the z-derivative
-		  'α0 = SourceEvolverBase.αN
-		  'ι0 = SourceEvolverBase.ιN
-		  'χax0 = SourceEvolverBase.χaXN
-		  'χay0 = SourceEvolverBase.χaYN
-		  'χaz0 = SourceEvolverBase.χaZN
-		  'χsx0 = SourceEvolverBase.χsXN
-		  'χsy0 = SourceEvolverBase.χsYN
-		  'χsz0 = SourceEvolverBase.χsZN
-		  '
-		  // Set up the parameters needed for ammplitude derivatives
-		  
-		  Trig = New AmplitudeFunctionsClass(β)
-		  Trig.UpdateιFactors(Sin(ιDN), Cos(ιDN))
-		  
-		  '// Set up source evolvers where the value of δ is tweaked
-		  'Var ε As Double = 1.0e-6
-		  'SourceEvolverδMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.δ), -ε))
-		  'SourceEvolverδPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.δ), ε))
-		  'IDεForδ = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of v0 is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverV0Minus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.v0), -ε))
-		  'SourceEvolverV0Plus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.v0), ε))
-		  'IDεForV0 = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ10x is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ10xMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10x), -ε))
-		  'SourceEvolverχ10xPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10x), ε))
-		  'IDεForχ10x = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ10y is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ10yMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10y), -ε))
-		  'SourceEvolverχ10yPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10y), ε))
-		  'IDεForχ10y = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ10z is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ10zMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10z), -ε))
-		  'SourceEvolverχ10zPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10z), ε))
-		  'IDεForχ10z = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ20x is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ20xMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20x), -ε))
-		  'SourceEvolverχ20xPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20x), ε))
-		  'IDεForχ20x = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ20y is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ20yMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20y), -ε))
-		  'SourceEvolverχ20yPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20y), ε))
-		  'IDεForχ20y = 0.5/ε
-		  '
-		  '// Set up source evolvers where the value of χ20z is adjusted
-		  'ε = 1.0e-6
-		  'SourceEvolverχ20zMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20z), -ε))
-		  'SourceEvolverχ20zPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20z), ε))
-		  'IDεForχ20z = 0.5/ε
-		  '
-		  '// Calculate derivative of Z with respect to lnR
-		  'DZDlnR = P.R*P.DZDR
-		  '
-		  '// Get the value of the detector time step (sampling interval)
-		  'DτrD = P.ΔT/P.GM
-		  '// do a trial step to get a value of DτIdeal.
-		  'SourceBestDτr = 1.0e300 // Initialize this to be something huge
-		  '// Note that DτIdeal is passed by reference, so each case has an opportunity to
-		  '// tweak its value. This is necessary because the base case may have no spin,
-		  '// while some side cases might have a spin that requires a certain step size.
-		  '// A first argument of zero indicates a trial step here.
-		  'SourceEvolverBase.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'If P.SolveFor(Integer(CaseInfoClass.Param.δ)) Then
-		  'SourceEvolverδMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverδPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'End If
-		  'If P.SolveFor(Integer(CaseInfoClass.Param.V0)) Then
-		  'SourceEvolverV0Minus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverV0Plus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'End If
-		  'If P.SolveForχ1 Then
-		  'SourceEvolverχ10xMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ10xPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ10yMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ10yPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ10zMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ10zPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'End If
-		  'If P.SolveForχ2 Then
-		  'SourceEvolverχ20xMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ20xPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ20yMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ20yPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ20zMinus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'SourceEvolverχ20zPlus.DoStep(-1.0, DτrD, SourceBestDτr)
-		  'End If
-		  'SourceBestDτr = SourceBestDτr*(1.0 + P.Z)  // get this step size in the solar system frame
-		  '
-		  '// Now set up the actual first time step
-		  '// The ratio of the real future step will be some power of two of the detector sample step size.
-		  '// Compute that power of two
-		  'Var NewStepPower as Integer = Floor(Log(SourceBestDτr/DτrD)/Log(2))
-		  'StepPowerF = NewStepPower // initalize the CurrentStepPower
-		  'StepPowerP = NewStepPower
-		  'DτrSF = DτrD*2^StepPowerF  // and initialize DτrSF (the time interval between the present and future source steps)
-		  'DτrSP = 0.0 // This will indicate a first step
-		  'SourceNow = 0
-		  'SourcePast = 0
+		Sub Constructor(P As CaseInfoClass = Nil)
+		  // If P is Nil we are just creating the class to check variable names
+		  If P <> Nil Then
+		    // Initialize constants
+		    Parameters = P
+		    cosβ= Cos(P.β)
+		    Sinβ= Sin(P.β)
+		    δ = P.δ
+		    β = P.β
+		    η = 0.25*(1.0 - δ*δ)
+		    π = P.π
+		    VeSinΘ = P.Ve*Sin(P.Θ)
+		    VeCosΘ = P.Ve*Cos(P.Θ)
+		    Δτr = P.ΔT/P.GM
+		    Δτ = Δτr/(1.0 + P.Z)
+		    SpinEvolver = New SpinEvolverClass(P)
+		    
+		    // Initialize the Noise class
+		    Noise = New NoiseClass(Parameters.ΔT)
+		    
+		    // Set up the base case
+		    'SourceEvolverBase = New SourceEvolverClass(P)
+		    '// We need the following for calculating the z-derivative
+		    'α0 = SourceEvolverBase.αN
+		    'ι0 = SourceEvolverBase.ιN
+		    'χax0 = SourceEvolverBase.χaXN
+		    'χay0 = SourceEvolverBase.χaYN
+		    'χaz0 = SourceEvolverBase.χaZN
+		    'χsx0 = SourceEvolverBase.χsXN
+		    'χsy0 = SourceEvolverBase.χsYN
+		    'χsz0 = SourceEvolverBase.χsZN
+		    '
+		    // Set up the parameters needed for ammplitude derivatives
+		    
+		    Trig = New AmplitudeFunctionsClass(β)
+		    Trig.UpdateιFactors(Sin(ιDN), Cos(ιDN))
+		    
+		    '// Set up source evolvers where the value of δ is tweaked
+		    'Var ε As Double = 1.0e-6
+		    'SourceEvolverδMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.δ), -ε))
+		    'SourceEvolverδPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.δ), ε))
+		    'IDεForδ = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of v0 is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverV0Minus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.v0), -ε))
+		    'SourceEvolverV0Plus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.v0), ε))
+		    'IDεForV0 = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ10x is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ10xMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10x), -ε))
+		    'SourceEvolverχ10xPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10x), ε))
+		    'IDεForχ10x = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ10y is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ10yMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10y), -ε))
+		    'SourceEvolverχ10yPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10y), ε))
+		    'IDεForχ10y = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ10z is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ10zMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10z), -ε))
+		    'SourceEvolverχ10zPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi10z), ε))
+		    'IDεForχ10z = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ20x is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ20xMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20x), -ε))
+		    'SourceEvolverχ20xPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20x), ε))
+		    'IDεForχ20x = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ20y is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ20yMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20y), -ε))
+		    'SourceEvolverχ20yPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20y), ε))
+		    'IDεForχ20y = 0.5/ε
+		    '
+		    '// Set up source evolvers where the value of χ20z is adjusted
+		    'ε = 1.0e-6
+		    'SourceEvolverχ20zMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20z), -ε))
+		    'SourceEvolverχ20zPlus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.chi20z), ε))
+		    'IDεForχ20z = 0.5/ε
+		    '
+		    '// Calculate derivative of Z with respect to lnR
+		    'DZDlnR = P.R*P.DZDR
+		    '
+		    '// Get the value of the detector time step (sampling interval)
+		    'DτrD = P.ΔT/P.GM
+		    '// do a trial step to get a value of DτIdeal.
+		    'SourceBestDτr = 1.0e300 // Initialize this to be something huge
+		    '// Note that DτIdeal is passed by reference, so each case has an opportunity to
+		    '// tweak its value. This is necessary because the base case may have no spin,
+		    '// while some side cases might have a spin that requires a certain step size.
+		    '// A first argument of zero indicates a trial step here.
+		    'SourceEvolverBase.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'If P.SolveFor(Integer(CaseInfoClass.Param.δ)) Then
+		    'SourceEvolverδMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverδPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'End If
+		    'If P.SolveFor(Integer(CaseInfoClass.Param.V0)) Then
+		    'SourceEvolverV0Minus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverV0Plus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'End If
+		    'If P.SolveForχ1 Then
+		    'SourceEvolverχ10xMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ10xPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ10yMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ10yPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ10zMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ10zPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'End If
+		    'If P.SolveForχ2 Then
+		    'SourceEvolverχ20xMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ20xPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ20yMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ20yPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ20zMinus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'SourceEvolverχ20zPlus.DoStep(-1.0, DτrD, SourceBestDτr)
+		    'End If
+		    'SourceBestDτr = SourceBestDτr*(1.0 + P.Z)  // get this step size in the solar system frame
+		    '
+		    '// Now set up the actual first time step
+		    '// The ratio of the real future step will be some power of two of the detector sample step size.
+		    '// Compute that power of two
+		    'Var NewStepPower as Integer = Floor(Log(SourceBestDτr/DτrD)/Log(2))
+		    'StepPowerF = NewStepPower // initalize the CurrentStepPower
+		    'StepPowerP = NewStepPower
+		    'DτrSF = DτrD*2^StepPowerF  // and initialize DτrSF (the time interval between the present and future source steps)
+		    'DτrSP = 0.0 // This will indicate a first step
+		    'SourceNow = 0
+		    'SourcePast = 0
+		    
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -9672,7 +9676,7 @@ Protected Class WaveBuilderClass
 		  SumSourceH(W)
 		  
 		  // Write out useful information for plotting (if this is not a case from a file)
-		  SaveDataForPlotting(τrDN)
+		  Parameters.DataRecorder.WriteData
 		  
 		  // We have completed the detector step successfully
 		  Return True
@@ -9680,15 +9684,76 @@ Protected Class WaveBuilderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SaveDataForPlotting(τr As Double)
-		  If Not Parameters.FromFile Then
-		    Var t As Double = τr*Parameters.GM/Parameters.Year
-		    Var ω As Double = VDN*VDN*VDN/Parameters.GM
-		    Var torb As Double = 2*Parameters.π/ω
-		    Var myNames() As String = Array("t-y", "HP", "HX", "Torb")
-		    Var myValues() As Double = Array(t, HP, HX, torb)
-		    Parameters.DataRecorder.WriteData(myNames, myValues, Parameters.NSteps)
+		Function GetNamedValue(theName As String) As Double
+		  If theName = "t-y" Then 
+		    If Parameters = Nil Then
+		      Return 0
+		    Else
+		      Return τrDN*Parameters.GM/Parameters.Year
+		    End If
 		  End If
+		  If theName = "t-s" Then
+		    If Parameters = Nil Then
+		      Return 0
+		    Else
+		      Return τrDN*Parameters.GM
+		    End If
+		  End If
+		  If theName = "H+" Or theName = "HP" Then Return HP
+		  If theName = "Hx" Then Return HX
+		  If theName = "V" Or theName = "VDN" Then Return VDN
+		  If theName = "α" Or theName = "αDN" Then Return αDN
+		  If theName = "ι" Or theName = "ιDN" Then Return ιDN
+		  If theName = "Ψ" Or theName = "ΨrDN" Then Return ΨrDN
+		  If theName = "χ1x" Then Return χsxDN + χaxDN
+		  If theName = "χ1y" Then Return χsyDN + χayDN
+		  If theName = "χ1z" Then Return χszDN + χazDN
+		  If theName = "χ2x" Then Return χsxDN - χaxDN
+		  If theName = "χ2y" Then Return χsyDN - χayDN
+		  If theName = "χ2z" Then Return χszDN - χazDN
+		  
+		  // This part handles a request for a value in an array. (Handle all non-array possibilities first.)
+		  Var parts() As String = theName.Split("(") // split the name into parts at the open parenthesis
+		  Var arrayName As String = parts(0) // we are always going to have this part
+		  If parts.LastIndex = 0 Then Raise New RuntimeException("No Open Parenthesis")
+		  If Not parts(1).EndsWith(")") Then Raise New RuntimeException("No Close Parenthesis")
+		  parts = parts(1).Split(")") // split at the close parenthesis
+		  If parts.LastIndex > 1 or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
+		  parts = parts(0).Split(",") // split at a comma, if there is one
+		  Var index1 As Integer = -1
+		  If parts(0).ToInteger.ToString <> parts(0) Then
+		    Raise New RuntimeException("Index Not An Integer")
+		  Else
+		    index1 = parts(0).ToInteger
+		    If index1 < 0 Then Raise New RuntimeException("Index Negative")
+		  End If
+		  Var index2 As Integer = -1
+		  If parts.LastIndex > 0 Then
+		    If parts.LastIndex > 1 Then Raise New RuntimeException("Too Many Indices")
+		    If parts(1).ToInteger.ToString <> parts(1) Then Raise New RuntimeException("Index Not An Integer")
+		    index2 = parts(1).ToInteger
+		    If index2 < 0 Then Raise New RuntimeException("Index Negative")
+		  End If
+		  // note that index2 will be -1 if a second index is not specified by the name, but positive if it is
+		  If arrayName = "W" And IndicesCheck(index1, 250, index2, -1) Then Return W(index1)
+		  If arrayName = "A" And IndicesCheck(index1, 250, index2, -1) Then Return A(index2)
+		  
+		  Raise New RuntimeException("Name Not Found")
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function IndicesCheck(index1 as Integer, max1 as Integer, index2 as Integer, max2 as Integer) As Boolean
+		  If index2 = 1 And max2 <> -1 Then Raise New RuntimeException("No Required Second Index")
+		  If index1 > max1 Or index2 > max2 Then Raise New RuntimeException("Index Out of Range")
+		  Return True
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SaveDataForPlotting()
+		  Parameters.DataRecorder.WriteData
+		  
 		End Sub
 	#tag EndMethod
 
@@ -9807,7 +9872,7 @@ Protected Class WaveBuilderClass
 
 
 	#tag Property, Flags = &h0
-		A(247) As Double
+		A(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -9823,39 +9888,39 @@ Protected Class WaveBuilderClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdι(247) As Double
+		dAdι(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdβ(247) As Double
+		dAdβ(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdδ(247) As Double
+		dAdδ(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχaxDN(247) As Double
+		dAdχaxDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχayDN(247) As Double
+		dAdχayDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχazDN(247) As Double
+		dAdχazDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχsxDN(247) As Double
+		dAdχsxDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχsyDN(247) As Double
+		dAdχsyDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		dAdχszDN(247) As Double
+		dAdχszDN(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -9867,11 +9932,11 @@ Protected Class WaveBuilderClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		DWDα(247) As Double
+		DWDα(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		DWDΨ(247) As Double
+		DWDΨ(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -9939,7 +10004,7 @@ Protected Class WaveBuilderClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		W(247) As Double
+		W(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

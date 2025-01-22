@@ -12,6 +12,7 @@ Protected Class CaseSupervisorClass
 		  // the following gives the number of main time steps to execute
 		  Δτr = CaseInfo.ΔT/CaseInfo.GM
 		  WaveBuilder = New WaveBuilderClass(CaseInfo) // create the WaveBuilder and initialize it
+		  CaseInfo.DataRecorder.SetDataSource(WaveBuilder) // set the data source for any data to record
 		  
 		  // Create and initialize the ATA matrix
 		  ATAMatrix = New Matrix(15) // Initalize an empty 15x15 matrix
@@ -30,13 +31,14 @@ Protected Class CaseSupervisorClass
 		    For N = 0 to CaseInfo.NSteps
 		      τr = N*Δτr // this is the current tau time (needed to update the user interface)
 		      If WaveBuilder.DidDetectorStepOK(N) Then  // If the WaveBuilder was able to execute a sample step
-		        'LoadATA(WaveBuilder.DHDq) // load the ATA matrix with the current values
+		        // LoadATA(WaveBuilder.DHDq) // load the ATA matrix with the current values
 		      Else  // If the WaveBuilder was not able to complete the sample step, we are at coalescence
 		        TerminationMessage = "Coalescence Happened"
 		        Exit  // Abort the loop
 		      End If
 		    Next
-		    'UncertaintyCalculator.Calculate(ATAMatrix) // solve for the uncertainties
+		    CaseInfo.DataRecorder.CloseData // at the end, make sure we close any data files
+		    // UncertaintyCalculator.Calculate(ATAMatrix) // solve for the uncertainties
 		  Catch err As RuntimeException
 		    TerminationMessage = err.Message + " at step " + N.ToString
 		  End Try

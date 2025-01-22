@@ -317,8 +317,8 @@ Protected Class SpinEvolverClass
 
 	#tag Method, Flags = &h0
 		Function GetSpinDataAtTime(τ As Double) As SpinResultsClass
+		  Var data As New SpinResultsClass
 		  If NoPrecession Then // if we have no spins or spins are aligned with the orbital AM
-		    Var data As New SpinResultsClass
 		    data.ι = 0.0
 		    data.α = 3.14159265358979324
 		    data.χax = 0.0
@@ -359,7 +359,6 @@ Protected Class SpinEvolverClass
 		    // Interpolate data to pass on to the rest of the program
 		    Var fN As Double = (τ - τP)/ΔτhP
 		    Var fP As Double = 1.0 - fN
-		    Var data As New SpinResultsClass 
 		    data.ι = fN*ι(1) + fP*ι(0)
 		    data.α = fN*α(1) + fP*α(0)
 		    data.χax = 0.5*(fN*(χ1x(1) - χ2x(1)) + fP*(χ1x(0) - χ2x(0)))
