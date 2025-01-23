@@ -134,6 +134,7 @@ Protected Class DataRecorderClass
 		Sub SetVariableNames(theNames() As String, arraySize As Integer = -1)
 		  VNames = theNames
 		  ArrayMax = arraySize
+		  CreateFolder
 		End Sub
 	#tag EndMethod
 

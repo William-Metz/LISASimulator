@@ -9751,13 +9751,6 @@ Protected Class WaveBuilderClass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SaveDataForPlotting()
-		  Parameters.DataRecorder.WriteData
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub SumSourceH(Wave() As Double, DoVDeriv As Boolean = False)
 		  // These constants define static variables indicating the endpoints of certain polarizations
 		  Static H0PLastIndex As Integer = 4
@@ -10068,7 +10061,7 @@ Protected Class WaveBuilderClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ΨP As Integer
+		ΨP As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

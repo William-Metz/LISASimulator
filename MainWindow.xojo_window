@@ -686,7 +686,7 @@ Begin DesktopWindow MainWindow
             Index           =   -2147483648
             InitialParent   =   "RectForRunState"
             Italic          =   False
-            Left            =   529
+            Left            =   549
             LockBottom      =   False
             LockedInPosition=   False
             LockLeft        =   True
@@ -706,7 +706,7 @@ Begin DesktopWindow MainWindow
             Transparent     =   False
             Underline       =   False
             Visible         =   True
-            Width           =   263
+            Width           =   243
          End
          Begin DesktopLabel CaptionForStopReasonLabel
             AllowAutoDeactivate=   True
@@ -998,7 +998,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   59
+         Top             =   66
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1028,7 +1028,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   83
+         Top             =   90
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1596,7 +1596,7 @@ Begin DesktopWindow MainWindow
          TabStop         =   True
          TickMarkStyle   =   2
          Tooltip         =   ""
-         Top             =   55
+         Top             =   62
          Transparent     =   False
          Value           =   0
          Visible         =   True
@@ -1629,7 +1629,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   57
+         Top             =   64
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1643,7 +1643,7 @@ Begin DesktopWindow MainWindow
          Backdrop        =   0
          DrawGrid        =   True
          Enabled         =   True
-         Height          =   659
+         Height          =   652
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          Left            =   20
@@ -1665,7 +1665,7 @@ Begin DesktopWindow MainWindow
          TitleFontSize   =   18.0
          TitleOffset     =   15.0
          Tooltip         =   ""
-         Top             =   121
+         Top             =   128
          Transparent     =   True
          Visible         =   True
          Width           =   960
@@ -1697,7 +1697,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   57
+         Top             =   64
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1730,7 +1730,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   84
+         Top             =   91
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1760,7 +1760,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   87
+         Top             =   94
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1792,7 +1792,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   84
+         Top             =   91
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1825,7 +1825,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   84
+         Top             =   91
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1857,7 +1857,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   84
+         Top             =   91
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1890,7 +1890,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   84
+         Top             =   91
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -1920,7 +1920,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   87
+         Top             =   94
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2002,7 +2002,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   87
+         Top             =   94
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2032,7 +2032,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   88
+         Top             =   95
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2061,9 +2061,10 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   59
+         Top             =   66
          Transparent     =   False
          Underline       =   False
+         Value           =   False
          Visible         =   True
          VisualState     =   0
          Width           =   131
@@ -2095,7 +2096,7 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   27
+         Top             =   34
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2125,7 +2126,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   29
+         Top             =   36
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2158,11 +2159,11 @@ Begin DesktopWindow MainWindow
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   29
+         Top             =   36
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   177
+         Width           =   269
       End
    End
    Begin MainThreadClass MainThread

@@ -328,6 +328,7 @@ Protected Class SpinEvolverClass
 		    data.χsy = 0.0
 		    data.χsz = 0.5*(χ1+χ2)
 		    CalculateVAndℓAtTime(τ)
+		    data.V = VN
 		    For dq As Integer = Dδ To Dφ2
 		      data.DιI(dq) = 0.0
 		      data.DαI(dq) = 0.0
@@ -369,6 +370,7 @@ Protected Class SpinEvolverClass
 		    data.χsz = 0.5*(fN*(χ1z(1) + χ2z(1)) + fP*(χ1z(0) + χ2z(0)))
 		    data.Ψ = fN*Ψpr(1) + fP*Ψpr(0) + Ψmp
 		    CalculateVAndℓAtTime(τ)
+		    data.V = VN
 		    For dq As Integer = Dδ To Dφ2
 		      data.DιI(dq) = fN*DιI(dq,1) + fP*DιI(dq,0)
 		      data.DαI(dq) = fN*DαI(dq,1) + fP*DαI(dq,0)
