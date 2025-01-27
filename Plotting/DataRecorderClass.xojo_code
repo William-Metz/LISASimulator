@@ -11,7 +11,6 @@ Protected Class DataRecorderClass
 		      end if
 		    Next
 		  End If
-		  If Ms.LastIndex > -1 Then Ms.ResizeTo(-1)
 		End Sub
 	#tag EndMethod
 

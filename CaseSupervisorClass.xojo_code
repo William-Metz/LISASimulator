@@ -37,7 +37,6 @@ Protected Class CaseSupervisorClass
 		        Exit  // Abort the loop
 		      End If
 		    Next
-		    CaseInfo.DataRecorder.CloseData // at the end, make sure we close any data files
 		    // UncertaintyCalculator.Calculate(ATAMatrix) // solve for the uncertainties
 		  Catch err As RuntimeException
 		    TerminationMessage = err.Message + " at step " + N.ToString

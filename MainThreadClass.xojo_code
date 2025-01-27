@@ -3,13 +3,16 @@ Protected Class MainThreadClass
 Inherits Thread
 	#tag Event
 		Sub Run()
-		  // This is the run ef
-		  Var theCase As CaseInfoClass
+		  // When running, we simply execute all the cases we have.
 		  // For each case we have set up
-		  For each theCase in Cases
+		  For i As Integer = 0 To Cases.LastIndex
+		    Var theCase As CaseInfoClass = Cases(i)
 		    // create a new CaseSupervisor
 		    CaseSupervisor = New CaseSupervisorClass(theCase)
-		    CaseSupervisor.DoSteps  // execute steps for the case
+		    CaseSupervisor.DoSteps  // execute steps for that case
+		    // If we are saving to disk, we should close the data file after each case is complete
+		    // (any data saved to memory will be destroyed when the application quits)
+		    theCase.DataRecorder.CloseData
 		  Next
 		  MainWindow.AllCasesDone = True // Let the main window know we are done
 		  
