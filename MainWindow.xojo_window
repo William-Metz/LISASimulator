@@ -3086,9 +3086,11 @@ End
 		  // If the row tag for this row has been set (or in the case of the row for Ω, the row tags
 		  // for the Θ and/or Φ rows have been set), then make the background grey, indicating that
 		  // we are not calculating the uncertainty for this parameter.
-		  If me.RowTagAt(row) = True Or (row = 15 And (me.RowTagAt(14) = True Or me.RowTagAt(15) = True)) Then
-		    g.DrawingColor = Color.RGB(230,230,230)
-		    g.FillRectangle(0,0, g.Width, g.Height)
+		  If row < 16 Then
+		    If me.RowTagAt(row) = True Or (row = 15 And (me.RowTagAt(14) = True Or me.RowTagAt(15) = True)) Then
+		      g.DrawingColor = Color.RGB(230,230,230)
+		      g.FillRectangle(0,0, g.Width, g.Height)
+		    End If
 		  End If
 		End Function
 	#tag EndEvent
