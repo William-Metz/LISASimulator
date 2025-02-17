@@ -9685,20 +9685,23 @@ Protected Class WaveBuilderClass
 
 	#tag Method, Flags = &h0
 		Function GetNamedValue(theName As String) As Double
+		  // Handle non-array properties first
 		  If theName = "t-y" Then 
 		    If Parameters = Nil Then
 		      Return 0
 		    Else
-		      Return τrDN*Parameters.GM/Parameters.Year
+		      Return τrDN * Parameters.GM / Parameters.Year
 		    End If
 		  End If
+		  
 		  If theName = "t-s" Then
 		    If Parameters = Nil Then
 		      Return 0
 		    Else
-		      Return τrDN*Parameters.GM
+		      Return τrDN * Parameters.GM
 		    End If
 		  End If
+		  
 		  If theName = "H+" Or theName = "HP" Then Return HP
 		  If theName = "Hx" Then Return HX
 		  If theName = "V" Or theName = "VDN" Then Return VDN
@@ -9712,14 +9715,21 @@ Protected Class WaveBuilderClass
 		  If theName = "χ2y" Then Return χsyDN - χayDN
 		  If theName = "χ2z" Then Return χszDN - χazDN
 		  
-		  // This part handles a request for a value in an array. (Handle all non-array possibilities first.)
-		  Var parts() As String = theName.Split("(") // split the name into parts at the open parenthesis
-		  Var arrayName As String = parts(0) // we are always going to have this part
+		  // Handle array properties for the `necdet` object
+		  Var parts() As String = theName.Split("(") // Split the name into parts at the open parenthesis
+		  Var arrayName As String = parts(0) // The first part should be the array name
+		  
+		  // Check for the presence of parentheses and valid array indices
 		  If parts.LastIndex = 0 Then Raise New RuntimeException("No Open Parenthesis")
 		  If Not parts(1).EndsWith(")") Then Raise New RuntimeException("No Close Parenthesis")
-		  parts = parts(1).Split(")") // split at the close parenthesis
-		  If parts.LastIndex > 1 or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
-		  parts = parts(0).Split(",") // split at a comma, if there is one
+		  
+		  // Remove closing parenthesis and split at the comma (if any)
+		  parts = parts(1).Split(")") 
+		  If parts.LastIndex > 1 Or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
+		  
+		  parts = parts(0).Split(",") // Split at a comma, if there are multiple indices
+		  
+		  // Convert the first index to Integer
 		  Var index1 As Integer = -1
 		  If parts(0).ToInteger.ToString <> parts(0) Then
 		    Raise New RuntimeException("Index Not An Integer")
@@ -9727,6 +9737,8 @@ Protected Class WaveBuilderClass
 		    index1 = parts(0).ToInteger
 		    If index1 < 0 Then Raise New RuntimeException("Index Negative")
 		  End If
+		  
+		  // If there is a second index (e.g., for two-dimensional arrays), handle it
 		  Var index2 As Integer = -1
 		  If parts.LastIndex > 0 Then
 		    If parts.LastIndex > 1 Then Raise New RuntimeException("Too Many Indices")
@@ -9734,11 +9746,24 @@ Protected Class WaveBuilderClass
 		    index2 = parts(1).ToInteger
 		    If index2 < 0 Then Raise New RuntimeException("Index Negative")
 		  End If
-		  // note that index2 will be -1 if a second index is not specified by the name, but positive if it is
+		  
+		  // Handle array property lookups
+		  If arrayName = "ndAdι" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdι(index1)
+		  If arrayName = "ndAdβ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdβ(index1)
+		  If arrayName = "ndAdδ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdδ(index1)
+		  If arrayName = "ndAdχaxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχaxDN(index1)
+		  If arrayName = "ndAdχayDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχayDN(index1)
+		  If arrayName = "ndAdχazDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχazDN(index1)
+		  If arrayName = "ndAdχsxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsxDN(index1)
+		  If arrayName = "ndAdχsyDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsyDN(index1)
+		  If arrayName = "ndAdχszDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχszDN(index1)
+		  
+		  // Handle arrays W and A
 		  If arrayName = "W" And IndicesCheck(index1, 250, index2, -1) Then Return W(index1)
 		  If arrayName = "A" And IndicesCheck(index1, 250, index2, -1) Then Return A(index2)
 		  
 		  Raise New RuntimeException("Name Not Found")
+		  
 		End Function
 	#tag EndMethod
 
@@ -10311,7 +10336,7 @@ Protected Class WaveBuilderClass
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

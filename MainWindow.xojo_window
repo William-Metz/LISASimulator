@@ -25,7 +25,6 @@ Begin DesktopWindow MainWindow
    Visible         =   True
    Width           =   1000
    Begin Timer InterfaceUpdateTimer
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Period          =   500
@@ -945,7 +944,7 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   571
+         Height          =   568
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          InitialValue    =   "Parameter\nM (sols)\nδ\nTorb (s)\nλ0\nχ1	\nθ1 (°)\nφ1 (°)\nχ2\nθ2 (°)\nφ2 (°)\nβ(°)	\nψ (°)\nR (ly)\nΘ (°)\nΦ (°)	\nΩ (/sky)\nρ0 (°)\nPN Order\nDetectors\nΔT (s)\nDuration (y)"
@@ -1057,7 +1056,7 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   414
+         Height          =   412
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          InitialValue    =   "Case 1\n10000\n0.1\n500\n0\n0\n0\n0\n0\n0\n0\n39\n24\n1.0e7\n5\n268.5"
@@ -1547,12 +1546,12 @@ Begin DesktopWindow MainWindow
          HasHorizontalScrollbar=   False
          HasVerticalScrollbar=   False
          HeadingIndex    =   -1
-         Height          =   441
+         Height          =   437
          Index           =   -2147483648
          InitialParent   =   "MainTabPanel"
          InitialValue    =   "Uncertainty\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?"
          Italic          =   False
-         Left            =   352
+         Left            =   354
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -1967,7 +1966,7 @@ Begin DesktopWindow MainWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   541
+         Top             =   538
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -2167,15 +2166,12 @@ Begin DesktopWindow MainWindow
       End
    End
    Begin MainThreadClass MainThread
-      DebugIdentifier =   ""
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
       Scope           =   0
       StackSize       =   0
       TabPanelIndex   =   0
-      ThreadID        =   0
-      ThreadState     =   0
       Type            =   0
    End
 End
@@ -3086,10 +3082,12 @@ End
 		  // If the row tag for this row has been set (or in the case of the row for Ω, the row tags
 		  // for the Θ and/or Φ rows have been set), then make the background grey, indicating that
 		  // we are not calculating the uncertainty for this parameter.
-		  If me.RowTagAt(row) = True Or (row = 15 And (me.RowTagAt(14) = True Or me.RowTagAt(15) = True)) Then
-		    g.DrawingColor = Color.RGB(230,230,230)
-		    g.FillRectangle(0,0, g.Width, g.Height)
-		  End If
+		  If row < 16 Then 
+		    If me.RowTagAt(row) = True Or (row = 15 And (me.RowTagAt(14) = True Or me.RowTagAt(15) = True)) Then
+		      g.DrawingColor = Color.RGB(230,230,230)
+		      g.FillRectangle(0,0, g.Width, g.Height)
+		    End If
+		  End if
 		End Function
 	#tag EndEvent
 	#tag Event
