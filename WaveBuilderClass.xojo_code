@@ -9535,6 +9535,8 @@ Protected Class WaveBuilderClass
 		    Trig = New AmplitudeFunctionsClass(β)
 		    Trig.UpdateιFactors(Sin(ιDN), Cos(ιDN))
 		    
+		    necdet = new NecdetsClass
+		    
 		    '// Set up source evolvers where the value of δ is tweaked
 		    'Var ε As Double = 1.0e-6
 		    'SourceEvolverδMinus = New SourceEvolverClass(Tweak(Integer(CaseInfoClass.Param.δ), -ε))
@@ -9975,6 +9977,10 @@ Protected Class WaveBuilderClass
 
 	#tag Property, Flags = &h0
 		HX As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		necdet As NecdetsClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

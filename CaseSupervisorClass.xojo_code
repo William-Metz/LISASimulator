@@ -5,32 +5,21 @@ Protected Class CaseSupervisorClass
 		  ' The CaseSupervisor class handles running multiple cases
 		  StartTicks = System.Ticks
 		  
-		  ' Define the specific time shift Δt (adjust as needed)
-		  Dim timeShift As Double = 0.01  ' Set this value
-		  
-		  ' Initialize the arrays with 3 elements (index 0, 1, 2)
-		  CaseList = New CaseInfoClass(2) {}  
-		  WaveBuilders = New WaveBuilderClass(2) {}
-		  ATAMatrices = New Matrix(2) {}
-		  UncertaintyCalculators = New UncertaintyCalculatorClass(2) {}
-		  
-		  ' Initialize each element of the arrays with new instances
-		  Dim CentralCase As New CaseInfoClass()  
+		  Var ep As Double = 1e-6
 		  
 		  ' Create and initialize cases with time shifts
-		  CaseList(0) = CentralCase  ' Central case
-		  CaseList(1) = CentralCase.AdjustTime(-timeShift) ' Case before central case
-		  CaseList(2) = CentralCase.AdjustTime(timeShift) ' Case after central case
+		  CaseList(0) = CaseInfo
+		  CaseList(1) = CaseInfo.clone ' Case before central case
+		  CaseList(2) = CaseInfo.clone ' Case after central case
+		  CaseList(1).β = CaseInfo.β + ep
+		  CaseList(2).β = CaseInfo.β - ep
 		  
-		  ' Loop to initialize WaveBuilders, ATAMatrices, and UncertaintyCalculators
+		  WaveBuilders(0) = New WaveBuilderClass(CaseInfo)
+		  WaveBuilders(1) = New WaveBuilderClass(CaseList(1))
+		  WaveBuilders(2) = New WaveBuilderClass(CaseList(2))
+		  
 		  For i As Integer = 0 To 2
-		    WaveBuilders(i) = New WaveBuilderClass(CaseList(i)) ' Initialize WaveBuilder for each case
 		    CaseList(i).DataRecorder.SetDataSource(WaveBuilders(i)) ' Connect data source for recording
-		    
-		    ATAMatrices(i) = New Matrix(15) ' Initialize an empty 15x15 matrix
-		    ATAMatrices(i).InverseTest ' Test matrix inversion (optional, but checks matrix validity)
-		    
-		    UncertaintyCalculators(i) = New UncertaintyCalculatorClass(CaseList(i)) ' Initialize uncertainty calculator for each case
 		  Next
 		  
 		End Sub
@@ -38,51 +27,27 @@ Protected Class CaseSupervisorClass
 
 	#tag Method, Flags = &h0
 		Sub DoSteps()
-		  Try
-		    ' Define the time shift Δt
-		    Dim timeShift As Double = 0.01  ' Set this value
-		    Dim Δt As Double = timeShift     ' Use the timeShift defined in the constructor
-		    
-		    ' Iterate over all three cases
-		    For i As Integer = 0 To 2
-		      ' Access the CaseInfo, WaveBuilder, ATAMatrix, and UncertaintyCalculator for the current case
-		      Dim CaseInfo As CaseInfoClass = CaseList(i)  
-		      Dim WaveBuilder As WaveBuilderClass = WaveBuilders(i)
-		      Dim ATAMatrix As Matrix = ATAMatrices(i)
-		      Dim UncertaintyCalculator As UncertaintyCalculatorClass = UncertaintyCalculators(i)
-		      
-		      ' Compute per-case time step
-		      Dim Δτr As Double = CaseInfo.ΔT / CaseInfo.GM
-		      
-		      ' Loop over the number of steps for this case
-		      For N As Integer = 0 To CaseInfo.NSteps
-		        ' Compute τr based on the case type
-		        Dim τr As Double
-		        Select Case i
-		        Case 0  ' Central case
-		          τr = N * Δτr
-		        Case 1  ' Case before the central case
-		          τr = (N * Δτr) - Δt  ' Apply the time shift for case before
-		        Case 2  ' Case after the central case
-		          τr = (N * Δτr) + Δt  ' Apply the time shift for case after
-		        End Select
-		        
-		        ' Execute step
-		        If WaveBuilder.DidDetectorStepOK(N) Then
-		          ' LoadATA(WaveBuilder.DHDq)  ' Load ATA matrix for this case (optional)
-		        Else
-		          Exit For  ' Stop processing this case if step is not OK
+		  
+		  TerminationMessage = ""
+		  TrY
+		    For N = 0 to CaseInfo.NSteps
+		      τr = N*Δτr // this is the current tau time (needed to update the user interface)
+		      For i As Integer = 0 to 2
+		        If WaveBuilders(i).DidDetectorStepOK(N) Then  // If the WaveBuilder was able to execute a sample step
+		          // LoadATA(WaveBuilder.DHDq) // load the ATA matrix with the current values
+		        Else  // If the WaveBuilder was not able to complete the sample step, we are at coalescence
+		          TerminationMessage = "Coalescence Happened"
+		          Exit  // Abort the loop
 		        End If
 		      Next
-		      
-		      ' Solve for uncertainties (if needed)
-		      ' UncertaintyCalculator.Calculate(ATAMatrix)  ' Uncomment this if solving uncertainties is required
-		      
+		      If TerminationMessage <> "" Then Exit
+		      // Set up Wavebuilders(0).necdet with data
 		    Next
+		    // UncertaintyCalculator.Calculate(ATAMatrix) // solve for the uncertainties
 		  Catch err As RuntimeException
-		    ' Handle any errors that occur during execution
 		    TerminationMessage = err.Message + " at step " + N.ToString
 		  End Try
+		  If TerminationMessage = "" Then terminationMessage = "Normal termination."
 		End Sub
 	#tag EndMethod
 
@@ -98,10 +63,6 @@ Protected Class CaseSupervisorClass
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h0
-		ATAMatrices(2) As ATAMatrix
-	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		ATAMatrix As Matrix

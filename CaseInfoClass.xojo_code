@@ -1,17 +1,6 @@
 #tag Class
 Protected Class CaseInfoClass
 	#tag Method, Flags = &h0
-		Function AdjustTime(Δt As Double) As CaseInfoClass
-		  Dim newCase As CaseInfoClass = Me.Clone()  // Clone the current instance
-		  
-		  // Adjust the start time by the time shift Δt
-		  newCase.StartTime = Self.StartTime + Δt  // Add the shift to the current start time
-		  
-		  Return newCase  // Return the new case with the adjusted time
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function Clone() As CaseInfoClass
 		  Var P As New CaseInfoClass
 		  P.Detectors = Detectors
