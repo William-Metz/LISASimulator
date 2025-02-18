@@ -2168,6 +2168,7 @@ Begin DesktopWindow MainWindow
    End
    Begin MainThreadClass MainThread
       DebugIdentifier =   ""
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -2730,7 +2731,7 @@ End
 		  // Whether the thread is running or not, update display of these values
 		  ValueOfTc.Text = Format(theCase.τc*theCase.GM/theCase.Year, "0.0000e#")  // time to coalescence
 		  ValueOfSimTimeLabel.Text = Format(theSuper.τr*theCase.GM/theCase.Year, "0.0000000")  // current simulation time
-		  ValueOfVLabel.Text = Format(theSuper.WaveBuilder.VDN,"0.000000")  // current value of V
+		  ValueOfVLabel.Text = Format(theSuper.WaveBuilder.SpinResults.V,"0.000000")  // current value of V
 		  ValueOfRunTimeLabel.Text = Format((System.Ticks - theSuper.StartTicks)/60.0, "###0.00")  // current run time
 		  ValueOfStepNumberLabel.Text = theSuper.N.ToString // step number
 		  If MainThread.State = Thread.Running then  // if the thread is running
