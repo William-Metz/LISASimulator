@@ -34,6 +34,27 @@ Protected Class WaveBuilderClass
 		  Static cross As Boolean = True
 		  Static plus As Boolean = False
 		  
+		  // These static variables provide index numbers for the various derivatives
+		  // that match the established indices in the ParamIndexClass
+		  Static dδ As Integer = Parameters.Indices.δ
+		  Static dτc As Integer = Parameters.Indices.τc
+		  Static dχ1 As Integer = Parameters.Indices.χ1
+		  Static dθ1 As Integer = Parameters.Indices.θ1
+		  Static dφ1 As Integer = Parameters.Indices.φ1
+		  Static dχ2 As Integer = Parameters.Indices.χ2
+		  Static dθ2 As Integer = Parameters.Indices.θ2
+		  Static dφ2 As Integer = Parameters.Indices.φ2
+		  Static dλ0 As Integer = Parameters.Indices.λ0
+		  Static dlnM As Integer = Parameters.Indices.M
+		  Static dβ As Integer = Parameters.Indices.β
+		  Static dψ As Integer = Parameters.Indices.ψ
+		  Static dlnR As Integer = Parameters.Indices.R
+		  Static dΘ As Integer = Parameters.Indices.Θ
+		  Static dΦ As Integer = Parameters.Indices.Φ
+		  
+		  // These static variables provide index numbers for the 15 source parameters
+		  // that are consistent
+		  
 		  // Local variables to hold cross and plus polarizations
 		  Var hp As Double
 		  Var hx As Double
@@ -76,12 +97,12 @@ Protected Class WaveBuilderClass
 		    Var c111 As Double = Cos(ρ - σ1 + Parameters.Φ)
 		    
 		    Var dp As Double = dpc1*(-6.0*s210 + 9.0*s012 - s412) + dpc2*c2Θ*(18.0*s210 + 9.0*s012 - s412) _
-		     - dpc3*s2Θ*(s311 - 3.0*s111)
+		    - dpc3*s2Θ*(s311 - 3.0*s111)
 		    Var dx As Double = dxc1*cΘ*(9.0*c012 - c412) - dxc2*sΘ*(s311 - 3.0*s111)
 		    Var ddpdΘ As Double = -2.0*dpc2*s2Θ*(18.0*s210 + 9.0*s012 - s412) - 2.0*dpc3*c2Θ*(s311 - 3.0*s111)
 		    Var ddxdΘ As Double = -dxc1*sΘ*(9.0*c012 - c412) - dxc2*cΘ*(s311 - 3.0*s111)
 		    Var ddpdΦ As Double = dpc1*(-18.0*c012 + 2.0*c412) + dpc2*c2Θ*(-18.0*c012 + 2.0*c412) _
-		     + dpc3*s2Θ*(c311 - 3.0*c111)
+		    + dpc3*s2Θ*(c311 - 3.0*c111)
 		    Var ddxdΦ As Double = dxc1*cΘ*(18.0*s012 - 2.0*s412) - dxc2*sΘ*(c311 + 3.0*c111)
 		    Var fp1 As Double = cos2ψ*dp - sin2ψ*dx
 		    Var fx1 As Double = sin2ψ*dp + cos2ψ*dx
@@ -136,7 +157,7 @@ Protected Class WaveBuilderClass
 		  // Now let's do the β-derivative, which is the easiest
 		  hp = GetHSum(DADβ,W,plus)
 		  hx = GetHSum(DADβ,W,cross)
-		  DHDq(Integer(CaseInfoClass.Param.β)) = h0*(fp*hp + fx*hx)
+		  DHDq(dβ) = h0*(fp*hp + fx*hx)
 		  
 		  // Calculate other derivatives...
 		  
@@ -1458,20 +1479,6 @@ Protected Class WaveBuilderClass
 	#tag Property, Flags = &h0
 		ΨrDP As Double
 	#tag EndProperty
-
-
-	#tag Enum, Name = Deriv, Type = Integer, Flags = &h0
-		None
-		  δ
-		  β
-		  ι
-		  χsx
-		  χsy
-		  χsz
-		  χax
-		  χay
-		χaz
-	#tag EndEnum
 
 
 	#tag ViewBehavior

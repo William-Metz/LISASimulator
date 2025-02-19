@@ -93,6 +93,11 @@ Protected Class CaseInfoClass
 		  
 		  // Initialize the DataRecorder class
 		  DataRecorder = New DataRecorderClass
+		  
+		  // Initialize the parameter index class
+		  // This defines indexes that are used by all classes to refer
+		  // to the sources fundamental parameters
+		  Indices = New ParamIndexClass
 		End Sub
 	#tag EndMethod
 
@@ -119,6 +124,10 @@ Protected Class CaseInfoClass
 
 	#tag Property, Flags = &h0
 		ID As String = "Disp"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Indices As ParamIndexClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -236,26 +245,6 @@ Protected Class CaseInfoClass
 	#tag Property, Flags = &h0
 		ψ As Double
 	#tag EndProperty
-
-
-	#tag Enum, Name = Param, Type = Integer, Flags = &h0
-		M
-		  δ
-		  τc
-		  λ0
-		  χ1
-		  θ1
-		  φ1
-		  χ2
-		  θ2
-		  φ2
-		  β
-		  ψ
-		  R
-		  Θ
-		  Φ
-		NItems
-	#tag EndEnum
 
 
 	#tag ViewBehavior

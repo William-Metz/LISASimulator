@@ -24,7 +24,7 @@ Protected Class SpinEvolverClass
 		  
 		  Ψpr(0) = 0.5*(Ψpr(1) + Ψpr(0))
 		  
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    Dχ1xI(dq,0) = 0.5*(Dχ1xI(dq,1) + Dχ1xI(dq,0))
 		    Dχ1yI(dq,0) = 0.5*(Dχ1yI(dq,1) + Dχ1yI(dq,0))
 		    Dχ1zI(dq,0) = 0.5*(Dχ1zI(dq,1) + Dχ1zI(dq,0))
@@ -190,7 +190,7 @@ Protected Class SpinEvolverClass
 		  Var drzzI(7) As Double
 		  
 		  // Calculate derivatives of the rotation matrix
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    dj0fI(dq) = (j0x*dj0xI(dq) + j0y*dj0yI(dq))/j0f
 		    dinvj0I(dq) = -dj0fI(dq)/(j0f*j0f*j0f)
 		    dinvj0I(dq) = -(j0x*dj0xI(dq) + j0y*dj0yI(dq) + j0z*dj0yI(dq))/(j0*j0*j0)
@@ -228,7 +228,7 @@ Protected Class SpinEvolverClass
 		  ι(0) = Atan2(ℓ0f, ℓz(0))
 		  
 		  // Calculate initial values of all the derivatives
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    Dχ1xI(dq,0) = rxx*dχ1xLI(dq) + rxy*dχ1yLI(dq)  + rxz*dχ1zLI(dq) _
 		    +drxxI(dq)*χ1xL + drxyI(dq)*χ1yL  + drxzI(dq)*χ1zL
 		    Dχ1yI(dq,0) = ryx*dχ1xLI(dq) + ryy*dχ1yLI(dq)  + ryz*dχ1zLI(dq) _
@@ -277,7 +277,7 @@ Protected Class SpinEvolverClass
 		  // at the given time
 		  ℓ = L0/V0*(1.0 + L2*V2 + L3*V3 + L4*V4)
 		  DℓIdv = L0*(-1.0/V2 + L2 + 2.0*L3*V0 + 3.0*L4*V2)
-		  For dq As Integer = Dδ to Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    DℓI(dq) = dL0I(dq)/V0*(1.0 + L2*V2 + L3*V3 + L4*V4) _
 		    + L0/V0*(DL2I(dq)*V2 + DL3I(dq)*V3 + DL4I(dq)*V4) _
 		    + DℓIdv*DvI(dq)
@@ -317,7 +317,11 @@ Protected Class SpinEvolverClass
 
 	#tag Method, Flags = &h0
 		Function GetSpinDataAtTime(τ As Double) As SpinResultsClass
+		  // Create a new class to contain the spin results
 		  Var data As New SpinResultsClass
+		  
+		  // Now copy over the results of the spin evolution. The situation is different
+		  // if we have no precession or we do have precession
 		  If NoPrecession Then // if we have no spins or spins are aligned with the orbital AM
 		    data.ι = 0.0
 		    data.α = 3.14159265358979324
@@ -329,7 +333,7 @@ Protected Class SpinEvolverClass
 		    data.χsz = 0.5*(χ1+χ2)
 		    CalculateVAndℓAtTime(τ)
 		    data.V = VN
-		    For dq As Integer = Dδ To Dφ2
+		    For dq As Integer = 0 To DLastIndex
 		      data.DιI(dq) = 0.0
 		      data.DαI(dq) = 0.0
 		      data.DχaxI(dq) = 0.0
@@ -371,7 +375,7 @@ Protected Class SpinEvolverClass
 		    data.Ψ = fN*Ψpr(1) + fP*Ψpr(0) + Ψmp
 		    CalculateVAndℓAtTime(τ)
 		    data.V = VN
-		    For dq As Integer = Dδ To Dφ2
+		    For dq As Integer = 0 To DLastIndex
 		      data.DιI(dq) = fN*DιI(dq,1) + fP*DιI(dq,0)
 		      data.DαI(dq) = fN*DαI(dq,1) + fP*DαI(dq,0)
 		      data.DχaxI(dq) = 0.5*(fN*(Dχ1xI(dq,1) - Dχ2xI(dq,1)) + fP*(Dχ1xI(dq,0) - Dχ2xI(dq,0)))
@@ -408,6 +412,17 @@ Protected Class SpinEvolverClass
 		  μ22 = μ2*μ2
 		  Var η2 As Double = η*η
 		  Var η3 As Double = η2*η
+		  
+		  // Set up index references
+		  Dδ = CaseInfo.Indices.δ
+		  Dτc = CaseInfo.Indices.τc
+		  Dχ1 = CaseInfo.Indices.χ1
+		  Dθ1 = CaseInfo.Indices.θ1
+		  Dφ1 = CaseInfo.Indices.φ1
+		  Dχ2 = CaseInfo.Indices.χ2
+		  Dθ2 = CaseInfo.Indices.θ2
+		  Dφ2 = CaseInfo.Indices.φ2
+		  DLastIndex = CaseInfo.Indices.SpinLastIndex
 		  
 		  // Calculate spin evolution coefficients
 		  C10 = 0.75*(1.0 - δ) + 0.5*η
@@ -621,7 +636,7 @@ Protected Class SpinEvolverClass
 		  dvDotI(Dφ2) = 0.0
 		  
 		  // Evolve the derivatives of the spin and orbital angular momenta
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    
 		    // Calculate derivatives of the spin-dot quantities
 		    dΩ1I(dq) = V4*(5.0*C10 + 7.0*C12*V2 + 9.0*C14*V4)*DvI(dq)/ℓ _
@@ -688,7 +703,7 @@ Protected Class SpinEvolverClass
 		  Var dιFI(7) As Double
 		  Var dαFI(7) As Double
 		  Var dαDotI(7) As Double
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    dℓxyI(dq) = dℓxyIdℓx*DℓxI(dq,1) + dℓxyIdℓy*DℓyI(dq,1)
 		    dιFI(dq) = (ℓxy*DℓzI(dq,1) - ℓz(1)*dℓxyI(dq))/(ℓ*ℓ)
 		    dαFI(dq) = (ℓy(1)*DℓxI(dq,1) - ℓx(1)*DℓyI(dq,1))/ℓxy2
@@ -701,7 +716,7 @@ Protected Class SpinEvolverClass
 		  
 		  // Calculate derivatives of the precession phase
 		  Var dΨprFI(7) As Double
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    dΨprFI(dq) = DΨprI(dq,0) - TwoΔτ*(dαDotI(dq)*Cos(ι(1)) - αDotN*Sin(ι(1))*DιI(dq,1))
 		  Next
 		  
@@ -740,7 +755,7 @@ Protected Class SpinEvolverClass
 		  ι(0) = ι(1)
 		  ι(1) = ιF
 		  
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    Dχ1xI(dq,0) = Dχ1xI(dq,1)
 		    Dχ1yI(dq,0) = Dχ1yI(dq,1)
 		    Dχ1zI(dq,0) = Dχ1zI(dq,1)
@@ -874,7 +889,7 @@ Protected Class SpinEvolverClass
 		  dvDotI(Dθ2) = -dvDotIdχ2ℓ*χ2*Sin(θ2)
 		  dvDotI(Dφ2) = 0.0
 		  
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    
 		    // Calculate derivatives of spin time-derivatives
 		    dΩ1I(dq,0) = V4*(5.0*C10 + 7.0*C12*V2 + 9.0*C14*V4)*DvI(dq)/ℓ _
@@ -931,7 +946,7 @@ Protected Class SpinEvolverClass
 		  Var dℓxyI(7) As Double
 		  Var αDot0 As Double = (ℓy(0)*ℓxDot0 - ℓx(0)*ℓyDot0)/(ℓx(0)*ℓx(0) + ℓy(0)*ℓy(0))
 		  Var dαDotI(7,1) As Double
-		  For dq As Double = Dδ To Dφ2
+		  For dq As Double = 0 To DLastIndex
 		    dℓxyI(dq) = dℓxyIdℓx*DℓxI(dq,0) + dℓxyIdℓy*DℓyI(dq,0)
 		    DιI(dq,0) = (ℓxy*DℓzI(dq,0) - ℓz(0)*dℓxyI(dq))/(ℓ*ℓ)
 		    DαI(dq,0) = (ℓy(0)*DℓxI(dq,0) - ℓx(0)*DℓyI(dq,0))/ℓxy2
@@ -984,7 +999,7 @@ Protected Class SpinEvolverClass
 		  dvDotI(Dφ2) = 0.0
 		  
 		  // Evolve the derivatives of the spin and orbital angular momenta using a more correct step
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    
 		    // Calculate derivatives of the spin-dot quantities
 		    dΩ1I(dq,1) = V4*(5.0*C10 + 7.0*C12*V2 + 9.0*C14*V4)*DvI(dq)/ℓ _
@@ -1052,7 +1067,7 @@ Protected Class SpinEvolverClass
 		  dℓxyIdℓx = ℓx(1)/ℓxy
 		  dℓxyIdℓy = ℓy(1)/ℓxy
 		  Var αDot1 As Double = (ℓy(1)*ℓxDot1 - ℓx(1)*ℓyDot1)/ℓxy2
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    dℓxyI(dq) = dℓxyIdℓx*DℓxI(dq,1) + dℓxyIdℓy*DℓyI(dq,1)
 		    DιI(dq,1) = (ℓxy*DℓzI(dq,1) - ℓz(1)*dℓxyI(dq))/(ℓ*ℓ)
 		    DαI(dq,1) = (ℓy(1)*DℓxI(dq,1) - ℓx(1)*DℓyI(dq,1))/ℓxy2
@@ -1065,7 +1080,7 @@ Protected Class SpinEvolverClass
 		  Ψpr(1) = -0.5*ΔτhP*(αDot0*Cos(ι(0)) + αDot1*Cos(ι(1)))
 		  
 		  // Calculate derivatives of the precession phase
-		  For dq As Integer = Dδ To Dφ2
+		  For dq As Integer = 0 To DLastIndex
 		    DΨprI(dq,0) = 0.0
 		    DΨprI(dq,1) = -0.5*ΔτhP*(dαDotI(dq,0)*Cos(ι(0)) - αDot0*Sin(ι(0))*DιI(dq,0) _
 		    + dαDotI(dq,1)*Cos(ι(1)) - αDot1*Sin(ι(1))*DιI(dq,1))
@@ -1140,6 +1155,10 @@ Protected Class SpinEvolverClass
 
 	#tag Property, Flags = &h21
 		Private DL4I(7) As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DLastIndex As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
