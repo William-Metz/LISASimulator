@@ -1111,7 +1111,12 @@ Protected Class WaveBuilderClass
 		    ιFunctions = New IotaFuncsClass
 		    ιFunDerivs = New IotaFuncsClass
 		    
+		    necdet = new NecdetsClass
+		    
 		  End If
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1267,20 +1272,23 @@ Protected Class WaveBuilderClass
 
 	#tag Method, Flags = &h0
 		Function GetNamedValue(theName As String) As Double
+		  // Handle non-array properties first
 		  If theName = "t-y" Then 
 		    If Parameters = Nil Then
 		      Return 0
 		    Else
-		      Return τrDN*Parameters.GM/Parameters.Year
+		      Return τrDN * Parameters.GM / Parameters.Year
 		    End If
 		  End If
+		  
 		  If theName = "t-s" Then
 		    If Parameters = Nil Then
 		      Return 0
 		    Else
-		      Return τrDN*Parameters.GM
+		      Return τrDN * Parameters.GM
 		    End If
 		  End If
+		  
 		  If theName = "H" Then Return H
 		  If theName = "V" Then Return SpinResults.V
 		  If theName = "α" Then Return SpinResults.α
@@ -1301,6 +1309,8 @@ Protected Class WaveBuilderClass
 		  parts = parts(1).Split(")") // split at the close parenthesis
 		  If parts.LastIndex > 1 or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
 		  parts = parts(0).Split(",") // split at a comma, if there is one
+		  
+		  // Extract indices
 		  Var index1 As Integer = -1
 		  If parts(0).ToInteger.ToString <> parts(0) Then
 		    Raise New RuntimeException("Index Not An Integer")
@@ -1308,6 +1318,7 @@ Protected Class WaveBuilderClass
 		    index1 = parts(0).ToInteger
 		    If index1 < 0 Then Raise New RuntimeException("Index Negative")
 		  End If
+		  
 		  Var index2 As Integer = -1
 		  If parts.LastIndex > 0 Then
 		    If parts.LastIndex > 1 Then Raise New RuntimeException("Too Many Indices")
@@ -1315,10 +1326,23 @@ Protected Class WaveBuilderClass
 		    index2 = parts(1).ToInteger
 		    If index2 < 0 Then Raise New RuntimeException("Index Negative")
 		  End If
-		  // note that index2 will be -1 if a second index is not specified by the name, but positive if it is
+		  
+		  // Handle necdet array properties
+		  If arrayName = "ndAdι" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdι(index1)
+		  If arrayName = "ndAdβ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdβ(index1)
+		  If arrayName = "ndAdδ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdδ(index1)
+		  If arrayName = "ndAdχaxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχaxDN(index1)
+		  If arrayName = "ndAdχayDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχayDN(index1)
+		  If arrayName = "ndAdχazDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχazDN(index1)
+		  If arrayName = "ndAdχsxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsxDN(index1)
+		  If arrayName = "ndAdχsyDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsyDN(index1)
+		  If arrayName = "ndAdχszDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχszDN(index1)
+		  
+		  // Handle arrays W and A
 		  If arrayName = "W" And IndicesCheck(index1, 250, index2, -1) Then Return W(index1)
 		  If arrayName = "A" And IndicesCheck(index1, 250, index2, -1) Then Return A(index2)
 		  
+		  // If nothing matched
 		  Raise New RuntimeException("Name Not Found")
 		End Function
 	#tag EndMethod
