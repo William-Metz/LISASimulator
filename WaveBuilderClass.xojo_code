@@ -1111,7 +1111,7 @@ Protected Class WaveBuilderClass
 		    ιFunctions = New IotaFuncsClass
 		    ιFunDerivs = New IotaFuncsClass
 		    
-		    necdet = new NecdetsClass
+		    necdet = New NecdetsClass
 		    
 		  End If
 		  

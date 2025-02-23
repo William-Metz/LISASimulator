@@ -30,6 +30,7 @@ Class=UncertaintyCalculatorClass;UncertaintyCalculatorClass.xojo_code;&h00000000
 FileTypeSet=FileTypeGroup1;FileTypeGroup1.xojo_filetypeset;&h0000000016D997FF;&h0000000000000000;false
 Class=PlotData;Plotting/PlotData.xojo_code;&h000000007E7307FF;&h000000004D924FFF;false
 Class=PlotCanvas;Plotting/PlotCanvas.xojo_code;&h0000000057FB0FFF;&h000000004D924FFF;false
+Class=NecdetsClass;NecdetsClass.xojo_code;&h00000000133FDFFF;&h0000000000000000;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
