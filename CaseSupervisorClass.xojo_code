@@ -10,6 +10,8 @@ Protected Class CaseSupervisorClass
 		  
 		  Var ep As Double = 1e-6
 		  
+		  necdet = New NecdetsClass
+		  
 		  ' Create and initialize cases with time shifts
 		  CaseList(0) = CaseInfo
 		  CaseList(1) = CaseInfo.clone ' Case before central case
@@ -21,9 +23,13 @@ Protected Class CaseSupervisorClass
 		  WaveBuilders(1) = New WaveBuilderClass(CaseList(1))
 		  WaveBuilders(2) = New WaveBuilderClass(CaseList(2))
 		  
+		  necdet.SetValues(WaveBuilders, ep)
+		  
 		  For i As Integer = 0 To 2
 		    CaseList(i).DataRecorder.SetDataSource(WaveBuilders(i)) ' Connect data source for recording
 		  Next
+		  
+		  // Pass the WaveBuilders array and ep to calculate nA
 		  
 		  // Create and initialize the ATA matrix
 		  //ATAMatrix = New Matrix(15) // Initalize an empty 15x15 matrix
@@ -36,7 +42,6 @@ Protected Class CaseSupervisorClass
 
 	#tag Method, Flags = &h0
 		Sub DoSteps()
-		  
 		  TerminationMessage = ""
 		  TrY
 		    For N = 0 to CaseInfo.NSteps
@@ -96,6 +101,10 @@ Protected Class CaseSupervisorClass
 
 	#tag Property, Flags = &h0
 		N As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Shared necdet As NecdetsClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

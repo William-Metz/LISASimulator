@@ -37,14 +37,14 @@ Protected Class WaveBuilderClass
 		  // These static variables provide index numbers for the various derivatives
 		  // that match the established indices in the ParamIndexClass
 		  Static dδ As Integer = Parameters.Indices.δ
-		  Static dτc As Integer = Parameters.Indices.τc
-		  Static dχ1 As Integer = Parameters.Indices.χ1
-		  Static dθ1 As Integer = Parameters.Indices.θ1
-		  Static dφ1 As Integer = Parameters.Indices.φ1
-		  Static dχ2 As Integer = Parameters.Indices.χ2
-		  Static dθ2 As Integer = Parameters.Indices.θ2
-		  Static dφ2 As Integer = Parameters.Indices.φ2
-		  Static dλ0 As Integer = Parameters.Indices.λ0
+		  dτc = Parameters.Indices.τc  // Using class-level properties
+		  dχ1 = Parameters.Indices.χ1  
+		  dθ1 = Parameters.Indices.θ1
+		  dφ1 = Parameters.Indices.φ1
+		  dχ2 = Parameters.Indices.χ2
+		  dθ2 = Parameters.Indices.θ2
+		  dφ2 = Parameters.Indices.φ2
+		  dλ0 = Parameters.Indices.λ0
 		  Static dlnM As Integer = Parameters.Indices.M
 		  Static dβ As Integer = Parameters.Indices.β
 		  Static dψ As Integer = Parameters.Indices.ψ
@@ -1111,8 +1111,15 @@ Protected Class WaveBuilderClass
 		    ιFunctions = New IotaFuncsClass
 		    ιFunDerivs = New IotaFuncsClass
 		    
-		    necdet = New NecdetsClass
-		    
+		    //indices
+		    dτc = Parameters.Indices.τc
+		    dχ1 = Parameters.Indices.χ1
+		    dθ1 = Parameters.Indices.θ1
+		    dφ1 = Parameters.Indices.φ1
+		    dχ2 = Parameters.Indices.χ2
+		    dθ2 = Parameters.Indices.θ2
+		    dφ2 = Parameters.Indices.φ2
+		    dλ0 = Parameters.Indices.λ0
 		  End If
 		  
 		  
@@ -1302,13 +1309,13 @@ Protected Class WaveBuilderClass
 		  If theName = "χ2z" Then Return SpinResults.χsz - SpinResults.χaz
 		  
 		  // This part handles a request for a value in an array. (Handle all non-array possibilities first.)
-		  Var parts() As String = theName.Split("(") // split the name into parts at the open parenthesis
-		  Var arrayName As String = parts(0) // we are always going to have this part
+		  Var parts() As String = theName.Split("(")
+		  Var arrayName As String = parts(0)
 		  If parts.LastIndex = 0 Then Raise New RuntimeException("No Open Parenthesis")
 		  If Not parts(1).EndsWith(")") Then Raise New RuntimeException("No Close Parenthesis")
-		  parts = parts(1).Split(")") // split at the close parenthesis
-		  If parts.LastIndex > 1 or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
-		  parts = parts(0).Split(",") // split at a comma, if there is one
+		  parts = parts(1).Split(")")
+		  If parts.LastIndex > 1 Or Not parts(1).IsEmpty Then Raise New RuntimeException("Characters After Close Parenthesis")
+		  parts = parts(0).Split(",")
 		  
 		  // Extract indices
 		  Var index1 As Integer = -1
@@ -1327,23 +1334,41 @@ Protected Class WaveBuilderClass
 		    If index2 < 0 Then Raise New RuntimeException("Index Negative")
 		  End If
 		  
-		  // Handle necdet array properties
-		  If arrayName = "ndAdι" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdι(index1)
-		  If arrayName = "ndAdβ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdβ(index1)
-		  If arrayName = "ndAdδ" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdδ(index1)
-		  If arrayName = "ndAdχaxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχaxDN(index1)
-		  If arrayName = "ndAdχayDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχayDN(index1)
-		  If arrayName = "ndAdχazDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχazDN(index1)
-		  If arrayName = "ndAdχsxDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsxDN(index1)
-		  If arrayName = "ndAdχsyDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχsyDN(index1)
-		  If arrayName = "ndAdχszDN" And IndicesCheck(index1, 250, index2, -1) Then Return necdet.ndAdχszDN(index1)
+		  // Handle CaseSupervisorClass.necdet array properties safely
+		  If CaseSupervisorClass.necdet = Nil Then
+		    Raise New RuntimeException("Error: CaseSupervisorClass.necdet is not initialized.")
+		  End If
+		  
+		  Select Case arrayName
+		  Case "ndAdι"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdι) Then Return CaseSupervisorClass.necdet.ndAdι(index1)
+		  Case "ndAdβ"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdβ) Then Return CaseSupervisorClass.necdet.ndAdβ(index1)
+		  Case "ndAdδ"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdδ) Then Return CaseSupervisorClass.necdet.ndAdδ(index1)
+		  Case "ndAdχax"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχax) Then Return CaseSupervisorClass.necdet.ndAdχax(index1)
+		  Case "ndAdχay"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχay) Then Return CaseSupervisorClass.necdet.ndAdχay(index1)
+		  Case "ndAdχaz"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχaz) Then Return CaseSupervisorClass.necdet.ndAdχaz(index1)
+		  Case "ndAdχsx"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχsx) Then Return CaseSupervisorClass.necdet.ndAdχsx(index1)
+		  Case "ndAdχsy"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχsy) Then Return CaseSupervisorClass.necdet.ndAdχsy(index1)
+		  Case "ndAdχsz"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.ndAdχsz) Then Return CaseSupervisorClass.necdet.ndAdχsz(index1)
+		  Case "nA"
+		    If index1 <= UBound(CaseSupervisorClass.necdet.nA) Then Return CaseSupervisorClass.necdet.nA(index1)
+		  End Select
 		  
 		  // Handle arrays W and A
 		  If arrayName = "W" And IndicesCheck(index1, 250, index2, -1) Then Return W(index1)
-		  If arrayName = "A" And IndicesCheck(index1, 250, index2, -1) Then Return A(index2)
+		  If arrayName = "A" And IndicesCheck(index1, 250, index2, -1) Then Return A(index1)
 		  
 		  // If nothing matched
 		  Raise New RuntimeException("Name Not Found")
+		  
 		End Function
 	#tag EndMethod
 
@@ -1410,6 +1435,38 @@ Protected Class WaveBuilderClass
 
 	#tag Property, Flags = &h0
 		DZDlnR As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dθ1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dθ2 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dλ0 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dτc As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dφ1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dφ2 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dχ1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dχ2 As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1648,6 +1705,70 @@ Protected Class WaveBuilderClass
 			Group="Behavior"
 			InitialValue=""
 			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dτc"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dχ1"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dθ1"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dφ1"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dχ2"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dθ2"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dφ2"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="dλ0"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

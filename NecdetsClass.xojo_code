@@ -1,18 +1,27 @@
 #tag Class
-Protected Class NecdetsClass
+Class NecdetsClass
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  
-		  
+		  // Initialize arrays if required
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetValues()
-		  //Example: ndAdι(1) = 1
+		Sub SetValues(Wavebuilders() As WaveBuilderClass, ep As Double)
+		  If Wavebuilders.Ubound >= 1 Then
+		    For i As Integer = 0 To 249  // Assuming 250 elements
+		      nA(i) = (Wavebuilders(1).A(i) - Wavebuilders(2).A(i)) / (2.0 * ep)
+		    Next
+		  Else
+		    Raise New RuntimeException("Not enough Wavebuilders instances to calculate nA(i).")
+		  End If
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		nA(250) As Double
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		ndAdι(250) As Double
@@ -27,27 +36,27 @@ Protected Class NecdetsClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχaxDN(250) As Double
+		ndAdχax(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχayDN(250) As Double
+		ndAdχay(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχazDN(250) As Double
+		ndAdχaz(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχsxDN(250) As Double
+		ndAdχsx(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχsyDN(250) As Double
+		ndAdχsy(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ndAdχszDN(250) As Double
+		ndAdχsz(250) As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
